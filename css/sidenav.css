@@ -1,0 +1,123 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  border-right: 1px solid black;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  border-radius:7px;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:nth-child(n+2){
+  border-radius:7px;
+  background: #D9D9D9;
+  margin:10px;
+  transition: border-left 0.2s;
+}
+
+.sidenav_inicio{
+  border-left: 5px solid #0057FF;
+}
+
+.sidenav_inicio:hover{
+  border-left: 8px solid #0057FF;
+  transition: border-left 0.2s;
+}
+
+.sidenav_agregar_usuarios{
+  border-left: 5px solid #FFAD62;
+}
+
+.sidenav_agregar_usuarios:hover{
+  border-left: 8px solid #FFAD62;
+  transition: border-left 0.2s;
+}
+
+
+.sidenav_ver_usuarios, .sidenav_ver_orden{
+  border-left: 5px solid #FFE500;
+}
+
+.sidenav_ver_usuarios:hover, .sidenav_ver_orden:hover{
+  border-left: 8px solid #FFE500;
+  transition: border-left 0.2s;
+}
+
+.sidenav_ver_actividad_usuarios{
+  border-left: 5px solid #ff4d4d;
+}
+
+.sidenav_ver_actividad_usuarios:hover{
+  border-left: 8px solid #ff4d4d;
+  transition: border-left 0.2s;
+}
+
+.sidenav_ver_reportes{
+  border-left: 5px solid #007ABF;
+}
+
+.sidenav_ver_reportes:hover{
+  border-left: 8px solid #007ABF;
+  transition: border-left 0.2s;
+}
+
+.sidenav_editar_compra, .sidenav_order_produccion, .sidenav_compras{
+  border-left: 5px solid #00C714;
+}
+
+.sidenav_editar_compra:hover, .sidenav_order_produccion:hover, .sidenav_compras:hover{
+  border-left: 8px solid #00C714;
+  transition: border-left 0.2s;
+}
+
+.sidenav_editar_orden, .sidenav_ver_compras{
+  border-left: 5px solid #61caff;
+}
+
+.sidenav_editar_orden:hover, .sidenav_ver_compras:hover{
+  border-left: 8px solid #61caff;
+  
+}
+
+.sidenav a:first-child:hover {
+  color: gray;
+}
+
+.sidenav a:hover {
+  color: white;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

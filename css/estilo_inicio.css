@@ -1,0 +1,54 @@
+.Login{
+    width: 100%;
+    height: 650px;
+    display: flex;
+}
+.portada-login{
+    width: 25%;
+    height: 100%;
+
+}
+.Inicio{
+    width: 75%;
+    height: 100%;
+    background-color: #D2D2D2;
+
+}
+.Inicio-login{
+    width: 35%;
+    height: 55%;
+    margin: auto;
+    margin-top:10%;
+    border-radius: 30px;
+    border: solid black 1px;
+    background-color: white;
+}
+.Inicio-login form{
+    width: 100%;
+    height: 90%;
+    padding-top:10% ;
+    
+}
+.Inicio-login label{
+    margin-left: 9%;
+}
+.Inicio-login form input{
+    width: 80%;
+    height: 12%;
+    margin-left: 9%;
+    margin-bottom: 13%;
+    border-radius: 5px;
+    border: 0px;
+}
+input[type=text], input[type=password]{
+    background-color: #D2D2D2;
+}
+.portada-login img{
+    width: 100%;
+    height: 100%;
+}
+input[type=submit]{
+    background-color: orangered;
+    color: aliceblue;
+    font-size: 15px;
+}
