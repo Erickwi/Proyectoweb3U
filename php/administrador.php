@@ -44,7 +44,7 @@ if ($usuario == 'bodeguero') {
         </div>
     </div>
       
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú</span>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     <div class="portada-usuarios">
         <img src="../img/portada_administrador1.jpg" alt="">
     </div> 

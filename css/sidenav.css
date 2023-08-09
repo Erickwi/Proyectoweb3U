@@ -13,6 +13,7 @@ body {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+	background-color:white;
 }
 
 .sidenav a {
@@ -110,11 +111,6 @@ body {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
-}
-
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
 }
 
 @media screen and (max-height: 450px) {
