@@ -52,7 +52,7 @@ function credenciales_son_validas($usuario, $contraseña) {
 
 function redirigirSegunRol($tipo_usuario) {
     if ($tipo_usuario === 'producción') {
-        header('Location: php/usuario.php');
+        header('Location: php/produccion.php');
     } elseif ($tipo_usuario === 'administrador') {
         header('Location: php/administrador.php');
     } elseif ($tipo_usuario === 'bodeguero') {

@@ -13,7 +13,7 @@ if ($usuario == 'bodeguero') {
     header('Location: bodeguero.php');
     exit();
 }elseif ($usuario == 'producción') {
-    header('Location: usuario.php');
+    header('Location: produccion.php');
    exit();
 }
 ?>
@@ -40,7 +40,7 @@ if ($usuario == 'bodeguero') {
         <div class="informacion">
             <div class="nombre"><p>Nombre del usuario</p></div>
             <div class="user-logo"> <img src="../img/usuario-logo.png" alt=""></div>
-            <div class="cerrar"> <a href="logout.php">Cerrar Sesión</a> </div>
+            <div class="cerrar"><p> <a href="logout.php">Cerrar Sesión</a></p> </div>
         </div>
     </div>
       

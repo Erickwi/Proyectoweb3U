@@ -15,10 +15,11 @@
 }
 
 .encabezado  .informacion{
-    width: 30%;
+    width: 35%;
     height: 100%;
     display: flex;
-    margin-left: 50%;
+    margin-left: 45%;
+    margin-right: 3%;
 }
 .informacion div{
     width: 30%;
@@ -85,21 +86,39 @@
 #agregar{
     border-left: solid 5px #FFAD62;
 }
-#reporte{
+#reporte, #orden_pro{
     border-left: solid 5px yellow;
 }
 
-#usuario{
+#usuario, #orden_v{
     border-left: solid 5px palevioletred;
 }
 
-#actividad_usuario{
+#actividad_usuario, #compra_v{
     border-left: solid 5px blue;
 }
 
 #editar_orden{
     border-left: solid 5px cornflowerblue;
 }
-#editar_compra{
+#editar_compra, #compra_b{
     border-left: solid 5px green;
+}
+.contenido-s{
+    margin-top: 5%;
+}
+.cerrar{
+    border-radius: 10px;
+    background-color: #F3F3F3;
+    color: black;
+}
+.cerrar p{
+  text-align:center;
+  margin-top:15%;
+   font-weight:bold;
+
+}
+a{
+  text-decoration: none;
+  color:black;
 }

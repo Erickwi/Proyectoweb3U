@@ -8,13 +8,13 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-$usuario = $_SESSION['usuario'];
+  $usuario = $_SESSION['usuario'];
 if ($usuario === 'admin') {
     // Si es administrador, redirigir a la página de administrador
     header('Location: administrador.php');
     exit();
-}elseif ($usuario === 'producción') {
-    header('Location: produccion.php');
+}elseif ($usuario === 'bode') {
+    header('Location: bodeguero.php');
     exit();
 }
 ?>
@@ -24,9 +24,8 @@ if ($usuario === 'admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bodega</title>
+    <title>Produccion</title>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
-   <link href="../css/sidenav.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="principal">
@@ -35,7 +34,7 @@ if ($usuario === 'admin') {
         <div class="informacion">
             <div class="nombre"><p>Nombre del usuario</p></div>
             <div class="user-logo"> <img src="../img/usuario-logo.png" alt=""></div>
-            <div class="cerrar"><p> <a href="logout.php">Cerrar Sesión</a></p> </div>
+            <div class="cerrar"> <p> <a href="logout.php">Cerrar Sesión</a></p></div>
         </div>
     </div>
     <div class="portada-usuarios">
@@ -44,8 +43,8 @@ if ($usuario === 'admin') {
     <div class="contenido">
         
         <div class="segundo-contenido contenido-s">
-            <div id="compra_b"> <p>Comprar</p></div>
-            <div id="compra_v"><p>Ver compras</p></div>
+            <div id="orden_pro"> <p>Orden produccion</p></div>
+            <div id="orden_v"><p>Ver orden</p></div>
             
         </div>
     </div>   
