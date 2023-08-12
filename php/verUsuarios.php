@@ -134,7 +134,7 @@ if (isset($_GET['delid'])) {
                     if (mysqli_num_rows($ret) == 0) {
                         ?>
                         <tr>
-                            <th style="text-align:center; color:red;" colspan="6">No Record Found</th>
+                            <th style="text-align:center; color:red;" colspan="6">No se han encontrado registros.</th>
                         </tr>
                     <?php } ?>
                     </tbody>
