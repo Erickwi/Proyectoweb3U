@@ -10,7 +10,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
 
 $tipo_usuario = $_SESSION['tipo_usuario'];
 $nombre_usuario = $_SESSION['nombre_usuario'];
-if ($tipo_usuario === 'admin') {
+if ($tipo_usuario === 'administrador') {
     // Si es administrador, redirigir a la página de administrador
     header('Location: administrador.php');
     exit();

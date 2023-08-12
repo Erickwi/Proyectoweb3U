@@ -2,17 +2,17 @@
 session_start();
 
 // Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['tipo_usuario'])) {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
     header('Location: ../index.php');
     exit();
 }
-$usuario = $_SESSION['usuario'];
-if ($usuario == 'bodeguero') {
+$tipo_usuario = $_SESSION['tipo_usuario'];
+if ($tipo_usuario == 'bodeguero') {
      //Si es administrador, redirigir a la página de administrador
     header('Location: bodeguero.php');
     exit();
-}elseif ($usuario == 'producción') {
+}elseif ($tipo_usuario == 'producción') {
     header('Location: produccion.php');
    exit();
 }

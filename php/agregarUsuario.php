@@ -1,4 +1,26 @@
-<?php 
+<?php
+
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['tipo_usuario'])) {
+    // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
+    header('Location: ../index.php');
+    exit();
+}
+
+$tipo_usuario = $_SESSION['tipo_usuario'];
+$nombre_usuario = $_SESSION['nombre_usuario'];
+if ($tipo_usuario === 'administrador') {
+    // Si es administrador, redirigir a la página de administrador
+    header('Location: administrador.php');
+    exit();
+}elseif ($usuario === 'producción') {
+    header('Location: produccion.php');
+    exit();
+}
+
+
 //Databse Connection file
 include('dbconnection.php');
 if(isset($_POST['submit']))
@@ -48,7 +70,7 @@ if(isset($_POST['submit']))
     <div class="encabezado">
         <div class="logo"><img src="../img/LOGO1.png"></div>
         <div class="informacion">
-            <div class="nombre"><p>Nombre del usuario</p></div>
+            <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
             <div class="user-logo"> <img src="../img/usuario-logo.png" alt=""></div>
             <div class="cerrar"><p> <a href="logout.php">Cerrar Sesión</a></p> </div>
         </div>

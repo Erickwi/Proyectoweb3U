@@ -53,17 +53,19 @@ function obtener_nombre_usuario($usuario){
 
 function credenciales_son_validas($usuario, $contraseña) {
     global $con;
-    $query = "SELECT contraseña FROM usuario WHERE usuario='$usuario'";
+    $query = "SELECT * FROM usuario WHERE usuario='$usuario'";
     $result = mysqli_query($con, $query);
     if ($result) {
-        $row = mysqli_fetch_assoc($result);
-        $contraseña_db = $row['contraseña'];
-        // Verificar contraseña sin funciones de hash
-        if ($contraseña === $contraseña_db) {
-            return true;
-        }
+		$row=mysqli_fetch_assoc($result);
+		if ($row != NULL){
+			$contraseña_db = $row['contraseña'];
+			if ($contraseña === $contraseña_db) {
+            	return true;
+        	}
+		}else{
+			return false;
+		}
     }
-    return false;
 }
 
 function redirigirSegunRol($tipo_usuario) {
@@ -101,7 +103,7 @@ function redirigirSegunRol($tipo_usuario) {
                         <input type="text" name="usuario" id="usuario"><br>
                         <label for="contraseña">Contraseña</label><br>
                         <input type="password" name="contraseña" id="contraseña"><?php if (isset($mensajeError)) { ?>
-                        <p align="center"><?php echo $mensajeError; ?></p>
+                        <p align="center" style="color:red;"><?php echo $mensajeError; ?></p><br>
                     <?php } ?>
                         <input type="submit" name="button" id="button" value="Iniciar sesión">
                     </form>
