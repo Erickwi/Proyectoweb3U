@@ -51,6 +51,9 @@ body {
   transition: border-left 0.2s;
 }
 
+.sidenav_agregar_usuarios_active{
+  background-color: 5px solid #FFAD62;
+}
 
 .sidenav_ver_usuarios, .sidenav_ver_orden{
   border-left: 5px solid #FFE500;
@@ -59,6 +62,10 @@ body {
 .sidenav_ver_usuarios:hover, .sidenav_ver_orden:hover{
   border-left: 8px solid #FFE500;
   transition: border-left 0.2s;
+}
+
+.sidenav_ver_usuarios_active, .sidenav_ver_orden_active{
+  background-color: 5px solid #FFE500;
 }
 
 .sidenav_ver_actividad_usuarios{
@@ -70,6 +77,10 @@ body {
   transition: border-left 0.2s;
 }
 
+.sidenav_ver_actividad_usuarios_active{
+  background-color: #ff4d4d;
+}
+
 .sidenav_ver_reportes{
   border-left: 5px solid #007ABF;
 }
@@ -77,6 +88,11 @@ body {
 .sidenav_ver_reportes:hover{
   border-left: 8px solid #007ABF;
   transition: border-left 0.2s;
+}
+
+.sidenav_ver_reportes_active{
+  background-color: #007ABF;
+  color:white;
 }
 
 .sidenav_editar_compra, .sidenav_order_produccion, .sidenav_compras{
@@ -88,13 +104,23 @@ body {
   transition: border-left 0.2s;
 }
 
+.sidenav_editar_compra_active, .sidenav_order_produccion_active, .sidenav_compras_active{
+  background-color:#00C714;
+  color:white;
+}
+
 .sidenav_editar_orden, .sidenav_ver_compras{
   border-left: 5px solid #61caff;
 }
 
 .sidenav_editar_orden:hover, .sidenav_ver_compras:hover{
   border-left: 8px solid #61caff;
-  
+  transition: border-left 0.2s;
+}
+
+.sidenav_editar_orden_active, .sidenav_ver_compras_active{
+  background-color: #61caff;
+  color:black;
 }
 
 .sidenav a:first-child:hover {

@@ -3,9 +3,9 @@ include('php/dbconnection.php');
 session_start();
 
 // Verificar si el usuario ha iniciado sesión
-if (isset($_SESSION['usuario'])) {
+if (isset($_SESSION['tipo_usuario'])) {
     // Redirigir según el rol del usuario
-    redirigirSegunRol($_SESSION['usuario']);
+    redirigirSegunRol($_SESSION['tipo_usuario']);
     exit();
 }
 
@@ -16,7 +16,12 @@ if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {
 
     if (credenciales_son_validas($usuario, $contraseña)) {
         $tipo_usuario = obtener_tipo_usuario($usuario);
-        $_SESSION['usuario'] = $tipo_usuario;
+        $nombre_usuario = obtener_nombre_usuario($usuario);
+      //VARIABLES PARA LA SESION
+      //variable usuario -> "administrador","bodeguero","administrador"
+        $_SESSION['tipo_usuario'] = $tipo_usuario;
+      //variable nombre -> nombre del usuario
+        $_SESSION['nombre_usuario'] = $nombre_usuario;
         redirigirSegunRol($tipo_usuario);
         exit();
     } else {
@@ -31,6 +36,17 @@ function obtener_tipo_usuario($usuario) {
     if ($result) {
         $row = mysqli_fetch_assoc($result);
         return $row['tipo_usuario'];
+    }
+    return false;
+}
+
+function obtener_nombre_usuario($usuario){
+   global $con;
+    $query = "SELECT nombre FROM usuario WHERE usuario='$usuario'";
+    $result = mysqli_query($con, $query);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        return $row['nombre'];
     }
     return false;
 }
@@ -69,11 +85,13 @@ function redirigirSegunRol($tipo_usuario) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión</title>
     <link href="css/estilo_inicio.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+  <img class="logo_index" src="img/logo.png" alt="logo_innovaGenius">
     <div class="principal">
         <div class="Login">
-            <div class="portada-login">
+            <div class="portada-login w3-hide-small">
                 <img src="img/portada1.jpg"/>
             </div>
             <div class="Inicio">
