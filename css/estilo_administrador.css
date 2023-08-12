@@ -149,3 +149,28 @@
     cursor:pointer;
   font-weight:bold;
 }
+/* Estilo para el espacio de búsqueda */
+.button {
+    padding: 5px 16px; /* Reducir el padding vertical */
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db; /* Azul suave */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.button:hover {
+    background-color: #5dbcd2; /* Un tono más claro de azul */
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
