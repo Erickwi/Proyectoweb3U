@@ -68,17 +68,18 @@ if ($tipo_usuario === 'administrador') {
                 <div class="w3-container w3-twothird">
                   <label for="codigo_compra_opcion">Código de la compra</label>
                   <select class="w3-select" name="codigo_compra_opcion" id="codigo_compra_opcion">
-                    <option value="" disabled selected>Elija un código</option>
+                    <option value="" disabled selected>Seleccione un código</option>
                     <?php 
                       $codigoMaterial=mysqli_query($con,"select * from materiales");
                       while( $row=mysqli_fetch_array($codigoMaterial)){
+                          $id=$row['id_materiales'];
                           $codigo=$row['codigo_material'];
-                          ?>
-                          <option value="<?php echo $id; ?>"> <?php echo $codigo; ?> </option>
-                          <?php
+                          
+                          echo '<option value="' . $id . '">' . $codigo . '</option>';
+
                       }
                       ?>
-                    <option value="" >Añadir un nuevo código</option>
+                    <option value="nuevo_codigo" >Añadir un nuevo código</option>
                   </select>
                 </div>
                 <div class="w3-container w3-third">

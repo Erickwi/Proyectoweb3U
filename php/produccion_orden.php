@@ -82,7 +82,8 @@ if(isset($_POST['submit']))
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido-informacion-orden">
       <div class="contenido-orden"> 
-        <form>
+         <form method="post" >
+          <h1>Orden de produccion</h1>
           <div class="informacion-orden">
             <div class="codigos-orden">
               <label for="codigo_orden">Código de la orden</label><br />
@@ -98,8 +99,10 @@ if(isset($_POST['submit']))
               <input
                 class="w3-input"
                 type="text"
-                name="codigo_orden"
-                id="codigo_orden"
+                name="fecha_orden"
+                id="fecha_compra" 
+                placeholder=""
+                readonly
               />
             </div>
           </div>
@@ -110,7 +113,7 @@ if(isset($_POST['submit']))
                <option value="">Selecciona el producto</option>
                 <?php  
                 include('dbconnection.php');
-                $getProducto ="select * from productos";
+                $getProducto ="select * from productos order by nombre_productos";
                 $getProducto1=mysqli_query($con,$getProducto);
                 while( $row=mysqli_fetch_array($getProducto1)){
                     $id=$row['id_productos'];
@@ -127,46 +130,24 @@ if(isset($_POST['submit']))
             </select>
                <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar">Aceptar</button>
             </div>
-          </div> 
-          haha
+
+          </div>
+           <div class="enviar-orden">
+            <input align="center" type="submit" name="submit" value="Generar orden" />
+          </div>
+        </form>
         </form></div>
+
+
+        
     <div class="contenido-orden">
         <form method="post" >
-          <h1>Orden de produccion</h1>
-          
-          <div class="informacion-producto">
-            <div class="codigos-producto">
-              <label for="codigo_material">Producto</label><br />
-             <select name="productos" id="productos">
-               <option value="">Selecciona el producto</option>
-                <?php  
-                
-                $getProducto ="select * from productos";
-                $getProducto1=mysqli_query($con,$getProducto);
-                while( $row=mysqli_fetch_array($getProducto1)){
-                    $id=$row['id_productos'];
-                    $codigo_productos=$row['codigo_productos'];
-                    $nombre_productos=$row['nombre_productos'];
-                    $activo_producto=$row['activo_producto'];
-                    ?>
-                    <option value="<?php echo $id; ?>"> <?php echo $nombre_productos ?> </option>
-                    <?php
-                }
-                
-                ?>
-        
-            </select>
-               <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar">Aceptar</button>
-            </div>
-
-
-            
           <?php  
 if (isset($_POST['productos'])) {
  
   
     $codigo_buscar = mysqli_real_escape_string($con, $_POST['productos']); 
-    $getMateriales = "SELECT costo_pm,cantidad_pm,foto_producto, nombre_material, cantidad_material, costo_material FROM inventario.productos p, inventario.materiales m, inventario.productos_materiales mp 
+    $getMateriales = "SELECT codigo_productos,nombre_productos,costo_pm,cantidad_pm,foto_producto, nombre_material, cantidad_material, costo_material FROM inventario.productos p, inventario.materiales m, inventario.productos_materiales mp 
     WHERE p.id_productos=mp.productos_id_productos AND m.id_materiales=mp.materiales_id_materiales AND p.id_productos='$codigo_buscar' ";
     
     $getMateriales1 = mysqli_query($con, $getMateriales);
@@ -174,9 +155,20 @@ if (isset($_POST['productos'])) {
   $row1 = mysqli_fetch_assoc($getMateriales2);
   $total=0;
   ?>
+          <h1>Orden de produccion</h1>
+          
+          <div class="informacion-producto">
+            <div class="codigos-producto">
+              <label for="codigo_material">Producto</label><br />
+             <input class="w3-input" type="text" name="detalle_orden" id="detalle_orden" value="<?php echo $row1['codigo_productos']; ?>" readonly />
+<label for="codigo_material">Producto</label><br />
+             <input class="w3-input" type="text" name="detalle_orden" id="detalle_orden" value="<?php echo $row1['nombre_productos']; ?>" readonly />
+            </div>
+            
+            
+          
   <div class="imagen-orden"><img src="<?php echo  $row1['foto_producto']; ?>" alt="" /></div>
-          </div>
-          <div class="contenido-materiales">
+          </div><div class="contenido-materiales">
             <div class="detalle-material">
               <label for="detalle_orden">Detalle</label>
              
@@ -211,6 +203,14 @@ if (isset($_POST['productos'])) {
 <?php
           $total += ($row['cantidad_pm'] * $row['costo_pm']); // Sumamos al total
         }
+      ?>
+      <div class="contenido-materiales">
+            <div class="total-orden-suma">
+                <label for="total_orden">Total</label>
+                <input  type="number" name="total_orden" id="total_orden" value="<?php echo $total; ?>" readonly  >
+            </div>
+          </div>
+      <?php
     } else {
 ?>
         <h4><?php echo $codigo_buscar; ?> No se han encontrado registros</h4>
@@ -218,22 +218,12 @@ if (isset($_POST['productos'])) {
     }
 }
 ?>
-  
-          
-          <div class="contenido-materiales">
-            <div class="total-orden-suma">
-                <label for="total_orden">Total</label>
-                <input  type="number" name="total_orden" id="total_orden" value="<?php echo $total; ?>" readonly  >
-            </div>
-          </div>
-          <div class="enviar-orden">
-            <input align="center" type="submit" name="submit" value="Generar orden" />
-          </div>
-        </form>
+
       </div>
       </div>
         </div>
   <script src="../js/cerrarSesion.js"></script>
+  <script src="../js/horaYFecha.js"></script>
   <script src="../js/eliminar_orden_compra.js"></script>
   <script src="../js/sidenav.js"></script>
 </body>
