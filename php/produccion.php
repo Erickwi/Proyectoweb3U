@@ -53,7 +53,7 @@ if ($tipo_usuario === 'admin') {
         
         <div class="segundo-contenido contenido-s">
             <div id="orden_pro" class="centrado"><a href="produccion_orden.php">Orden produccion</a></div>
-            <div id="orden_v" class="centrado"><a href="produccion_ver_ordenes.php">Ver orden1</a></div>
+            <div id="orden_v" class="centrado"><a href="produccion_ver_ordenes.php">Ver orden</a></div>
             
         </div>
     </div>   

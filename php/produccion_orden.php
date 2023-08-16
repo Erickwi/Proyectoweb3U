@@ -83,11 +83,6 @@ if(isset($_POST['submit']))
       <div class="contenido-informacion-orden">
       <div class="contenido-orden"> 
         <form>
-          haha 
-        </form></div>
-    <div class="contenido-orden">
-        <form method="post" >
-          <h1>Orden de produccion</h1>
           <div class="informacion-orden">
             <div class="codigos-orden">
               <label for="codigo_orden">Código de la orden</label><br />
@@ -132,6 +127,37 @@ if(isset($_POST['submit']))
             </select>
                <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar">Aceptar</button>
             </div>
+          </div> 
+          haha
+        </form></div>
+    <div class="contenido-orden">
+        <form method="post" >
+          <h1>Orden de produccion</h1>
+          
+          <div class="informacion-producto">
+            <div class="codigos-producto">
+              <label for="codigo_material">Producto</label><br />
+             <select name="productos" id="productos">
+               <option value="">Selecciona el producto</option>
+                <?php  
+                
+                $getProducto ="select * from productos";
+                $getProducto1=mysqli_query($con,$getProducto);
+                while( $row=mysqli_fetch_array($getProducto1)){
+                    $id=$row['id_productos'];
+                    $codigo_productos=$row['codigo_productos'];
+                    $nombre_productos=$row['nombre_productos'];
+                    $activo_producto=$row['activo_producto'];
+                    ?>
+                    <option value="<?php echo $id; ?>"> <?php echo $nombre_productos ?> </option>
+                    <?php
+                }
+                
+                ?>
+        
+            </select>
+               <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar">Aceptar</button>
+            </div>
 
 
             
@@ -149,7 +175,8 @@ if (isset($_POST['productos'])) {
   $total=0;
   ?>
   <div class="imagen-orden"><img src="<?php echo  $row1['foto_producto']; ?>" alt="" /></div>
-          </div><div class="contenido-materiales">
+          </div>
+          <div class="contenido-materiales">
             <div class="detalle-material">
               <label for="detalle_orden">Detalle</label>
              
