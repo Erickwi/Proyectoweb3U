@@ -1,0 +1,65 @@
+
+.contenedor_orden{
+  width:80%;
+  margin:auto;
+}
+
+
+.contenedor_orden{
+  background-color: #D9D9D9;
+  padding:50px;
+  border-radius:30px;
+}
+
+#formulario_compras{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+input[type="submit"]{
+  background-color:#FFAA29;
+  border:2px solid #FFFFFF;
+  color:white;
+  padding:4px 10px;
+  margin:20px 0px 0px 0px;
+  border-radius:7px;
+  cursor:pointer;
+}
+
+[disabled]{
+  cursor:not-allowed;
+  background-color: #ffc28a;
+}
+
+.w3-container{
+  margin:10px 0px;
+}
+
+.w3-container label{
+  font-weight:bold;
+}
+
+.w3-row {
+  display: flex;
+  align-items: center;
+}
+
+.loading-spinner {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading-spinner i {
+    font-size: 24px;
+    margin-right: 10px;
+}

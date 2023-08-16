@@ -9,16 +9,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
     exit();
 }
 
-$tipo_usuario = $_SESSION['tipo_usuario'];
 $nombre_usuario = $_SESSION['nombre_usuario'];
-if ($tipo_usuario === 'administrador') {
-    // Si es administrador, redirigir a la página de administrador
-    header('Location: administrador.php');
-    exit();
-}elseif ($usuario === 'producción') {
-    header('Location: produccion.php');
-    exit();
-}
 
 //database connection file
 include('dbconnection.php');
@@ -38,6 +29,7 @@ if (isset($_GET['delid'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Ver Usuarios</title>
+    <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -83,7 +75,7 @@ if (isset($_GET['delid'])) {
     <div class="principal">
       <main id="main">
     <div class="encabezado">
-        <div class="logo"><img src="../img/LOGO1.png"></div>
+        <div class="logo"><img src="../img/logo_alternativo.png"></div>
         <div class="informacion">
             <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
             <div class="user-logo"> <img src="../img/usuario-logo.png" alt=""></div>

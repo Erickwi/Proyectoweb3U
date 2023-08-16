@@ -14,7 +14,7 @@ if ($tipo_usuario === 'administrador') {
     // Si es administrador, redirigir a la página de administrador
     header('Location: administrador.php');
     exit();
-}elseif ($usuario === 'producción') {
+}elseif ($tipo_usuario === 'producción') {
     header('Location: produccion.php');
     exit();
 }
@@ -26,6 +26,7 @@ if ($tipo_usuario === 'administrador') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bodega</title>
+    <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <!-- Font Awesome -->
@@ -55,8 +56,8 @@ if ($tipo_usuario === 'administrador') {
     <div class="contenido">
         
         <div class="segundo-contenido contenido-s">
-            <div id="compra_b"> <p>Comprar</p></div>
-            <div id="compra_v"><p>Ver compras</p></div>
+            <div id="compra_b" class="centrado"> <a href="bodeguero_compras.php">Comprar</a></div>
+            <div id="compra_v" class="centrado"><a href="bodeguero_ver_compras.php">Ver compras</a></div>
             
         </div>
     </div>   

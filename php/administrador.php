@@ -8,6 +8,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
     exit();
 }
 $tipo_usuario = $_SESSION['tipo_usuario'];
+$nombre_usuario = $_SESSION['nombre_usuario'];
 if ($tipo_usuario == 'bodeguero') {
      //Si es administrador, redirigir a la página de administrador
     header('Location: bodeguero.php');
@@ -24,6 +25,7 @@ if ($tipo_usuario == 'bodeguero') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
+    <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidenav.css" rel="stylesheet" type="text/css" />
 </head>
@@ -36,9 +38,9 @@ if ($tipo_usuario == 'bodeguero') {
     <div class="principal">
       <main id="main">
     <div class="encabezado">
-        <div class="logo"><img src="../img/LOGO1.png"></div>
+        <div class="logo"><img src="../img/logo_alternativo.png"></div>
         <div class="informacion">
-            <div class="nombre"><p>Nombre del usuario</p></div>
+            <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
             <div class="user-logo"> <img src="../img/usuario-logo.png" alt=""></div>
             <div class="cerrar"><p> <a href="logout.php">Cerrar Sesión</a></p> </div>
         </div>

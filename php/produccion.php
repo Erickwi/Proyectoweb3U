@@ -26,6 +26,7 @@ if ($tipo_usuario === 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produccion</title>
+  <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <!-- SweetAlert 2 -->
@@ -40,7 +41,7 @@ if ($tipo_usuario === 'admin') {
     <div class="encabezado">
         <div class="logo"><img src="../img/logo_alternativo.png"></div>
         <div class="informacion">
-            <div class="nombre"><p>Nombre del usuario</p></div>
+            <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
             <div class="user-logo"> <img src="../img/usuario-logo.png" alt=""></div>
             <div class="cerrar" id="cerrar_sesion"><p>Cerrar Sesión</p> </div>
         </div>
@@ -52,7 +53,7 @@ if ($tipo_usuario === 'admin') {
         
         <div class="segundo-contenido contenido-s">
             <div id="orden_pro" class="centrado"><a href="produccion_orden.php">Orden produccion</a></div>
-            <div id="orden_v" class="centrado"><a>Ver orden</a></div>
+            <div id="orden_v" class="centrado"><a href="produccion_ver_ordenes.php">Ver orden1</a></div>
             
         </div>
     </div>   

@@ -86,6 +86,7 @@ function redirigirSegunRol($tipo_usuario) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión</title>
+    <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="css/estilo_inicio.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
