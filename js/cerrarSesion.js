@@ -9,7 +9,8 @@ $("#cerrar_sesion").click(function(e) {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sí, cerrar sesión',
-        cancelButtonText: 'Cancelar'
+        cancelButtonText: 'Cancelar',
+        allowOutsideClick: false
     }).then((result) => {
         // Si el usuario confirma cerrar sesión, redirige a la página de login
         if (result.isConfirmed) {

@@ -4,6 +4,10 @@
   box-sizing:border-box;
 }
 
+.my-swal-container {
+    padding-left: 0 !important; 
+}
+
 .encabezado{
     width: 100%;
     height: 90px;
@@ -120,29 +124,66 @@
 }
 #agregar{
     border-left: solid 5px #FFAD62;
+    transition: border-left 0.2s;
 }
+#agregar:hover{
+  border-left: solid 8px #FFAD62;
+  transition: border-left 0.2s;
+}
+
 #reporte, #orden_pro{
     display: flex;
   padding:auto;
   align-content:center;
   justify-content:center;
     border-left: solid 5px yellow;
+  transition: border-left 0.2s;
+}
+
+#reporte:hover, #orden_pro:hover{
+   border-left: solid 8px yellow;
+   transition: border-left 0.2s;
 }
 
 #usuario, #orden_v{
     border-left: solid 5px palevioletred;
+    transition: border-left 0.2s;
+}
+
+#usuario:hover, #orden_v:hover{
+    border-left: solid 8px palevioletred;
+    transition: border-left 0.2s;
 }
 
 #actividad_usuario, #compra_v{
-    border-left: solid 5px blue;
+    border-left: 5px solid #61caff;
+    transition: border-left 0.2s;
 }
+
+#actividad_usuario:hover, #compra_v:hover{
+  border-left: 8px solid #61caff;
+  transition: border-left 0.2s;
+}
+
 
 #editar_orden{
     border-left: solid 5px cornflowerblue;
+   transition: border-left 0.2s;
 }
+#editar_orden:hover{
+   border-left: solid 8px cornflowerblue;
+   transition: border-left 0.2s;
+}
+
 #editar_compra, #compra_b{
-    border-left: solid 5px green;
+    border-left: solid 5px #00C714;
+  transition: border-left 0.2s;
 }
+#editar_compra:hover, #compra_b:hover{
+  border-left: 8px solid #00C714;
+  transition: border-left 0.2s;
+}
+
 .contenido-s{
     margin-top: 5%;
 }
@@ -186,3 +227,4 @@ a{
   text-decoration:none;
   color:black;
 }
+

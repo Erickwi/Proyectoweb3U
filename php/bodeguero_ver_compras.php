@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('dbconnection.php');
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['tipo_usuario'])) {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
@@ -66,8 +65,9 @@ if ($tipo_usuario === 'administrador') {
       <div class="contenido">
           <h1 align="center">Ver compras</h1>
         <form method="post" id="formulario_ver_compras">
-            <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar">Buscar</button>
-          <input type="text" name="codigo_buscar" placeholder="Ingrese el código del producto" style="width:250px;">
+            <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar" id="buscar_btn">Buscar</button>
+          <input type="text" id="codigo_buscar" name="codigo_buscar" placeholder="Ingrese el código del producto" style="width:250px;">
+          <button class="w3-btn w3-round-large w3-red" name="restablecer" id="restablecer_btn" disabled>Restablecer</button>
         </form><br>
         <div class="w3-responsive">
           <table class="w3-table-all">
@@ -81,44 +81,14 @@ if ($tipo_usuario === 'administrador') {
                 <th>Precio total</th>
               </tr>
             </thead>
-            <tbody>
-              <?php 
-                if (isset($_POST['codigo_buscar'])) {
-                  $buscarCompra = mysqli_real_escape_string($con, $_POST['codigo_buscar']);
-                  $query = "SELECT *, (cantidad_material * costo_material) AS precio_total FROM materiales WHERE codigo_material LIKE '$buscarCompra%'";
-                  $materiales = mysqli_query($con, $query);
-                } else {
-                  $materiales = mysqli_query($con,"SELECT *, (cantidad_material * costo_material) AS precio_total FROM materiales;");
-                }
-                if (mysqli_num_rows($materiales) == 0) {
-              ?>
-                  <tr>
-                    <th style="text-align:center; color:red;" colspan="6">No se han encontrado registros.</th>
-                  </tr>
-              <?php 
-                } else {
-                  while ($row = mysqli_fetch_assoc($materiales)) {
-              ?>
-                    <tr>
-                      <td><?php echo $row['codigo_material']; ?></td>
-                       <!--cambiar a la fecha-->
-                        <td><?php echo $row['codigo_material']; ?></td>
-                        <!--cambiar a la fecha-->
-                      <td><?php echo $row['nombre_material']; ?></td>
-                      <td><?php echo $row['cantidad_material']; ?></td>
-                      <td><?php echo $row['costo_material']; ?></td>
-                      <td><?php echo $row['precio_total']; ?></td>
-                    </tr>
-              <?php
-                  }
-                }
-              ?>
+            <tbody id="tabla_body">
             </tbody>
           </table>
         </div> 
       </div>  
     </div>
   <script src="../js/cerrarSesion.js"></script>
+  <script src="../js/acciones_bodeguero.js"></script>
   <script src="../js/sidenav.js"></script>
 </body>
 </html>

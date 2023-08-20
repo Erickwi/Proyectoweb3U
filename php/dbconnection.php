@@ -14,5 +14,4 @@ mysqli_real_connect($con, $serverName, $username, $password, $database, 3306, NU
 if (mysqli_connect_errno()) {
     die("Failed to connect to MySQL: " . mysqli_connect_error());
 }
-
 ?>

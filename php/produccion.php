@@ -29,12 +29,17 @@ if ($tipo_usuario === 'admin') {
   <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <!-- SweetAlert 2 -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.js"></script>
-        <link
+  <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- SweetAlert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.js"></script>
+    <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css"
         />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
     <div class="principal">
@@ -42,7 +47,7 @@ if ($tipo_usuario === 'admin') {
         <div class="logo"><img src="../img/logo_alternativo.png"></div>
         <div class="informacion">
             <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
-            <div class="user-logo"> <img src="../img/usuario-logo.png" alt=""></div>
+            <div class="user-logo"><i class="fa-solid fa-user fa-2xl"></i></div>
             <div class="cerrar" id="cerrar_sesion"><p>Cerrar Sesión</p> </div>
         </div>
     </div>

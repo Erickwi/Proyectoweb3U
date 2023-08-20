@@ -11,7 +11,7 @@
   border-radius:30px;
 }
 
-#formulario_compras{
+#formulario_compras, #formulario_productos{
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -41,11 +41,6 @@ input[type="submit"]{
   font-weight:bold;
 }
 
-.w3-row {
-  display: flex;
-  align-items: center;
-}
-
 .loading-spinner {
     display: none;
     text-align: center;
@@ -63,3 +58,5 @@ input[type="submit"]{
     font-size: 24px;
     margin-right: 10px;
 }
+
+/*botones aumentar y disminuir cantidad*/

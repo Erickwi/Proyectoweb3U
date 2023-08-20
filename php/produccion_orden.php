@@ -50,7 +50,7 @@ if(isset($_POST['submit']))
     <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
    <link href="../css/estilo_orden_p.css" rel="stylesheet" type="text/css" />
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
-  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link href="../css/sidenav.css" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <!-- Font Awesome -->
@@ -106,8 +106,9 @@ if(isset($_POST['submit']))
               />
             </div>
           </div>
-          <div class="informacion-producto">
-            <div class="codigos-producto">
+          
+           <div class="informacion-orden">
+            <div class="codigos-orden">
               <label for="codigo_material">Producto</label><br />
              <select name="productos" id="productos">
                <option value="">Selecciona el producto</option>
@@ -128,14 +129,80 @@ if(isset($_POST['submit']))
                 ?>
         
             </select>
-               <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar">Aceptar</button>
+              
             </div>
+            <div class="extra-orden">
+              <br />
+              
+              <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar"><i class="material-icons" style="color: grey;">&#xE417;</i></button>
+<button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar"><i class="material-icons" style="color: grey;">&#xe834;</i></button>
+              
+            </div>
+          </div>
+          <?php  
+if (isset($_POST['productos'])) {
+ 
+  
+    $codigo_buscar = mysqli_real_escape_string($con, $_POST['codigo_orden1']); 
+    $getMateriales = "select codigo_orden,nombre_productos,cantidad_productos,costo_productos from inventario.ordenes_produccion c, productos p where p.id_productos=c.productos_id_productos and c.codigo_orden='$codigo_buscar '";
+    
+    $getMateriales1 = mysqli_query($con, $getMateriales);
+  $getMateriales2= mysqli_query($con, $getMateriales);
+  $total=0;
+  ?>
+          
+          
+         <div class="contenido-materiales titulo-contenido">
+            <div class="detalle-material">
+              <label for="detalle_orden">Detalle</label>
+             
+            </div>
+            <div class="cantidad-material">
+              <label for="cantidad_orden">Cantidad</label>
+              
+            </div>
+            <div class="costo-material">
+              <label for="costo_orden">Costo</label>
+              
+            </div></div>
+<?php 
+    
+    if (mysqli_num_rows($getMateriales1) > 0) {
+      
+        while ($row = mysqli_fetch_assoc($getMateriales1)) {
+?>
+            <div class="contenido-materiales">
+                <div class="detalle-material">
+                    <input class="w3-input" type="text" name="detalle_orden" id="detalle_orden" value="<?php echo $row['nombre_productos']; ?>" readonly />
+                </div>
+                <div class="cantidad-material">
+                    <input class="w3-input" type="text" name="cantidad_orden" id="cantidad_orden" value="<?php echo $row['cantidad_productos']; ?>" readonly  />
+                </div>
+                <div class="costo-material">
+                    <input class="w3-input" type="text" name="costo_orden" id="costo_orden" value="<?php echo $row['costo_productos']; ?>" readonly />
+                </div>
+            </div>
+         
+        
+<?php
+          $total += ($row['cantidad_productos'] * $row['costo_productos']); // Sumamos al total
+        }
+      ?>
+      <div class="contenido-materiales">
+            <div class="total-orden-suma">
+                <label for="total_orden">Total</label>
+                <input  type="number" name="total_orden" id="total_orden" value="<?php echo $total; ?>" readonly  >
+            </div>
+          </div>
+      <?php
+    } else {
+?>
+        <h4><?php echo $codigo_buscar; ?> No se han encontrado registros</h4>
+<?php
+    }
+}
+?>
 
-          </div>
-           <div class="enviar-orden">
-            <input align="center" type="submit" name="submit" value="Generar orden" />
-          </div>
-        </form>
         </form></div>
 
 
@@ -161,14 +228,14 @@ if (isset($_POST['productos'])) {
             <div class="codigos-producto">
               <label for="codigo_material">Producto</label><br />
              <input class="w3-input" type="text" name="detalle_orden" id="detalle_orden" value="<?php echo $row1['codigo_productos']; ?>" readonly />
-<label for="codigo_material">Producto</label><br />
-             <input class="w3-input" type="text" name="detalle_orden" id="detalle_orden" value="<?php echo $row1['nombre_productos']; ?>" readonly />
+<label for="codigo_material">Nombre</label><br />
+             <input class="w3-input" type="text" name="nombre" id="nombre" value="<?php echo $row1['nombre_productos']; ?>" readonly />
             </div>
             
             
           
   <div class="imagen-orden"><img src="<?php echo  $row1['foto_producto']; ?>" alt="" /></div>
-          </div><div class="contenido-materiales">
+          </div><div class="contenido-materiales titulo-contenido">
             <div class="detalle-material">
               <label for="detalle_orden">Detalle</label>
              

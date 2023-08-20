@@ -19,6 +19,8 @@ if ($tipo_usuario === 'administrador') {
     exit();
 }
 
+include('consultasBodeguero/agregarMaterial.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -61,61 +63,60 @@ if ($tipo_usuario === 'administrador') {
       </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido-orden">
-          <form id="formulario_compras" method="post">
+          <form id="formulario_compras" method="post" class="formulario">
           <h2 class="titulo_compras">Compras</h2>
             <div class="contenedor_orden">
               <div class="w3-row codigo_compras">
-                <div class="w3-container w3-twothird">
-                  <label for="codigo_compra_opcion">Código de la compra</label>
-                  <select class="w3-select" name="codigo_compra_opcion" id="codigo_compra_opcion">
-                    <option value="" disabled selected>Seleccione un código</option>
+                <div class="w3-container w3-third">
+                  <label for="codigo_compra_opcion">Material</label>
+                  <select class="w3-select" name="material_compra_opcion" id="material_compra_opcion">
+                    <option value="" disabled selected>Seleccione un material</option>
                     <?php 
                       $codigoMaterial=mysqli_query($con,"select * from materiales");
                       while( $row=mysqli_fetch_array($codigoMaterial)){
                           $id=$row['id_materiales'];
-                          $codigo=$row['codigo_material'];
+                          $nombreMaterial=$row['nombre_material'];
                           
-                          echo '<option value="' . $id . '">' . $codigo . '</option>';
+                          echo '<option value="' . $id . '">' . $nombreMaterial . '</option>';
 
                       }
                       ?>
-                    <option value="nuevo_codigo" >Añadir un nuevo código</option>
+                    <option value="nuevo_material" >Añadir un nuevo material</option>
                   </select>
+                    <label class="w3-hide nombre_compra" for="nombre_compra">Nombre material</label>
+                    <input class="w3-input w3-hide nombre_compra" type="text" name="nombre_compra" id="nombre_compra" placeholder="Ingrese el nombre del material">
                 </div>
                 <div class="w3-container w3-third">
-                  <label for="fecha_compra">Fecha y hora de la compra</label>
+                  <label for="codigo_compra">Código del producto</label>
+                  <input class="w3-input" type="text" name="codigo_compra" id="codigo_compra" placeholder="Ej. 123876" readonly disabled>
+                </div>
+                <div class="w3-container w3-third">
+                  <label for="fecha_compra">Fecha y hora</label>
                   <input class="w3-input" type="text" name="fecha_compra" id="fecha_compra" placeholder="" readonly>
                 </div>
               </div>
     
               <div class="w3-row">
                 <div class="w3-container w3-quarter">
-                  <label for="detalle_compra">Detalle</label>
-                  <input class="w3-input detalle_compra" type="text" name="detalle_compra[]" disabled>
-                </div>
-                <div class="w3-container w3-quarter">
                   <label for="costo_compra">Costo</label>
-                  <input class="w3-input costo_compra" type="text" name="costo_compra[]" placeholder="Costo unitario" readonly disabled>
+                  <input class="w3-input costo_compra" type="text" name="costo_compra" placeholder="$0.00" readonly disabled>
                 </div>
                 <div class="w3-container w3-quarter">
                   <label for="cantidad_compra">Cantidad</label>
-                  <input class="w3-input cantidad_compra" type="text" name="cantidad_compra[]" placeholder="0" disabled>
+                  <input class="w3-input cantidad_compra" type="text" name="cantidad_compra" placeholder="0" disabled>
                 </div>
                 <div class="w3-container w3-quarter button_container w3-center">
                   <button class="w3-btn w3-green w3-round-large aumentar_cantidad" disabled>+</button>
                   <button class="w3-btn w3-red w3-round-large disminuir_cantidad" disabled>-</button>
                 </div>
-              </div>
-    
-              <div class="w3-row w3-container">
-                <div class="w3-col" style="width:40%"><p></p></div>
-                <div class="w3-col" style="width:20%"><label for="total_compra">Total</label>
-                   <input class="w3-input" type="text" name="total_compra" id="total_compra" readonly disabled>
+                <div class="w3-container w3-quarter">
+                  <label for="total_compra">Total</label>
+                   <input class="w3-input" type="text" name="total_compra" id="total_compra" readonly disabled placeholder="$0.00">
                 </div>
-                <div class="w3-col" style="width:40%"><p></p></div>
               </div>
             </div>
-          <input align="center" type="submit" value="Guardar" class="w3-btn guardar_btn">
+          <input align="center" type="submit" value="Comprar producto" class="w3-btn w3-show guardar_btn" id="guardar_btn" disabled>
+            <input align="center" type="submit" value="Añadir Producto" class="w3-btn w3-blue w3-hide producto_btn">
           <form>
         </div>
     </div>  

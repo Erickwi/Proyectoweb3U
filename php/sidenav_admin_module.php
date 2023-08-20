@@ -1,10 +1,27 @@
+<?php
+// Obtén la ruta del script actual
+$current_page = basename($_SERVER['PHP_SELF']);
+
+// Define un arreglo de enlaces y sus títulos
+$links = array(
+    'administrador.php' => 'Inicio',
+    'agregarUsuario.php' => 'Agregar usuarios',
+    'verUsuarios.php' => 'Ver usuarios',
+    'verReportes.php' => 'Ver actividad de usuarios',
+    'agregarUsuario.php' => 'Ver reportes',
+    'editarCompra.php' => 'Editar compra',
+    'editarOrden.php' => 'Editar Orden de producción',
+);
+
+?>
+
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="./administrador.php" class="sidenav_inicio">Inicio</a>
-  <a href="./agregarUsuario.php" class="sidenav_agregar_usuarios">Agregar usuarios</a>
-  <a href="./verUsuarios.php" class="sidenav_ver_usuarios">Ver usuarios</a>
-  <a href="#" class="sidenav_ver_actividad_usuarios">Ver actividad de usuarios</a>
-  <a href="#" class="sidenav_ver_reportes">Ver reportes</a>
-  <a href="#" class="sidenav_editar_compra">Editar compra</a>
-  <a href="#" class="sidenav_editar_orden">Editar Orden de producción</a>
+  <?php
+  foreach ($links as $link => $title) {
+      $class = 'sidenav_' . strtolower(str_replace(' ', '_', $title));
+      $active_class = ($current_page == $link) ? $class . '_active' : '';
+      echo '<a href="' . $link . '" class="' . $class . ' ' . $active_class . '">' . $title . '</a>';
+  }
+  ?>
 </div>

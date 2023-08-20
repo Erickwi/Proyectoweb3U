@@ -52,7 +52,7 @@ body {
 }
 
 .sidenav_agregar_usuarios_active{
-  background-color: 5px solid #FFAD62;
+  background-color: 5px solid #FFAD62!Important;
 }
 
 .sidenav_ver_usuarios, .sidenav_ver_orden{
@@ -65,7 +65,7 @@ body {
 }
 
 .sidenav_ver_usuarios_active, .sidenav_ver_orden_active{
-  background-color: 5px solid #FFE500;
+  background-color: 5px solid #FFE500!Important;
 }
 
 .sidenav_ver_actividad_usuarios{
@@ -78,7 +78,7 @@ body {
 }
 
 .sidenav_ver_actividad_usuarios_active{
-  background-color: #ff4d4d;
+  background-color: #ff4d4d!Important;
 }
 
 .sidenav_ver_reportes{
@@ -91,8 +91,8 @@ body {
 }
 
 .sidenav_ver_reportes_active{
-  background-color: #007ABF;
-  color:white;
+  background-color: #007ABF!Important;
+  color:white!Important;
 }
 
 .sidenav_editar_compra, .sidenav_order_produccion, .sidenav_compras{
@@ -105,8 +105,8 @@ body {
 }
 
 .sidenav_editar_compra_active, .sidenav_order_produccion_active, .sidenav_compras_active{
-  background-color:#00C714;
-  color:white;
+  background-color:#00C714!Important;
+  color:white!Important;
 }
 
 .sidenav_editar_orden, .sidenav_ver_compras{
@@ -119,8 +119,8 @@ body {
 }
 
 .sidenav_editar_orden_active, .sidenav_ver_compras_active{
-  background-color: #61caff;
-  color:black;
+  background-color: #61caff!Important;
+  color:black!Important;
 }
 
 .sidenav a:first-child:hover {

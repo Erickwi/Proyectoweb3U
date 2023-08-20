@@ -33,11 +33,11 @@ body{
 }
 .Inicio-login{
     width: 35%;
-    height: 55%;
+    height: 65%;
     margin: auto;
     margin-top:10%;
     border-radius: 30px;
-    border: solid black 1px;
+  padding:5%;
     background-color: white;
 }
 .Inicio-login form{
@@ -50,9 +50,9 @@ body{
     margin-left: 9%;
 }
 .Inicio-login form input{
-    width: 80%;
+    width: 100%;
     height: 12%;
-    margin-left: 9%;
+    
     margin-bottom: 13%;
     border-radius: 5px;
     border: 0px;
@@ -68,5 +68,6 @@ input[type=submit]{
     background-color: orangered;
     color: aliceblue;
     font-size: 15px;
+  margin-top:10%;
     cursor:pointer;
 }
