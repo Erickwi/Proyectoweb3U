@@ -33,6 +33,10 @@ input[type="submit"]{
   background-color: #ffc28a;
 }
 
+[readonly]{
+  cursor:auto;
+}
+
 .w3-container{
   margin:10px 0px;
 }

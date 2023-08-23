@@ -70,18 +70,7 @@ include('consultasBodeguero/agregarMaterial.php');
                 <div class="w3-container w3-third">
                   <label for="codigo_compra_opcion">Material</label>
                   <select class="w3-select" name="material_compra_opcion" id="material_compra_opcion">
-                    <option value="" disabled selected>Seleccione un material</option>
-                    <?php 
-                      $codigoMaterial=mysqli_query($con,"select * from materiales");
-                      while( $row=mysqli_fetch_array($codigoMaterial)){
-                          $id=$row['id_materiales'];
-                          $nombreMaterial=$row['nombre_material'];
-                          
-                          echo '<option value="' . $id . '">' . $nombreMaterial . '</option>';
-
-                      }
-                      ?>
-                    <option value="nuevo_material" >Añadir un nuevo material</option>
+                    <!--LAS OPCIONES SE CARGAN CON EL PHP USANDO AJAX-->
                   </select>
                     <label class="w3-hide nombre_compra" for="nombre_compra">Nombre material</label>
                     <input class="w3-input w3-hide nombre_compra" type="text" name="nombre_compra" id="nombre_compra" placeholder="Ingrese el nombre del material">
@@ -99,15 +88,19 @@ include('consultasBodeguero/agregarMaterial.php');
               <div class="w3-row">
                 <div class="w3-container w3-quarter">
                   <label for="costo_compra">Costo</label>
-                  <input class="w3-input costo_compra" type="text" name="costo_compra" placeholder="$0.00" readonly disabled>
+                  <input class="w3-input costo_compra" type="number" name="costo_compra" placeholder="$0.00" step=0.01 readonly disabled>
                 </div>
                 <div class="w3-container w3-quarter">
                   <label for="cantidad_compra">Cantidad</label>
                   <input class="w3-input cantidad_compra" type="text" name="cantidad_compra" placeholder="0" disabled>
                 </div>
                 <div class="w3-container w3-quarter button_container w3-center">
-                  <button class="w3-btn w3-green w3-round-large aumentar_cantidad" disabled>+</button>
-                  <button class="w3-btn w3-red w3-round-large disminuir_cantidad" disabled>-</button>
+                  <label for="cantidad_compra">Unidad de medi</label>
+                  <select class="w3-select" name="unidad_medida_compra_opcion" id="unidad_medida_compra_opcion" disabled>
+                    <option value="kilogramo">Kilogramo</option>
+                    <option value="gramo">Gramo</option>
+                    <option value="libra">Libra</option>
+                  </select>
                 </div>
                 <div class="w3-container w3-quarter">
                   <label for="total_compra">Total</label>

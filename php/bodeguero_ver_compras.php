@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("dbconnection.php");
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['tipo_usuario'])) {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
@@ -74,7 +75,7 @@ if ($tipo_usuario === 'administrador') {
             <thead>
               <tr class="w3-light-grey">
                 <th>Código</th>
-                <th>Fecha</th>
+                <th>Fecha y hora</th>
                 <th>Detalle</th>
                 <th>Cantidad</th>
                 <th>Precio unitario</th>

@@ -28,7 +28,6 @@ if ($tipo_usuario === 'administrador') {
     <title>Ver ordenes</title>
   <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
-  <link href="../css/estilo_produccion.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidenav.css" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <!-- Font Awesome -->
@@ -66,8 +65,9 @@ if ($tipo_usuario === 'administrador') {
       <div class="contenido">
           <h1 align="center">Ver Ordenes</h1>
         <form method="post" id="formulario_ver_compras">
-            <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar">Buscar</button>
-          <input type="text" name="codigo_buscar" placeholder="Ingrese el código del producto" style="width:250px;">
+            <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar" id="buscar_orden_btn">Buscar</button>
+          <input type="text" id="codigo_buscar" name="codigo_buscar" placeholder="Ingrese el código del producto" style="width:250px;">
+          <button class="w3-btn w3-round-large w3-red" name="restablecer" id="restablecer_orden_btn" disabled>Restablecer</button>
         </form><br>
         <div class="w3-responsive">
           <table class="w3-table-all">
@@ -76,46 +76,12 @@ if ($tipo_usuario === 'administrador') {
                 <th>Código</th>
                 <th>Fecha</th>
                 <th>Detalle</th>
-                <th>Cantidad</th>
-                <th>Precio unitario</th>
-                <th>Precio total</th>
+                <th>Total</th>
+                <th>Usuario</th>
+
               </tr>
             </thead>
-            <tbody>
-              <?php 
-               if (isset($_POST['codigo_buscar'])) {
-                $codigo_buscar = mysqli_real_escape_string($con, $_POST['codigo_buscar']); 
-                 $query = "SELECT codigo_orden, fecha, nombre_productos, total_orden 
-                            FROM inventario.ordenes_produccion op, inventario.productos p 
-                            WHERE p.id_productos = op.productos_id_productos 
-                            AND op.codigo_orden = '$codigo_buscar';";
-                  $materiales = mysqli_query($con, $query);
-                } else {
-                    $materiales = mysqli_query($con, "SELECT codigo_orden, fecha, nombre_productos, total_orden 
-                                      FROM inventario.ordenes_produccion op, inventario.productos p 
-                                      WHERE p.id_productos = op.productos_id_productos;");
-                }
-
-              while ($row = mysqli_fetch_assoc($materiales)) {
-              ?>
-                <tr>
-                  <td><?php echo $row['codigo_orden']; ?></td>
-                  <!--cambiar a la fecha-->
-                  <td><?php echo $row['fecha']; ?></td>
-                  <!--cambiar a la fecha-->
-                  <td><?php echo $row['nombre_productos']; ?></td>
-                  <td><?php echo $row['total_orden']; ?></td>
-                  <td><?php echo $row['total_orden']; ?></td>
-                  <td><?php echo $row['total_orden']; ?></td>
-                </tr>
-                <?php
-                  }
-                    if (mysqli_num_rows($materiales) == 0) {
-                      ?>
-                        <tr>
-                          <th style="text-align:center; color:red;" colspan="6">No se han encontrado registros.</th>
-                          </tr>
-                      <?php } ?>
+            <tbody id="tabla_body_ordenes">
             </tbody>
           </table>
         </div> 
@@ -123,5 +89,6 @@ if ($tipo_usuario === 'administrador') {
     </div>
   <script src="../js/cerrarSesion.js"></script>
   <script src="../js/sidenav.js"></script>
+  <script src="../js/acciones_bodeguero.js"></script>
 </body>
 </html>

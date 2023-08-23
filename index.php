@@ -17,11 +17,13 @@ if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {
     if (credenciales_son_validas($usuario, $contraseña)) {
         $tipo_usuario = obtener_tipo_usuario($usuario);
         $nombre_usuario = obtener_nombre_usuario($usuario);
+      $id_usuario = obtener_id($usuario);//////////////////////////
       //VARIABLES PARA LA SESION
       //variable usuario -> "administrador","bodeguero","administrador"
         $_SESSION['tipo_usuario'] = $tipo_usuario;
       //variable nombre -> nombre del usuario
         $_SESSION['nombre_usuario'] = $nombre_usuario;
+        $_SESSION['id_usuario'] = $id_usuario;/////////////////////777
         redirigirSegunRol($tipo_usuario);
         exit();
     } else {
@@ -50,6 +52,17 @@ function obtener_nombre_usuario($usuario){
     }
     return false;
 }
+///////////////////////////////////////////////////////////////
+function obtener_id($usuario){
+   global $con;
+    $query = "SELECT id_usuario FROM usuario WHERE usuario='$usuario'";
+    $result = mysqli_query($con, $query);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        return $row['id_usuario'];
+    }
+    return false;
+}
 
 function credenciales_son_validas($usuario, $contraseña) {
     global $con;
@@ -59,9 +72,12 @@ function credenciales_son_validas($usuario, $contraseña) {
 		$row=mysqli_fetch_assoc($result);
 		if ($row != NULL){
 			$contraseña_db = $row['contraseña'];
-			if ($contraseña === $contraseña_db) {
+			$contraseña_ingresada_md5 = md5($contraseña);
+			if ($contraseña_ingresada_md5  === $contraseña_db) {
             	return true;
-        	}
+        	}else {
+                return false;
+            }
 		}else{
 			return false;
 		}

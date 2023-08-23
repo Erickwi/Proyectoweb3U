@@ -1,5 +1,5 @@
-<?php
-  include('dbconnection.php');     
+<?php  
+include('dbconnection.php');
   $query = "SELECT *, (cantidad_material * costo_material) AS precio_total FROM materiales;";
   $materiales = mysqli_query($con, $query);
   if (mysqli_num_rows($materiales) == 0) {
@@ -8,7 +8,7 @@
       while ($row = mysqli_fetch_assoc($materiales)) {
           echo '<tr>';
           echo '<td>' . $row['codigo_material'] . '</td>';
-          echo '<td>' . $row['codigo_material'] . '</td>';
+          echo '<td>' . $row['fecha_material'] . '</td>';
           echo '<td>' . $row['nombre_material'] . '</td>';
           echo '<td>' . $row['cantidad_material'] . '</td>';
           echo '<td>' . "$".$row['costo_material'] . '</td>';

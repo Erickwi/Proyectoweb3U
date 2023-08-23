@@ -1,5 +1,5 @@
 <?php
-  include('dbconnection.php');
+include('dbconnection.php');
   $buscarCompra = mysqli_real_escape_string($con, $_POST['codigo_buscar']);
   $query = "SELECT *, (cantidad_material * costo_material) AS precio_total FROM materiales WHERE codigo_material = '$buscarCompra'";
   $materiales = mysqli_query($con, $query);
@@ -9,7 +9,7 @@
       while ($row = mysqli_fetch_assoc($materiales)) {
           echo '<tr>';
           echo '<td>' . $row['codigo_material'] . '</td>';
-          echo '<td>' . $row['codigo_material'] . '</td>';
+          echo '<td>' . $row['fecha_material'] . '</td>';
           echo '<td>' . $row['nombre_material'] . '</td>';
           echo '<td>' . $row['cantidad_material'] . '</td>';
           echo '<td>' . "$". $row['costo_material'] . '</td>';

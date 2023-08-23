@@ -2,7 +2,7 @@
 include('dbconnection.php');
 
 $id_material = $_POST["id_material"];
-$query = "SELECT *,(cantidad_material * costo_material) as precio_total FROM materiales WHERE id_materiales = '$id_material'";
+$query = "SELECT id_materiales FROM materiales WHERE id_materiales = '$id_material'";
 $result = mysqli_query($con, $query);
 
 if ($result && mysqli_num_rows($result) > 0) {

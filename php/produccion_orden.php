@@ -11,6 +11,14 @@ if (!isset($_SESSION['tipo_usuario'])) {
 
 $tipo_usuario = $_SESSION['tipo_usuario'];
 $nombre_usuario = $_SESSION['nombre_usuario'];
+
+  $nombre_usuario = $_SESSION['nombre_usuario'];
+  $query = "SELECT id_usuario from usuario where nombre = '$nombre_usuario'";
+  $getP1 = mysqli_query($con, $query);
+  $row = mysqli_fetch_assoc($getP1);
+
+  //se cambia a entero el id del usuario
+  $idUsuario = $row["id_usuario"];
 if ($tipo_usuario === 'administrador') {
     // Si es administrador, redirigir a la página de administrador
     header('Location: administrador.php');
@@ -20,25 +28,13 @@ if ($tipo_usuario === 'administrador') {
     exit();
 }
 
+
+
+///////////////////////////7777
+
+  
   //Databse Connection file
 
-if(isset($_POST['submit']))
-  {
-  	//getting the post values
-    $codigo_orden=$_POST['codigo_orden1'];
-   $total_orden=$_POST['total_orden'];
-    echo "<script>alert('submit');</script>";
-  // Query for data insertion
-     $query=mysqli_query($con, "insert into ordenes_produccion(codigo_orden,total_orden) value('$codigo_orden','$total_orden')");
-    if ($query) {
-    echo "<script>alert('Los datos han sido registrados correctamente');</script>";
-    echo "<script type='text/javascript'> document.location ='agregarUsuario.php'; </script>";
-  }
-  else
-    {
-      echo "<script>alert('Something Went Wrong. Please try again');</script>";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -82,17 +78,29 @@ if(isset($_POST['submit']))
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido-informacion-orden">
       <div class="contenido-orden"> 
-         <form method="post" >
+         <form method="post" id="ordenProduccionForm" >
           <h1>Orden de produccion</h1>
-          <div class="informacion-orden">
+            
+           
+          
+          <div class="informacion-orden"> 
             <div class="codigos-orden">
               <label for="codigo_orden">Código de la orden</label><br />
               <input
-                class="w3-input"
+                class="ocultar"
                 type="text"
+                name="id_usuario"
+                id="id_usuario"
+                value="<?php echo $idUsuario;?>"
+              />
+              <input
+                class="w3-input"
+                type="number"
                 name="codigo_orden1"
                 id="codigo_orden1"
+                
               />
+             
             </div>
             <div class="extra-orden">
               <br />
@@ -108,8 +116,10 @@ if(isset($_POST['submit']))
           </div>
           
            <div class="informacion-orden">
+             <div class="informacion-orden informacion-orden1"> 
             <div class="codigos-orden">
-              <label for="codigo_material">Producto</label><br />
+              <label for="codigo_material">Productos</label>
+             
              <select name="productos" id="productos">
                <option value="">Selecciona el producto</option>
                 <?php  
@@ -129,166 +139,77 @@ if(isset($_POST['submit']))
                 ?>
         
             </select>
-              
-            </div>
-            <div class="extra-orden">
-              <br />
-              
-              <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar"><i class="material-icons" style="color: grey;">&#xE417;</i></button>
-<button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar"><i class="material-icons" style="color: grey;">&#xe834;</i></button>
-              
-            </div>
-          </div>
-          <?php  
-if (isset($_POST['productos'])) {
- 
-  
-    $codigo_buscar = mysqli_real_escape_string($con, $_POST['codigo_orden1']); 
-    $getMateriales = "select codigo_orden,nombre_productos,cantidad_productos,costo_productos from inventario.ordenes_produccion c, productos p where p.id_productos=c.productos_id_productos and c.codigo_orden='$codigo_buscar '";
-    
-    $getMateriales1 = mysqli_query($con, $getMateriales);
-  $getMateriales2= mysqli_query($con, $getMateriales);
-  $total=0;
-  ?>
-          
-          
-         <div class="contenido-materiales titulo-contenido">
-            <div class="detalle-material">
-              <label for="detalle_orden">Detalle</label>
              
+              </div>
+               <div class="costo-material"> <label for="cantidad">Cantidad</label><br><input
+                class="w3-input"
+                type="number"
+                name="cantidad_producto1"
+                id="cantidad_producto1" 
+                placeholder=""
+                min=1 
+              /></div>
             </div>
-            <div class="cantidad-material">
-              <label for="cantidad_orden">Cantidad</label>
+            <div class="extra-orden margen-extra">              
+              <br>
+  <button class="w3-btn w3-round-large w3-blue" type="button" id="submitInfoBtn">Ver</button>
+  <button class="w3-btn w3-round-large w3-blue" type="button" id="submitOrdenBtn" name="submitOrdenBtn">Agregar</button>
               
-            </div>
-            <div class="costo-material">
-              <label for="costo_orden">Costo</label>
-              
-            </div></div>
-<?php 
-    
-    if (mysqli_num_rows($getMateriales1) > 0) {
-      
-        while ($row = mysqli_fetch_assoc($getMateriales1)) {
-?>
-            <div class="contenido-materiales">
-                <div class="detalle-material">
-                    <input class="w3-input" type="text" name="detalle_orden" id="detalle_orden" value="<?php echo $row['nombre_productos']; ?>" readonly />
-                </div>
-                <div class="cantidad-material">
-                    <input class="w3-input" type="text" name="cantidad_orden" id="cantidad_orden" value="<?php echo $row['cantidad_productos']; ?>" readonly  />
-                </div>
-                <div class="costo-material">
-                    <input class="w3-input" type="text" name="costo_orden" id="costo_orden" value="<?php echo $row['costo_productos']; ?>" readonly />
-                </div>
-            </div>
-         
-        
-<?php
-          $total += ($row['cantidad_productos'] * $row['costo_productos']); // Sumamos al total
-        }
-      ?>
-      <div class="contenido-materiales">
-            <div class="total-orden-suma">
-                <label for="total_orden">Total</label>
-                <input  type="number" name="total_orden" id="total_orden" value="<?php echo $total; ?>" readonly  >
             </div>
           </div>
-      <?php
-    } else {
-?>
-        <h4><?php echo $codigo_buscar; ?> No se han encontrado registros</h4>
-<?php
-    }
-}
-?>
+         
+<div id="informacionORDEN"> </div>
+          
 
         </form></div>
 
 
         
     <div class="contenido-orden">
-        <form method="post" >
-          <?php  
-if (isset($_POST['productos'])) {
- 
-  
-    $codigo_buscar = mysqli_real_escape_string($con, $_POST['productos']); 
-    $getMateriales = "SELECT codigo_productos,nombre_productos,costo_pm,cantidad_pm,foto_producto, nombre_material, cantidad_material, costo_material FROM inventario.productos p, inventario.materiales m, inventario.productos_materiales mp 
-    WHERE p.id_productos=mp.productos_id_productos AND m.id_materiales=mp.materiales_id_materiales AND p.id_productos='$codigo_buscar' ";
-    
-    $getMateriales1 = mysqli_query($con, $getMateriales);
-  $getMateriales2= mysqli_query($con, $getMateriales);
-  $row1 = mysqli_fetch_assoc($getMateriales2);
-  $total=0;
-  ?>
-          <h1>Orden de produccion</h1>
-          
-          <div class="informacion-producto">
-            <div class="codigos-producto">
-              <label for="codigo_material">Producto</label><br />
-             <input class="w3-input" type="text" name="detalle_orden" id="detalle_orden" value="<?php echo $row1['codigo_productos']; ?>" readonly />
-<label for="codigo_material">Nombre</label><br />
-             <input class="w3-input" type="text" name="nombre" id="nombre" value="<?php echo $row1['nombre_productos']; ?>" readonly />
-            </div>
-            
-            
-          
-  <div class="imagen-orden"><img src="<?php echo  $row1['foto_producto']; ?>" alt="" /></div>
-          </div><div class="contenido-materiales titulo-contenido">
-            <div class="detalle-material">
-              <label for="detalle_orden">Detalle</label>
-             
-            </div>
-            <div class="cantidad-material">
-              <label for="cantidad_orden">Cantidad</label>
-              
-            </div>
-            <div class="costo-material">
-              <label for="costo_orden">Costo</label>
-              
-            </div></div>
-<?php 
-    
-    if (mysqli_num_rows($getMateriales1) > 0) {
-      
-        while ($row = mysqli_fetch_assoc($getMateriales1)) {
-?>
-            <div class="contenido-materiales">
-                <div class="detalle-material">
-                    <input class="w3-input" type="text" name="detalle_orden" id="detalle_orden" value="<?php echo $row['nombre_material']; ?>" readonly />
-                </div>
-                <div class="cantidad-material">
-                    <input class="w3-input" type="text" name="cantidad_orden" id="cantidad_orden" value="<?php echo $row['cantidad_pm']; ?>" readonly  />
-                </div>
-                <div class="costo-material">
-                    <input class="w3-input" type="text" name="costo_orden" id="costo_orden" value="<?php echo $row['costo_pm']; ?>" readonly />
-                </div>
-            </div>
-         
-        
-<?php
-          $total += ($row['cantidad_pm'] * $row['costo_pm']); // Sumamos al total
-        }
-      ?>
-      <div class="contenido-materiales">
-            <div class="total-orden-suma">
-                <label for="total_orden">Total</label>
-                <input  type="number" name="total_orden" id="total_orden" value="<?php echo $total; ?>" readonly  >
-            </div>
-          </div>
-      <?php
-    } else {
-?>
-        <h4><?php echo $codigo_buscar; ?> No se han encontrado registros</h4>
-<?php
-    }
-}
-?>
-
-      </div>
+        <form method="post" id="informacionProductoForm">
+  </form>     
+  </div>  
       </div>
         </div>
+          <script>
+$(document).ready(function() {
+  $('#submitOrdenBtn').click(function() {
+    $.ajax({
+      type: 'POST',
+      url: 'muestraproducto.php', // Replace with the actual PHP script URL for Orden de producción
+      data: $('#ordenProduccionForm').serialize(),
+      success: function(response) {
+       $('#informacionORDEN').html(response);
+        // Handle response or update UI here
+      },
+      error: function() {
+        alert('An error occurred while submitting Orden de producción data.');
+      }
+    });
+  });
+
+  $('#submitInfoBtn').click(function() {
+    $.ajax({
+      type: 'POST',
+      url: 'produccion_orden (copy).php', // Replace with the actual PHP script URL for informacion-producto
+      data: $('#ordenProduccionForm').serialize(),
+      success: function(response) {
+        $('#informacionProductoForm').html(response);
+        // Handle response or update UI here
+      },
+      error: function() {
+        alert('An error occurred while submitting Informacion producto data.');
+      }
+    });
+  });
+});
+</script>
+
+
+
+
+
+          
   <script src="../js/cerrarSesion.js"></script>
   <script src="../js/horaYFecha.js"></script>
   <script src="../js/eliminar_orden_compra.js"></script>

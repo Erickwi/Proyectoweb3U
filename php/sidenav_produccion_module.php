@@ -6,7 +6,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 $links = array(
     'produccion.php' => 'Inicio',
     'produccion_orden.php' => 'Orden de producción',
-    'produccion_ver_orden.php' => 'Ver orden'
+    'produccion_ver_ordenes.php' => 'Ver orden'
 );
 
 ?>

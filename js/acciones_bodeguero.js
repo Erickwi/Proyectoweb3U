@@ -1,8 +1,61 @@
 //INICIO SECCION ver compras
+function actualizarOrdenes(){
+  $.ajax({
+    type: 'GET',
+    url: '../php/muestraproducto.php',
+    success: function(response) {
+      $('#informacionORDEN').html(response);
+    }
+  });
+}
+
+//VER ORDENES
+$('#buscar_orden_btn').click(function(e) {
+  e.preventDefault();
+  var codigoBuscar = $('#codigo_buscar').val();
+  $.ajax({
+    type: 'POST',
+    url: '../php/buscarOrden.php',
+    data: { codigo_buscar: codigoBuscar },
+    success: function(response) {
+      $('#tabla_body_ordenes').html(response);
+    }
+  });
+  $("#restablecer_orden_btn").removeAttr("disabled");
+});
+
+//recargar los datos 
+
+$('#restablecer_orden_btn').click(function(e) {
+  e.preventDefault();
+  cargarTodosRegistrosOrden();
+  $("#restablecer_orden_btn").prop("disabled", true);
+  $("input[type='text']").val("");
+});
+
+//VER ORDENES
+$('#submitOrdenBtn').click(function(e) {
+  e.preventDefault();
+  var codigoBuscar = $('#codigo_buscar').val();
+  $.ajax({
+    type: 'POST',
+    url: '../php/muestraproducto.php',
+    data: { codigo_buscar: codigoBuscar },
+    success: function(response) {
+      $('#tabla_body_ordenes').html(response);
+    }
+  });
+  $("#restablecer_btn").removeAttr("disabled");
+});
+
+
+//FIN SECCION VER COMPRAS
+
 
 // Cargar todos los registros al cargar la página
 cargarTodosRegistros();
-
+actualizarListaMateriales();
+cargarTodosRegistrosOrden();
 $('#buscar_btn').click(function(e) {
   e.preventDefault();
   var codigoBuscar = $('#codigo_buscar').val();
@@ -34,43 +87,33 @@ function cargarTodosRegistros() {
   });
 }
 
+function cargarTodosRegistrosOrden() {
+  $.ajax({
+    type: 'GET',
+    url: '../php/cargarDatosOrden.php',
+    success: function(response) {
+      $('#tabla_body_ordenes').html(response);
+    }
+  });
+}
+
 //FIN SECCION ver compras
 
 //INICIO SECCION HACER COMPRAS
-$(".aumentar_cantidad").click(function(e) {
-  e.preventDefault();
-  var cantidadInput = $(this).closest(".w3-row").find(".cantidad_compra");
-  var cantidadActual = parseFloat(cantidadInput.val()) || 0;
-  var nuevaCantidad = (cantidadActual + 0.01).toFixed(2);
-  cantidadInput.val(nuevaCantidad);
-  actualizarTotal();
-});
 
-$(".disminuir_cantidad").click(function(e) {
-  e.preventDefault();
-  var cantidadInput = $(this).closest(".w3-row").find(".cantidad_compra");
-  var cantidadActual = parseFloat(cantidadInput.val()) || 0;
-  if (cantidadActual > 0.01) {
-    var nuevaCantidad = (cantidadActual - 0.01).toFixed(2); 
-    
-    cantidadInput.val(nuevaCantidad);
-    actualizarTotal();
-  }
-});
-
-function actualizarTotal() {
-    var cantidad = parseFloat($(".cantidad_compra").val());
-    var costo = parseFloat($("input[name='costo_compra']").val());
-    var nuevoTotal = cantidad * costo;
-    
-    $("#total_compra").val(nuevoTotal.toFixed(2));
+function actualizarListaMateriales(){
+  $.ajax({
+    type: 'GET',
+    url: '../php/consultasBodeguero/obtenerListaMateriales.php',
+    success: function(response) {
+      $('#material_compra_opcion').html(response);
+    }
+  });
 }
-
 
 $('.producto_btn').click(function(e) {
     e.preventDefault();
     var formulario = $(this).closest('#formulario_compras'); // Encontrar el formulario más cercano al botón
-    var idMaterial = $("#material_compra_opcion").val();
     var nombreMaterial = formulario.find("input[name='nombre_compra']").val();
     var codigoCompra = formulario.find("input[name='codigo_compra']").val();
     var fechaCompra = formulario.find("input[name='fecha_compra']").attr('placeholder');
@@ -79,16 +122,25 @@ $('.producto_btn').click(function(e) {
     var cantidadCompra = formulario.find("input[name='cantidad_compra']").val();
     var precioTotalCompra = formulario.find("input[name='total_compra']").val();
 
+    var datosCompra = {
+      nombreMaterial: nombreMaterial,
+      codigoCompra: codigoCompra,
+      fecha: fecha,
+      hora: hora,
+      costoCompra: costoCompra,
+      cantidadCompra: cantidadCompra,
+      precioTotalCompra: precioTotalCompra
+    };
+
     var detallesProducto = `<div>
         <h2>Detalles del Producto</h2>
-        <p><strong>ID:</strong> ${idMaterial}</p>
         <p><strong>Nombre:</strong> ${nombreMaterial}</p>
         <p><strong>Código:</strong> ${codigoCompra}</p>
         <p><strong>Fecha:</strong> ${fecha}</p>
         <p><strong>Hora:</strong> ${hora}</p>
-        <p><strong>Costo:</strong> ${costoCompra}</p>
+        <p><strong>Costo:</strong>$ ${costoCompra}</p>
         <p><strong>Cantidad:</strong> ${cantidadCompra}</p>
-        <p><strong>Total:</strong> ${precioTotalCompra}</p>
+        <p><strong>Total:</strong>$ ${precioTotalCompra}</p>
     </div>`;
 
     Swal.fire({
@@ -103,10 +155,36 @@ $('.producto_btn').click(function(e) {
         allowOutsideClick: false
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Producto añadido con éxito'
-            });
+          $.ajax({
+            type: "POST",
+            url: "../php/consultasBodeguero/agregarMaterialInventario.php",
+            data: datosCompra, 
+            success: function(response) {
+              if (response === "Exito") {
+                console.log("La inserción fue exitosa.");
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Producto añadido con éxito'
+                });
+                $("select[name='material_compra_opcion']").prop('selectedIndex', 0);
+                $("input[type='text']").val("");
+                document.title= "Compras";
+                $('.titulo_compras').text("Compras");
+                $(".nombre_compra").removeClass("w3-show").addClass("w3-hide");
+                $(".guardar_btn").removeClass("w3-hide").addClass("w3-show");
+                $(".producto_btn").removeClass("w3-show").addClass("w3-hide");
+                //actualizar la lista de materiales en el select
+                 actualizarListaMateriales();
+              } else {
+                console.log("Hubo un error en la inserción.");
+              }
+              
+            },
+            error: function(error) {
+              // Manejo de errores
+              console.error("Error en la solicitud AJAX:", error);
+            }
+          });
         }
     });
 }); 
@@ -163,7 +241,7 @@ $("#material_compra_opcion").change(function() {
     //resetear los valor de los inputs
     $(".cantidad_compra, .costo_compra, #total_compra").val("");
     $("#codigo_compra").prop("readonly", false);
-    $(".disminuir_cantidad, .aumentar_cantidad, .cantidad_compra, .costo_compra, .detalle_compra, #total_compra, #codigo_compra, #guardar_btn").removeAttr("disabled");
+    $(".disminuir_cantidad, .aumentar_cantidad, .cantidad_compra, .costo_compra, .detalle_compra, #total_compra, #codigo_compra, #guardar_btn, #unidad_medida_compra_opcion").removeAttr("disabled");
     $("#codigo_compra, .costo_compra").removeAttr("readonly");
     $("#codigo_compra").val("");
   } else if(selectedOption !== ""){
@@ -172,7 +250,7 @@ $("#material_compra_opcion").change(function() {
     $(".nombre_compra").removeClass("w3-show").addClass("w3-hide");
     $(".guardar_btn").removeClass("w3-hide").addClass("w3-show");
     $(".producto_btn").removeClass("w3-show").addClass("w3-hide");
-    $(".disminuir_cantidad, .aumentar_cantidad, .cantidad_compra, .costo_compra, .detalle_compra, #total_compra, #codigo_compra, .guardar_btn").removeAttr("disabled");
+    $(".disminuir_cantidad, .aumentar_cantidad, .cantidad_compra, .costo_compra, .detalle_compra, #total_compra, #codigo_compra, .guardar_btn, #unidad_medida_compra_opcion").removeAttr("disabled");
     $.ajax({
       type: "POST",
       url: "../php/consultasBodeguero/obtenerMaterial.php",
