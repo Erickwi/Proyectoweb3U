@@ -58,7 +58,13 @@ include('consultasBodeguero/agregarMaterial.php');
           <div class="informacion">
               <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
               <div class="user-logo"><i class="fa-solid fa-user fa-2xl"></i></div>
-              <div class="cerrar" id="cerrar_sesion"><p>Cerrar Sesión</p> </div>
+              <div class="w3-dropdown-hover cerrarDrop">
+                <button class="w3-button w3-light-gray w3-round-large cerrarDropBtn">Mi cuenta</button>
+                <div class="w3-dropdown-content w3-bar-block w3-border">
+                  <a id="cambiar_contraseña_btn" class="w3-bar-item w3-button">Cambiar contraseña</a>
+                  <a id="cerrar_sesion_btn" class="w3-bar-item w3-button">Cerrar sesión</a>
+                </div>
+              </div>
           </div>
       </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
@@ -87,15 +93,15 @@ include('consultasBodeguero/agregarMaterial.php');
     
               <div class="w3-row">
                 <div class="w3-container w3-quarter">
-                  <label for="costo_compra">Costo</label>
+                  <label for="costo_compra">Costo ($)</label>
                   <input class="w3-input costo_compra" type="number" name="costo_compra" placeholder="$0.00" step=0.01 readonly disabled>
                 </div>
                 <div class="w3-container w3-quarter">
                   <label for="cantidad_compra">Cantidad</label>
-                  <input class="w3-input cantidad_compra" type="text" name="cantidad_compra" placeholder="0" disabled>
+                  <input class="w3-input cantidad_compra" type="number" name="cantidad_compra" placeholder="0" step=0.01 disabled>
                 </div>
                 <div class="w3-container w3-quarter button_container w3-center">
-                  <label for="cantidad_compra">Unidad de medi</label>
+                  <label for="cantidad_compra">Unidad de medida</label>
                   <select class="w3-select" name="unidad_medida_compra_opcion" id="unidad_medida_compra_opcion" disabled>
                     <option value="kilogramo">Kilogramo</option>
                     <option value="gramo">Gramo</option>
@@ -112,10 +118,7 @@ include('consultasBodeguero/agregarMaterial.php');
             <input align="center" type="submit" value="Añadir Producto" class="w3-btn w3-blue w3-hide producto_btn">
           <form>
         </div>
-    </div>  
-            <div class="loading-spinner">
-    <i class="fas fa-spinner fa-spin"></i> Cargando...
-</div>
+    </div>
   <script src="../js/cerrarSesion.js"></script>
   <script src="../js/horaYFecha.js"></script>
   <script src="../js/acciones_bodeguero.js"></script>

@@ -5,7 +5,7 @@ include('dbconnection.php');
 $nuevaContraseña= $_POST["password"];
 $id_usuario = intval($_SESSION['id_usuario']);
 $hashedContraseña = md5($nuevaContraseña);
-$query = "UPDATE usuario SET contraseña = '$hashedContraseña' WHERE id_usuario = '2'";
+$query = "UPDATE usuario SET contraseña = '$hashedContraseña' WHERE id_usuario = '$id_usuario'";
 $result = mysqli_query($con, $query);
 
 if ($result) {
@@ -13,5 +13,5 @@ if ($result) {
     echo "success";
 } else {
     // Error en la consulta SQL
-    echo "error"
+    echo "error";
 }

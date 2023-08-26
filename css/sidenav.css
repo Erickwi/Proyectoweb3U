@@ -78,7 +78,7 @@ body {
 }
 
 .sidenav_ver_actividad_usuarios_active{
-  background-color: #ff4d4d!Important;
+  background-color: #ff4d4d!important;
 }
 
 .sidenav_ver_reportes{
@@ -119,7 +119,7 @@ body {
 }
 
 .sidenav_editar_orden_active, .sidenav_ver_compras_active{
-  background-color: #61caff!Important;
+  background-color: #61caff!important;
   color:black!Important;
 }
 

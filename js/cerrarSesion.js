@@ -1,4 +1,5 @@
 $("#cerrar_sesion_btn").click(function() {
+  
     // Mostrar la alerta de confirmación para cerrar sesión
     Swal.fire({
         icon: 'question',

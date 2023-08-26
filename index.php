@@ -122,7 +122,7 @@ function redirigirSegunRol($tipo_usuario) {
                         <input type="password" name="contraseña" id="contraseña"><?php if (isset($mensajeError)) { ?>
                         <p align="center" style="color:red;"><?php echo $mensajeError; ?></p><br>
                     <?php } ?>
-                        <input type="submit" name="button" id="button" value="Iniciar sesión">
+                        <input type="submit" name="button" id="button" class="w3-btn" value="Iniciar sesión">
                     </form>
                 </div>
             </div>

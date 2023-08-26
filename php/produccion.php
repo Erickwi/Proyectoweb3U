@@ -10,11 +10,11 @@ if (!isset($_SESSION['tipo_usuario'])) {
 
 $tipo_usuario = $_SESSION['tipo_usuario'];
 $nombre_usuario = $_SESSION['nombre_usuario'];
-if ($tipo_usuario === 'admin') {
+if ($tipo_usuario === 'administrador') {
     // Si es administrador, redirigir a la página de administrador
     header('Location: administrador.php');
     exit();
-}elseif ($tipo_usuario === 'bode') {
+}elseif ($tipo_usuario === 'bodeguero') {
     header('Location: bodeguero.php');
     exit();
 }
@@ -48,7 +48,13 @@ if ($tipo_usuario === 'admin') {
         <div class="informacion">
             <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
             <div class="user-logo"><i class="fa-solid fa-user fa-2xl"></i></div>
-            <div class="cerrar" id="cerrar_sesion"><p>Cerrar Sesión</p> </div>
+            <div class="w3-dropdown-hover cerrarDrop">
+                <button class="w3-button w3-light-gray w3-round-large cerrarDropBtn">Mi cuenta</button>
+                <div class="w3-dropdown-content w3-bar-block w3-border">
+                  <a id="cambiar_contraseña_btn" class="w3-bar-item w3-button">Cambiar contraseña</a>
+                  <a id="cerrar_sesion_btn" class="w3-bar-item w3-button">Cerrar sesión</a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="portada-usuarios">
