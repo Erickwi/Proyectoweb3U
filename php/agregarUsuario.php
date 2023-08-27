@@ -37,13 +37,24 @@ if(isset($_POST['submit']))
   // Query for data insertion
   $query=mysqli_query($con, "INSERT INTO usuario (nombre, apellido, cedula, usuario, tipo_usuario, contraseña, fecha, activo) VALUES ('$Nombre','$Apellido', '$Cedula', '$UsuarioN', '$Tipoempleado', '$Clave', '$fecha_actual',0)");
   if ($query) {
-    echo "<script>alert('Los datos han sido registrados correctamente');</script>";
-    echo "<script type='text/javascript'> document.location ='agregarUsuario.php'; </script>";
-  }
-  else
-    {
-      echo "<script>alert('Something Went Wrong. Please try again');</script>";
-    }
+    echo "<script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro exitoso',
+                text: 'Los datos han sido registrados correctamente'
+            }).then(() => {
+                window.location.href = 'agregarUsuario.php';
+            });
+          </script>";
+} else {
+    echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Algo salió mal. Por favor, inténtalo nuevamente'
+            });
+          </script>";
+}
 }
 ?>
 
