@@ -114,6 +114,20 @@ if ($tipo_usuario === 'bodeguero') {
                             <th>Contraseña</th>
                             <td><?php echo $row['contraseña']; ?></td>
                         </tr>
+                        <tr>
+                            <th>Fecha de Creación</th>
+                            <td><?php  echo $row['fecha'];?></td>
+                            <th>Estado del Usuario</th>
+                            <td>
+                                <?php
+                                    if ($row['activo'] == 0) {
+                                        echo "Activo";
+                                    } elseif ($row['activo'] == 1) {
+                                        echo "Desactivado";
+                                    }
+                                ?>
+                            </td>
+                        </tr>
                         <tr style="text-align: center;">
                             <th>Tipo de Empleado</th>
                             <td colspan="3"><?php echo $row['tipo_usuario']; ?></td>

@@ -19,6 +19,32 @@ if ($tipo_usuario === 'bodeguero') {
     header('Location: produccion.php');
    exit();
 }
+//Databse Connection file
+include('dbconnection.php');
+if(isset($_POST['submit']))
+  {
+  	//getting the post values
+    $Nombre=$_POST['nombre'];
+    $Apellido=$_POST['apellido'];
+    $Cedula=$_POST['cedula'];
+    $UsuarioN=$_POST['user'];
+    $Tipoempleado=$_POST['tipo_empleado'];
+    $Clave=md5($_POST['contraseña']);
+   
+    date_default_timezone_set('America/Guayaquil');
+    $fecha_actual = date('Y-m-d H:i:s');
+
+  // Query for data insertion
+  $query=mysqli_query($con, "INSERT INTO usuario (nombre, apellido, cedula, usuario, tipo_usuario, contraseña, fecha, activo) VALUES ('$Nombre','$Apellido', '$Cedula', '$UsuarioN', '$Tipoempleado', '$Clave', '$fecha_actual',0)");
+  if ($query) {
+    echo "<script>alert('Los datos han sido registrados correctamente');</script>";
+    echo "<script type='text/javascript'> document.location ='agregarUsuario.php'; </script>";
+  }
+  else
+    {
+      echo "<script>alert('Something Went Wrong. Please try again');</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +72,16 @@ if ($tipo_usuario === 'bodeguero') {
             href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css"
         />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+        .error-field {
+            border: 2px solid red;
+        }
+        .success-field {
+            border: 2px solid green;
+        }
+    </style>
+
 </head>
 <body>
 <?php
@@ -77,25 +113,28 @@ if ($tipo_usuario === 'bodeguero') {
         <h2>Agregar Usuario</h2>
     </center>
     <div class="form-container">
-        <form method="POST" id="formAgregarUsuario">
+        <form method="POST">
             <div class="form-row">
                 <div class="half-width">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese el Nombre">
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese el Nombre" pattern="[A-Za-zÁ-Úá-úñÑ\s]+" title="Solo se permiten letras y espacios" required>
+                    <span id="nombre-error" class="error-msg"></span>
                 </div>
                 <div class="half-width">
                     <label for="apellido">Apellido</label>
-                    <input type="text" name="apellido" id="apellido" placeholder="Ingrese el Apellido">
+                    <input type="text" name="apellido" id="apellido" placeholder="Ingrese el Apellido" pattern="[A-Za-zÁ-Úá-úñÑ\s]+" title="Solo se permiten letras y espacios" required>
+                    <span id="apellido-error" class="error-msg"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="half-width">
                     <label for="cedula">Cédula</label>
-                    <input type="number" name="cedula" id="cedula" placeholder="Ingrese la Cédula" maxlength="10">
+                    <input type="text" name="cedula" id="cedula" placeholder="Ingrese la Cédula" maxlength="10" pattern="[0-9]+" title="Solo se permiten números" required>
+                    <span id="cedula-error" class="error-msg"></span>
                 </div>
                 <div class="half-width">
                     <label for="tipo_empleado">Tipo de Empleado</label>
-                    <select name="tipo_empleado" id="tipo_empleado">
+                    <select name="tipo_empleado" id="tipo_empleado" required disabled>
                         <option value="producción">Producción</option>
                         <option value="administrador">Administrador</option>
                         <option value="bodeguero">Bodeguero</option>
@@ -105,11 +144,11 @@ if ($tipo_usuario === 'bodeguero') {
             <div class="form-row">
                 <div class="half-width">
                     <label for="usuario">Nombre de Usuario</label>
-                    <input type="text" name="user" placeholder="Ingrese un Nombre de Usuario">
+                    <input type="text" name="user" placeholder="Ingrese un Nombre de Usuario" required disabled>
                 </div>
                 <div class="half-width">
                     <label for="contraseña">Contraseña</label>
-                    <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese la Contraseña">
+                    <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese la Contraseña" required disabled>
                 </div>
             </div>
             <div class="centered-button">
@@ -117,7 +156,8 @@ if ($tipo_usuario === 'bodeguero') {
             </div>
         </form>
     </div>
-	<script src="../js/validar_agregar_usuario.js"></script>
 	<script src="../js/cerrarSesion.js"></script>
+    <script src="../js/validacionUsuarios.js"></script>
+
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['tipo_usuario'])) {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
@@ -31,8 +30,12 @@ if(isset($_POST['submit']))
     $contraseña=$_POST['contraseña'];
     $tipo=$_POST['tipo_usuario'];
 
+    // Set the time zone to America/Guayaquil
+    date_default_timezone_set('America/Guayaquil');
+    $fecha_actual = date('Y-m-d H:i:s');
+
     //Query for data updation
-     $query=mysqli_query($con, "update  usuario set nombre='$nombre',apellido='$apellido', usuario='$user', contraseña='$contraseña', tipo_usuario='$tipo' where id_usuario='$eid'");
+     $query=mysqli_query($con, "update  usuario set nombre='$nombre',apellido='$apellido', usuario='$user', contraseña='$contraseña', tipo_usuario='$tipo', fecha='$fecha_actual' where id_usuario='$eid'");
      
     if ($query) {
     echo "<script>alert('Tus datos han sido actualizados correctamente');</script>";
