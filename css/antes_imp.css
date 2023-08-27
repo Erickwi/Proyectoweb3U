@@ -1,0 +1,84 @@
+input{
+  border:1px solid black;
+}
+.Imprimir-ordenes{
+  width:100%;
+  height: auto;
+}
+.Prinicipal-imprimir{
+  width:75%;
+  height:auto;
+  background: gray;
+  margin:auto;
+}
+.codigo-fecha{
+  width:100%;
+  height:50px;
+  background:red;
+  display: flex;
+  padding-left:5px;
+}
+.codigo-fecha .codigo-fecha1{
+  width:30%;
+  height:100%;
+  
+}
+.codigo-fecha .codigo-fecha1 input{
+  border-radius:5px;
+  background:white;
+  width:90%;
+  height:40%;
+}
+
+.codigo-fecha .codigo-producto{
+   width:40%;
+  height:100%;
+  
+  
+}
+.codigo-fecha .codigo-producto input{
+   width:90%;
+  height:50%;
+  border-radius:5px;
+}
+
+.codigo-fecha .cantidad-producto{
+  width:20%;
+  height:100%;
+}
+.codigo-fecha .cantidad-producto input{
+   width:90%;
+  height:50%;
+  border-radius:5px;
+}
+.informacion-material-codigo{
+  width:20%;
+  height:100%
+}
+.informacion-material-codigo input{
+  width:90%;
+  height:40%;
+  border-radius:5px;
+}
+.informacion-material-nombre{
+  width:50%;
+  height:100%
+}
+.informacion-material-nombre input{
+  width:90%;
+  height:40%;
+  border-radius:5px;
+}
+
+.informacion-material{
+  width:15%;
+  height:100%
+}
+.informacion-material input{
+  width:90%;
+  height:40%;
+  border-radius:5px;
+}
+.nuevo-titulo{
+  height:20px;
+}

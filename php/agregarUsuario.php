@@ -19,29 +19,6 @@ if ($tipo_usuario === 'bodeguero') {
     header('Location: produccion.php');
    exit();
 }
-//Databse Connection file
-include('dbconnection.php');
-if(isset($_POST['submit']))
-  {
-  	//getting the post values
-    $Nombre=$_POST['nombre'];
-    $Apellido=$_POST['apellido'];
-    $Cedula=$_POST['cedula'];
-    $UsuarioN=$_POST['user'];
-    $Tipoempleado=$_POST['tipo_empleado'];
-    $Clave=md5($_POST['contraseña']);
-   
-  // Query for data insertion
-     $query=mysqli_query($con, "insert into usuario(nombre,apellido, cedula, usuario, tipo_usuario, contraseña) value('$Nombre','$Apellido', '$Cedula', '$UsuarioN', '$Tipoempleado', '$Clave' )");
-    if ($query) {
-    echo "<script>alert('Los datos han sido registrados correctamente');</script>";
-    echo "<script type='text/javascript'> document.location ='agregarUsuario.php'; </script>";
-  }
-  else
-    {
-      echo "<script>alert('Something Went Wrong. Please try again');</script>";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -100,25 +77,25 @@ if(isset($_POST['submit']))
         <h2>Agregar Usuario</h2>
     </center>
     <div class="form-container">
-        <form method="POST">
+        <form method="POST" id="formAgregarUsuario">
             <div class="form-row">
                 <div class="half-width">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese el Nombre" required>
+                    <input type="text" name="nombre" id="nombre" placeholder="Ingrese el Nombre">
                 </div>
                 <div class="half-width">
                     <label for="apellido">Apellido</label>
-                    <input type="text" name="apellido" id="apellido" placeholder="Ingrese el Apellido" required>
+                    <input type="text" name="apellido" id="apellido" placeholder="Ingrese el Apellido">
                 </div>
             </div>
             <div class="form-row">
                 <div class="half-width">
                     <label for="cedula">Cédula</label>
-                    <input type="number" name="cedula" id="cedula" placeholder="Ingrese la Cédula" maxlength="10" pattern="[0-9]+" required>
+                    <input type="number" name="cedula" id="cedula" placeholder="Ingrese la Cédula" maxlength="10">
                 </div>
                 <div class="half-width">
                     <label for="tipo_empleado">Tipo de Empleado</label>
-                    <select name="tipo_empleado" id="tipo_empleado" required>
+                    <select name="tipo_empleado" id="tipo_empleado">
                         <option value="producción">Producción</option>
                         <option value="administrador">Administrador</option>
                         <option value="bodeguero">Bodeguero</option>
@@ -128,11 +105,11 @@ if(isset($_POST['submit']))
             <div class="form-row">
                 <div class="half-width">
                     <label for="usuario">Nombre de Usuario</label>
-                    <input type="text" name="user" placeholder="Ingrese un Nombre de Usuario" required>
+                    <input type="text" name="user" placeholder="Ingrese un Nombre de Usuario">
                 </div>
                 <div class="half-width">
                     <label for="contraseña">Contraseña</label>
-                    <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese la Contraseña" required>
+                    <input type="password" name="contraseña" id="contraseña" placeholder="Ingrese la Contraseña">
                 </div>
             </div>
             <div class="centered-button">
@@ -140,6 +117,7 @@ if(isset($_POST['submit']))
             </div>
         </form>
     </div>
+	<script src="../js/validar_agregar_usuario.js"></script>
 	<script src="../js/cerrarSesion.js"></script>
 </body>
 </html>

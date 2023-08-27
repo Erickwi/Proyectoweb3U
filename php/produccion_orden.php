@@ -84,7 +84,7 @@ if ($tipo_usuario === 'administrador') {
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido-informacion-orden">
       <div class="contenido-orden"> 
-         <form method="post" id="ordenProduccionForm" >
+         <form method="post" id="ordenProduccionForm" class ="ex-inf" >
           <h1>Orden de produccion</h1>
             
            
@@ -102,6 +102,7 @@ if ($tipo_usuario === 'administrador') {
               <input
                 class="w3-input"
                 type="number"
+				min=1
                 placeholder="Ej: 23443"
                 name="codigo_orden1"
                 id="codigo_orden1"
@@ -122,7 +123,7 @@ if ($tipo_usuario === 'administrador') {
             </div>
           </div>
           
-           <div class="informacion-orden">
+           <div class="informacion-orden ex-inf">
              <div class="informacion-orden informacion-orden1"> 
             <div class="codigos-orden">
               <label for="codigo_material">Productos</label>
@@ -179,45 +180,7 @@ if ($tipo_usuario === 'administrador') {
   </div>  
       </div>
         </div>
-          <script>
-$(document).ready(function() {
-  $('#submitOrdenBtn').click(function() {
-    $.ajax({
-      type: 'POST',
-      url: 'muestraproducto.php', // Replace with the actual PHP script URL for Orden de producción
-      data: $('#ordenProduccionForm').serialize(),
-      success: function(response) {
-       $('#informacionORDEN').html(response);
-        // Handle response or update UI here
-      },
-      error: function() {
-        alert('An error occurred while submitting Orden de producción data.');
-      }
-    });
-  });
-
-  $('#submitInfoBtn').click(function() {
-    $.ajax({
-      type: 'POST',
-      url: 'produccion_orden (copy).php', // Replace with the actual PHP script URL for informacion-producto
-      data: $('#ordenProduccionForm').serialize(),
-      success: function(response) {
-        $('#informacionProductoForm').html(response);
-        // Handle response or update UI here
-      },
-      error: function() {
-        alert('An error occurred while submitting Informacion producto data.');
-      }
-    });
-  });
-});
-</script>
-
-
-
-
-
-          
+	<script src="../js/validar_ordenes.js"></script>
   <script src="../js/cerrarSesion.js"></script>
   <script src="../js/horaYFecha.js"></script>
   <script src="../js/eliminar_orden_compra.js"></script>
