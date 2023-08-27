@@ -87,7 +87,7 @@ if ($tipo_usuario === 'administrador') {
          <form method="post" id="ordenProduccionForm" class ="ex-inf" >
           <h1>Orden de produccion</h1>
             
-           
+          
           
           <div class="informacion-orden"> 
             <div class="codigos-orden">
@@ -155,7 +155,7 @@ if ($tipo_usuario === 'administrador') {
                 name="cantidad_producto1"
                 id="cantidad_producto1" 
                 placeholder=1
-                min=1 step=0.01  required 
+                min=1  required 
               /></div>
             </div>
             <div class="extra-orden margen-extra">              
@@ -177,9 +177,15 @@ if ($tipo_usuario === 'administrador') {
     <div class="contenido-orden">
         <form method="post" id="informacionProductoForm">
   </form>     
-  </div>  
+  </div> 
+        
       </div>
+      <div class="Boton-imprimir"> <button class="w3-btn w3-round-large w3-blue" type="button" id="submitImprimir" name="submitImprimir">Imprimir</button></div>
         </div>
+
+
+ 
+
 	<script src="../js/validar_ordenes.js"></script>
   <script src="../js/cerrarSesion.js"></script>
   <script src="../js/horaYFecha.js"></script>

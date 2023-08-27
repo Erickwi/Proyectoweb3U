@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('dbconnection.php');
+include("dbconnection.php");
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['tipo_usuario'])) {
     // Si no ha iniciado sesión, redirigir a la página de inicio de sesión
@@ -10,13 +10,13 @@ if (!isset($_SESSION['tipo_usuario'])) {
 
 $tipo_usuario = $_SESSION['tipo_usuario'];
 $nombre_usuario = $_SESSION['nombre_usuario'];
-if ($tipo_usuario === 'administrador') {
-    // Si es administrador, redirigir a la página de administrador
-    header('Location: administrador.php');
-    exit();
-}elseif ($tipo_usuario === 'bodeguero.php') {
+if ($tipo_usuario === 'bodeguero') {
+     //Si es administrador, redirigir a la página de administrador
     header('Location: bodeguero.php');
     exit();
+}elseif ($tipo_usuario === 'producción') {
+    header('Location: produccion.php');
+   exit();
 }
 ?>
 
@@ -25,7 +25,7 @@ if ($tipo_usuario === 'administrador') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver ordenes</title>
+    <title>Ver Inventario</title>
   <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidenav.css" rel="stylesheet" type="text/css">
@@ -51,14 +51,14 @@ if ($tipo_usuario === 'administrador') {
 <body>
     <div class="principal">
       <?php 
-        include "sidenav_produccion_module.php"
+        include "sidenav_admin_module.php"
       ?>
       <div class="encabezado">
           <div class="logo"><img src="../img/logo_alternativo.png"></div>
           <div class="informacion">
               <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
               <div class="user-logo"><i class="fa-solid fa-user fa-2xl"></i></div>
-            <div class="w3-dropdown-hover cerrarDrop">
+              <div class="w3-dropdown-hover cerrarDrop">
                 <button class="w3-button w3-light-gray w3-round-large cerrarDropBtn">Mi cuenta</button>
                 <div class="w3-dropdown-content w3-bar-block w3-border">
                   <a id="cambiar_contraseña_btn" class="w3-bar-item w3-button">Cambiar contraseña</a>
@@ -69,32 +69,35 @@ if ($tipo_usuario === 'administrador') {
       </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido">
-          <h1 align="center">Ver Ordenes</h1>
-        <form method="post" id="formulario_ver_compras">
-            <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar" id="buscar_orden_btn">Buscar</button>
-          <input type="text" id="codigo_buscar" name="codigo_buscar" placeholder="Ingrese el codigo de la orden" style="width:250px;">
-          <button class="w3-btn w3-round-large w3-red" name="restablecer" id="restablecer_orden_btn" disabled>Restablecer</button>
+          <h1 align="center">Ver Inventario</h1>
+        <form method="post" id="formulario_ver_inventario">
+            <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar" id="buscar_inventario_btn">Buscar</button>
+          <input type="text" id="codigo_buscar_material" name="codigo_buscar_material" placeholder="Ingrese el material a buscar" style="width:250px;">
+          <button class="w3-btn w3-round-large w3-red" name="restablecer" id="restablecer_inventario_btn" disabled>Restablecer</button>
         </form><br>
         <div class="w3-responsive">
           <table class="w3-table-all">
             <thead>
               <tr class="w3-light-grey">
-                <th>Código1</th>
-                <th>Fecha</th>
+				<th>Id</th>
+                <th>Código</th>
+                <th>Fecha y hora</th>
                 <th>Detalle</th>
-                <th>Total</th>
-                <th>Usuario</th>
-
+                <th>Cantidad</th>
+                <th>Precio unitario</th>
+                <th>Precio total</th>
+                <th>Tipo de proceso</th>
+                <th>Usuario responsable</th>
               </tr>
             </thead>
-            <tbody id="tabla_body_ordenes">
+            <tbody id="tabla_body_inventario">
             </tbody>
           </table>
         </div> 
       </div>  
     </div>
   <script src="../js/cerrarSesion.js"></script>
+  <script src="../js/verInventario.js"></script>
   <script src="../js/sidenav.js"></script>
-  <script src="../js/acciones_bodeguero.js"></script>
 </body>
 </html>

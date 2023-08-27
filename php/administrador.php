@@ -62,13 +62,13 @@ if ($tipo_usuario === 'bodeguero') {
     <div class="contenido">
         <div class="primer-contenido">
             <div id="agregar"><p><a href="agregarUsuario.php">Agregar Usuario</a></p></div>
-            <div id="reporte"><p>Ver reporte</p></div>
             <div id="usuario"><p><a href="verUsuarios.php">Ver usuario</a></p></div>
+          <div id="reporte"><p><a href="Inventario.php">Inventario</a></p></div>
             <div id="actividad_usuario"><p>Ver actividad de<br>usuario</p></div>
         </div>
         <div class="segundo-contenido">
-            <div id="editar_orden"> <p>Editar Orden de<br>produccion</p></div>
-            <div id="editar_compra"><p>Editar Compra</p></div>
+            <div id="editar_orden"><a href="verProductos.php"> <p>Ver Productos</a></a></p></div>
+            <div id="editar_compra"><a href="ingreso_producto.php"><p>Ingresar Producto</p></a></div>
             
         </div>
     </div>  

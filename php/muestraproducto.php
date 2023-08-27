@@ -41,11 +41,9 @@ where pm.materiales_id_materiales=m.id_materiales and pm.productos_id_productos=
 (codigo_inventario, detalle_inventario,cantidad_inventario,precio_unitario_inventario, precio_total,unidad_medida,tipo_proceso,usuario_id_usuario) VALUES 
 ('{$rowI['ci']}', '{$rowO['nombre_material']}',
 '$cantidadInventario','{$rowO['costo_material']}', 
-'$total_precio','gramos','Orden de produción',' $id_usuario')");   
-    
+'$total_precio','gramos','Orden de produción',' $id_usuario')");     
  }
   
-  echo '<script>alert("' . $codigo_buscar . '");</script>';
   /////////////////////////////
 
   
@@ -54,6 +52,7 @@ where pm.materiales_id_materiales=m.id_materiales and pm.productos_id_productos=
 /////////////////////////////////////////////////////////////////////
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

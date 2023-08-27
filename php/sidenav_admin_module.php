@@ -7,9 +7,9 @@ $links = array(
     'administrador.php' => 'Inicio',
     'agregarUsuario.php' => 'Agregar usuarios',
     'verUsuarios.php' => 'Ver usuarios',
-    'verReportes.php' => 'Ver actividad usuarios',
-    'agregarUsuario.php' => 'Agregar Usuarios',
-    'editarCompra.php' => 'Ver inventario',
+    'verActividadUsuario.php' => 'Actividad usuario',
+    'Inventario.php' => 'Inventario',
+    'verProductos.php' => 'Productos',
     'ingreso_producto.php' => 'Ingreso Productos',
 );
 

@@ -94,7 +94,7 @@ if ($tipo_usuario === 'bodeguero') {
           <div class="ingreso-codigo-producto flex">
             <div class="selecionar-materiales"><label for="codigo_material">Material</label> <br>
              <select name="material" id="material">
-               <option value="">Selecciona el producto</option>
+               <option value="seleccionarOpcion">Selecciona el producto</option>
                 <?php  
                 include('dbconnection.php');
                 $getProducto ="select * from materiales order by nombre_material";
@@ -112,7 +112,7 @@ if ($tipo_usuario === 'bodeguero') {
         
             </select> </div>
             <div class="cantidad-materiales"><label for="number">Cantidad:</label><br>
-            <input type="number" name="cantidad" id="cantidad"> </div>
+            <input type="number" name="cantidad" id="cantidad" min=1> </div>
 
           </div>
            <div class="ingreso-codigo-producto ingreso-imagen" >
@@ -145,12 +145,59 @@ if ($tipo_usuario === 'bodeguero') {
 
 <script>
 $(document).ready(function() {
-  $('#materialCarga').click(function() {
-    event.preventDefault();
-    
+  $('#materialCarga').click(function(e) {
+    e.preventDefault();
+	  var formulario = $(this).closest('#materiales-producto');
+    var codigo = formulario.find("input[name='productos']").val();
+	var nombreMaterial = formulario.find("input[name='nombre']").val();
+	var cantidad = formulario.find("input[name='cantidad']").val();
+	var archivo = formulario.find("input[name='subirMaterial']").prop("files")[0];
+	var opcion = formulario.find("select[name='material']").val(); // Update 'selectOption' with the actual name
     var formData = new FormData($('#materiales-producto')[0]);
     formData.append('subirMaterial', $('#subirMaterial')[0].files[0]); // Agrega el archivo al FormData
-
+	if (!/^\d{5}$/.test(codigo)) {
+      // Mostrar una alerta SweetAlert
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ingresa un número entero de 5 dígitos en el campo de código.',
+      });
+      $("input[type='text']").val("");
+      return; // Detener el proceso si la entrada es inválida
+    }
+	  if (!validarNombreMaterial(nombreMaterial)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Campo incorrecto',
+          text: 'El campo Nombre Material debe tener al menos 10 caracteres y contener solo letras y espacios'
+        });
+        return;
+      }
+	  if (cantidad === "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Campo vacío',
+        text: 'El campo Cantidad no puede estar en blanco'
+      });
+      return;
+    }
+	if (opcion === "seleccionarOpcion") {
+	  Swal.fire({
+	    icon: 'error',
+	    title: 'Oops...',
+	    text: 'Debes seleccionar un material',
+	  });
+	  return; // Stop the process if the selection is invalid
+	}
+	
+	if (!archivo) {
+	  Swal.fire({
+	    icon: 'error',
+	    title: 'Imagen Material faltante',
+	    text: 'Por favor, sube la imagen del material para cargar.',
+	  });
+	  return; // Detener el proceso si no se ha seleccionado ningún archivo
+	}
     $.ajax({
       type: 'POST',
       url: 'mostrar_materiales.php', // Reemplaza con la URL correcta del script PHP
@@ -167,6 +214,11 @@ $(document).ready(function() {
       }
     });
   });
+	
+	function validarNombreMaterial(nombre) {
+	    const regex = /^[A-Za-z\s]+$/;
+	    return regex.test(nombre) && nombre.length >= 10;
+	}
 });
 </script>
 
@@ -175,7 +227,6 @@ $(document).ready(function() {
 
     
   <script src="../js/cerrarSesion.js"></script>
-  <script src="../js/horaYFecha.js"></script>
   <script src="../js/eliminar_orden_compra.js"></script>
   <script src="../js/sidenav.js"></script>
   <script src="../js/imagen_carga.js"></script>

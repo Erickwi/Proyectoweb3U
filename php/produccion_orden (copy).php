@@ -28,7 +28,7 @@ if(isset($_POST['submit']))
   	//getting the post values
     $codigo_orden=$_POST['codigo_orden1'];
    $total_orden=$_POST['total_orden'];
-    echo "<script>alert('submit');</script>";
+
   // Query for data insertion
      $query=mysqli_query($con, "insert into ordenes_produccion(codigo_orden,total_orden) value('$codigo_orden','$total_orden')");
     if ($query) {

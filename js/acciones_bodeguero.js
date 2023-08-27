@@ -1,3 +1,5 @@
+cargarDatosOrden.php
+
 //INICIO SECCION ver compras
 function actualizarOrdenes(){
   $.ajax({
@@ -10,30 +12,32 @@ function actualizarOrdenes(){
 }
 
 //VER ORDENES
-$('#buscar_orden_btn').click(function(e) {
+$('#buscar_producto_btn').click(function(e) {
+  alert('HolasP')
   e.preventDefault();
-  var codigoBuscar = $('#codigo_buscar').val();
+  var codigoBuscar = $('#codigo_buscar_p').val();
   // Validar que la entrada sea un número entero
     if (!/^\d{5}$/.test(codigoBuscar)) {
       // Mostrar una alerta SweetAlert
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Ingresa un número entero de 5 dígitos en el campo de código.',
+        text: 'Ingresa un número entero',
       });
       $("input[type='text']").val("");
       return; // Detener el proceso si la entrada es inválida
     }
   $.ajax({
     type: 'POST',
-    url: '../php/buscarOrden.php',
+    url: '../php/cargar_productos.php',
     data: { codigo_buscar: codigoBuscar },
     success: function(response) {
-      $('#tabla_body_ordenes').html(response);
+      $('#tabla_body_productos').html(response);
     }
   });
-  $("#restablecer_orden_btn").removeAttr("disabled");
+  $("#restablecer_pro_btn").removeAttr("disabled");
 });
+// ver producto
 
 //recargar los datos 
 
@@ -67,6 +71,7 @@ $('#submitOrdenBtn').click(function(e) {
 cargarTodosRegistros();
 actualizarListaMateriales();
 cargarTodosRegistrosOrden();
+cargarTodosRegistrosProducto();
 $('#buscar_btn').click(function(e) {
   e.preventDefault();
   var codigoBuscar = $('#codigo_buscar').val();
@@ -118,7 +123,17 @@ function cargarTodosRegistrosOrden() {
     }
   });
 }
-
+function cargarTodosRegistrosProducto() 
+ alert("A entro");
+  $.ajax({
+    type: 'GET',
+    url: '../php/cargar_productos.php',
+    success: function(response) {
+     
+      $('#tabla_body_productos').html(response);
+    }
+  });
+}
 //FIN SECCION ver compras
 
 //INICIO SECCION HACER COMPRAS

@@ -14,22 +14,25 @@ if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {
     $usuario = $_POST['usuario'];
     $contraseña = $_POST['contraseña'];
 
-    if (credenciales_son_validas($usuario, $contraseña)) {
+    $validacion = credenciales_son_validas($usuario, $contraseña);
+
+    if ($validacion === true) {
         $tipo_usuario = obtener_tipo_usuario($usuario);
         $nombre_usuario = obtener_nombre_usuario($usuario);
-      $id_usuario = obtener_id($usuario);//////////////////////////
-      //VARIABLES PARA LA SESION
-      //variable usuario -> "administrador","bodeguero","administrador"
+        $id_usuario = obtener_id($usuario);
+        
+        // VARIABLES PARA LA SESION
         $_SESSION['tipo_usuario'] = $tipo_usuario;
-      //variable nombre -> nombre del usuario
         $_SESSION['nombre_usuario'] = $nombre_usuario;
-        $_SESSION['id_usuario'] = $id_usuario;/////////////////////777
+        $_SESSION['id_usuario'] = $id_usuario;
+        
         redirigirSegunRol($tipo_usuario);
         exit();
     } else {
-        $mensajeError = "Credenciales inválidas. Inténtalo nuevamente.";
+        $mensajeError = $validacion; // Mostrar el mensaje de error de la validación
     }
 }
+
 
 function obtener_tipo_usuario($usuario) {
     global $con;
@@ -69,20 +72,26 @@ function credenciales_son_validas($usuario, $contraseña) {
     $query = "SELECT * FROM usuario WHERE usuario='$usuario'";
     $result = mysqli_query($con, $query);
     if ($result) {
-		$row=mysqli_fetch_assoc($result);
-		if ($row != NULL){
-			$contraseña_db = $row['contraseña'];
-			$contraseña_ingresada_md5 = md5($contraseña);
-			if ($contraseña_ingresada_md5  === $contraseña_db) {
-            	return true;
-        	}else {
-                return false;
+        $row = mysqli_fetch_assoc($result);
+        if ($row != NULL) {
+            $contraseña_db = $row['contraseña'];
+            $contraseña_ingresada_md5 = md5($contraseña);
+            
+            if ($contraseña_ingresada_md5 === $contraseña_db) {
+                if ($row['activo'] == 0) {
+                    return true;
+                } else {
+                    return "Usuario inactivo. Contacta al administrador.";
+                }
+            } else {
+                return "Credenciales inválidas. Inténtalo nuevamente.";
             }
-		}else{
-			return false;
-		}
+        } else {
+            return "Credenciales inválidas. Inténtalo nuevamente.";
+        }
     }
 }
+
 
 function redirigirSegunRol($tipo_usuario) {
     if ($tipo_usuario === 'producción') {
