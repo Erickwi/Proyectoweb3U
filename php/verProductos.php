@@ -128,7 +128,6 @@ if ($tipo_usuario === 'bodeguero') {
 
 <script>
 $('#buscar_producto_btn').click(function(e) {
-  alert('HolasP')
   e.preventDefault();
   var codigoBuscar = $('#codigo_buscar_p').val();
   // Validar que la entrada sea un número entero

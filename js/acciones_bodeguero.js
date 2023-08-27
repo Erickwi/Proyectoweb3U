@@ -1,5 +1,3 @@
-cargarDatosOrden.php
-
 //INICIO SECCION ver compras
 function actualizarOrdenes(){
   $.ajax({
@@ -12,33 +10,12 @@ function actualizarOrdenes(){
 }
 
 //VER ORDENES
-$('#buscar_producto_btn').click(function(e) {
-  alert('HolasP')
+$('#restablecer_pro_btn').click(function(e) {
   e.preventDefault();
-  var codigoBuscar = $('#codigo_buscar_p').val();
-  // Validar que la entrada sea un número entero
-    if (!/^\d{5}$/.test(codigoBuscar)) {
-      // Mostrar una alerta SweetAlert
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Ingresa un número entero',
-      });
-      $("input[type='text']").val("");
-      return; // Detener el proceso si la entrada es inválida
-    }
-  $.ajax({
-    type: 'POST',
-    url: '../php/cargar_productos.php',
-    data: { codigo_buscar: codigoBuscar },
-    success: function(response) {
-      $('#tabla_body_productos').html(response);
-    }
-  });
-  $("#restablecer_pro_btn").removeAttr("disabled");
+  cargarTodosRegistrosProductos();
+  $("#restablecer_pro_btn").prop("disabled", true);
+  $("input[type='text']").val("");
 });
-// ver producto
-
 //recargar los datos 
 
 $('#restablecer_orden_btn').click(function(e) {
@@ -71,7 +48,7 @@ $('#submitOrdenBtn').click(function(e) {
 cargarTodosRegistros();
 actualizarListaMateriales();
 cargarTodosRegistrosOrden();
-cargarTodosRegistrosProducto();
+cargarTodosRegistrosProductos();
 $('#buscar_btn').click(function(e) {
   e.preventDefault();
   var codigoBuscar = $('#codigo_buscar').val();
@@ -123,8 +100,7 @@ function cargarTodosRegistrosOrden() {
     }
   });
 }
-function cargarTodosRegistrosProducto() 
- alert("A entro");
+function cargarTodosRegistrosProductos(){ 
   $.ajax({
     type: 'GET',
     url: '../php/cargar_productos.php',

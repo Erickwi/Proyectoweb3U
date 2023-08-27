@@ -61,9 +61,7 @@ if ($tipo_usuario === 'bodeguero') {
         <div class="encabezado">
             <div class="logo"><img src="../img/logo_alternativo.png"></div>
             <div class="informacion">
-                <div class="nombre">
-                    <p style="font-weight: bold; font-size: 24px; font-family: 'Times New Roman', Times, serif; color: blue;"><?php echo $nombre_usuario ?></p>
-                </div>
+                <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
                 <div class="user-logo"><i class="fa-solid fa-user fa-2xl"></i></div>
             <div class="w3-dropdown-hover cerrarDrop">
                 <button class="w3-button w3-light-gray w3-round-large cerrarDropBtn">Mi cuenta</button>

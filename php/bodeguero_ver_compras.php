@@ -28,7 +28,6 @@ if ($tipo_usuario === 'administrador') {
     <title>Ver Compras</title>
   <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
-  <link href="../css/estilo_produccion.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidenav.css" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <!-- Font Awesome -->

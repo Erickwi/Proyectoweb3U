@@ -117,7 +117,7 @@ if ($tipo_usuario === 'bodeguero') {
           </div>
            <div class="ingreso-codigo-producto ingreso-imagen" >
             <label for="number">Imagen:</label><br>
-             <h6> <input type="file" id="subirMaterial" name ="subirMaterial" accept="image/*" /> <button id="materialCarga" class="material-insertar" >  Subir </button></h6>
+             <h6> <input type="file" id="subirMaterial" name ="subirMaterial" accept="image/*" /> <button id="materialCarga" class="material-insertar" style="cursor:pointer;" >  Subir </button></h6>
           </div>
           </form>
         </div>
@@ -125,7 +125,7 @@ if ($tipo_usuario === 'bodeguero') {
          <div class="carga-img" id="imagenContenedor">
          <img /> 
          </div>
-          <div> <p> <button class="cargar-producto" onclick="subirImagen(1)">  Mostrar </button></p> </div>
+          <div> <p> <button class="cargar-producto" onclick="subirImagen(1)" style="cursor:pointer;">  Mostrar </button></p> </div>
         </div>
          
         </div>
