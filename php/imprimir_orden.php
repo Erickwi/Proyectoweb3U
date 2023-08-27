@@ -37,8 +37,13 @@
     <div class="informacion-material-nombre "><input type="text"  name="codigo_orden" id="codigo_orden" value="codigo orden"  />  </div>
     <div class="informacion-material "> <input type="text"  name="codigo_orden" id="codigo_orden" value="fecha"  />  </div>
     <div class="informacion-material "><input type="text"  name="codigo_orden" id="codigo_orden" value="fecha"  />  </div>
-   
-  </div>
+    </div>
+    <div class="codigo-fecha">  
+    <div class="informacion-material-codigo "><input type="text"  name="codigo_orden" id="codigo_orden" value="Nombre del encargado"  /> </div>
+    <div class="informacion-material-nombre "><input type="text"  name="codigo_orden" id="codigo_orden" value="codigo orden"  />  </div>
+    <div class="informacion-material "> <input type="text"  name="codigo_orden" id="codigo_orden" value="fecha"  />  </div>
+    <div class="informacion-material "><input type="text"  name="codigo_orden" id="codigo_orden" value="fecha"  />  </div>
+    </div>
 
     
 </div>
