@@ -25,6 +25,18 @@ if (isset($_GET['delid'])) {
     echo "<script>alert('Usuario Eliminado Correctamente');</script>";
     echo "<script>window.location.href = 'verUsuarios.php'</script>";
 }
+
+if (isset($_GET['desactivar'])) {
+    $rid = intval($_GET['desactivar']);
+    $sql = mysqli_query($con, "UPDATE usuario SET activo='1' WHERE id_usuario=$rid");
+    echo "<script>window.location.href = 'verUsuarios.php'</script>";
+}
+
+if (isset($_GET['activar'])) {
+    $rid = intval($_GET['activar']);
+    $sql = mysqli_query($con, "UPDATE usuario SET activo='0' WHERE id_usuario=$rid");
+    echo "<script>window.location.href = 'verUsuarios.php'</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -118,12 +130,13 @@ if (isset($_GET['delid'])) {
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Estado</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Cédula</th>
                             <th>Tipo Empleado</th>
                             <th>Usuario</th>
-                            <th>Acciones<th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -138,21 +151,29 @@ if (isset($_GET['delid'])) {
                     
                         while ($row = mysqli_fetch_assoc($ret)) {
                             ?>
-                            <tr>
+                            <tr <?php echo $row['activo'] == 1 ? 'style="background-color: #ffcccc;"' : ''; ?>>
                                 <td><?php echo $row['id_usuario']; ?></td>
+                                <td><?php echo $row['activo'] == 0 ? 'Activo' : 'Desactivado'; ?></td>
                                 <td><?php echo $row['nombre']; ?></td>
                                 <td><?php echo $row['apellido']; ?></td>
                                 <td><?php echo $row['cedula']; ?></td>
                                 <td><?php echo $row['tipo_usuario']; ?></td>
                                 <td><?php echo $row['usuario']; ?></td>
                                 <td>
-                                    <a href="./verInfoUsuario.php?viewid=<?php echo htmlentities($row['id_usuario']); ?>" class="view"
-                                        title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                                    <a href="edit.php?editid=<?php echo htmlentities($row['id_usuario']); ?>" class="edit"
-                                        title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="verUsuarios.php?delid=<?php echo ($row['id_usuario']); ?>" class="delete" title="Delete"
-                                        data-toggle="tooltip"
-                                        onclick="return confirm('Realmente desea eliminar este Usuario?');"><i class="material-icons">&#xE872;</i></a>
+                                    <?php if ($row['activo'] == 0) { ?>
+                                        <a href="./verInfoUsuario.php?viewid=<?php echo htmlentities($row['id_usuario']); ?>" class="view"
+                                            title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                        <a href="edit.php?editid=<?php echo htmlentities($row['id_usuario']); ?>" class="edit"
+                                            title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                        <a href="verUsuarios.php?delid=<?php echo ($row['id_usuario']); ?>" class="delete" title="Delete"
+                                            data-toggle="tooltip"
+                                            onclick="return confirm('Realmente desea eliminar este Usuario?');"><i class="material-icons">&#xE872;</i></a>
+                                        <a href="verUsuarios.php?desactivar=<?php echo ($row['id_usuario']); ?>" class="deactivate"
+                                            title="Desactivar" data-toggle="tooltip"><i class="material-icons" style="color: black;">&#xE611;</i></a>
+                                    <?php } elseif ($row['activo'] == 1) { ?>
+                                        <a href="verUsuarios.php?activar=<?php echo ($row['id_usuario']); ?>" class="activate"
+                                            title="Activar" data-toggle="tooltip"><i class="material-icons" style="color: green;">&#xE876;</i></a>
+                                    <?php } ?>
                                 </td>
                             </tr>
                             <?php
