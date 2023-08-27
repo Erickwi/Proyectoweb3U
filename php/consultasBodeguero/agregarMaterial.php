@@ -1,33 +1,52 @@
 <?php
 include('dbconnection.php');
-// Capturar los valores enviados por AJAX
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   $query = "SELECT *, (cantidad_material * costo_material) as precio_total materiales = WHERE codigo_material = '$codigoMaterial'";
-  $actualizarMaterial = mysqli_query($con, $query);
-  $row = mysqli_fetch_assoc($actualizarMaterial);
-  
   $codigoMaterial = $_POST['codigo_compra'];
   $costoMaterial = $_POST['costo_compra'];
   $cantidadMaterial = $_POST['cantidad_compra'];
+  
+  // Obtén el valor actual de cantidad_material desde la base de datos
+  $query = "SELECT cantidad_material, nombre_material, (cantidad_material * costo_material) as precio_total FROM materiales WHERE codigo_material = '$codigoMaterial'";
+  $result = mysqli_query($con, $query);
+  $row = mysqli_fetch_assoc($result);
+  
+  $valorActual = $row['cantidad_material'];
   $nombreMaterial = $row['nombre_material'];
   $TotalMaterial = $row['precio_total'];
+  $unidadMedida = $_POST['unidad_medida_compra_opcion'];
   
-  $query = "UPDATE materiales SET cantidad_material = '$cantidadMaterial', costo_material = '$costoMaterial' WHERE codigo_material = '$codigoMaterial'";
-  $actualizarMaterial = mysqli_query($con, $query);
-
+  // Convierte la cantidad ingresada a gramos si la unidad no es "gramo"
+  if ($unidadMedida != 'gramo') {
+    if ($unidadMedida == 'kilogramo') {
+      $cantidadMaterial *= 1000;  // Convertir kilogramos a gramos
+    } elseif ($unidadMedida == 'libra') {
+      $cantidadMaterial *= 453.592;  // Convertir libras a gramos
+    }
+  }
+  
+  // Calcula el nuevo valor sumando el valor actual y la cantidad nueva
+  $nuevoValor = $valorActual + $cantidadMaterial;
+  
+  // Actualiza la base de datos con el nuevo valor
+  $queryUpdate = "UPDATE materiales SET cantidad_material = '$nuevoValor', costo_material = '$costoMaterial' WHERE codigo_material = '$codigoMaterial'";
+  mysqli_query($con, $queryUpdate);
 
   //INSERTAR EN LA TABLA INVENTARIOS_TOTAL;
-  //se obtiene el id del usuario con el nombre del usuario que previamente en session se establecio
-  $nombre_usuario = $_SESSION['nombre_usuario'];
-  $query = "SELECT * from usuario where nombre = '$nombre_usuario'";
-  $row = mysqli_fetch_assoc($query);
-  //se cambia a entero el id del usuario
-  $idUsuario = $row["id_materiales"];
+  //se obtiene el id del usuario con el nombre del usuario que previamente en session se estableció y se cambia a entero porque es un string
+  session_start(); // Asegurarse de iniciar la sesión
+  $idUsuario = intval($_SESSION['id_usuario']);
 
   //se omite los campos de id_inventario, fecha_inventario, activo_inventario porque lo hace automáticamente
+  //se pasa la cantidad del material el nuevo valor 
+  $queryInsert = "INSERT INTO inventarios_total(codigo_inventario, detalle_inventario,cantidad_inventario, precio_unitario_inventario, precio_total, unidad_medida, tipo_proceso, usuario_id_usuario) VALUES('$codigoMaterial', '$nombreMaterial','$nuevoValor', '$costoMaterial','$TotalMaterial' ,'gramos','Compra y actualización de material', $idUsuario)";
+  $resultInsert = mysqli_query($con, $queryInsert);
 
-  $query = "INSERT INTO inventarios_total(codigo_inventario, detalle_inventario,cantidad_inventario, precio_unitario_inventario, precio_total, unidad_medida, tipo_proceso, usuario_id_usuario) VALUES('$codigoMaterial', '$nombreMaterial','$cantidadMaterial', '$costoMaterial','$TotalMaterial' ,'gramos','Compra y actualización de material', $idUsuario)";
-  $result = mysqli_query($con, $query);
-  
+  if ($resultInsert) {
+    echo "Exito"; // Responde con un mensaje de éxito
+  } else {
+    echo "Error"; // Responde con un mensaje de error
+  }
 }
+
+
 ?>

@@ -70,7 +70,7 @@ include('consultasBodeguero/agregarMaterial.php');
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido-orden">
           <form id="formulario_compras" method="post" class="formulario">
-          <h2 class="titulo_compras">Compras</h2>
+          <h2 class="titulo_compras">Comprar Material</h2>
             <div class="contenedor_orden">
               <div class="w3-row codigo_compras">
                 <div class="w3-container w3-third">
@@ -83,7 +83,7 @@ include('consultasBodeguero/agregarMaterial.php');
                 </div>
                 <div class="w3-container w3-third">
                   <label for="codigo_compra">Código del producto</label>
-                  <input class="w3-input" type="text" name="codigo_compra" id="codigo_compra" placeholder="Ej. 123876" readonly disabled>
+                  <input class="w3-input" type="text" name="codigo_compra" id="codigo_compra" placeholder="Ej. 12387" readonly disabled>
                 </div>
                 <div class="w3-container w3-third">
                   <label for="fecha_compra">Fecha y hora</label>
@@ -114,8 +114,8 @@ include('consultasBodeguero/agregarMaterial.php');
                 </div>
               </div>
             </div>
-          <input align="center" type="submit" value="Comprar producto" class="w3-btn w3-show guardar_btn" id="guardar_btn" disabled>
-            <input align="center" type="submit" value="Añadir Producto" class="w3-btn w3-blue w3-hide producto_btn">
+          <input align="center" type="submit" value="Comprar Material" class="w3-btn w3-show guardar_btn" id="guardar_btn" disabled>
+            <input align="center" type="submit" value="Comprar nuevo Material" class="w3-btn w3-blue w3-hide producto_btn">
           <form>
         </div>
     </div>

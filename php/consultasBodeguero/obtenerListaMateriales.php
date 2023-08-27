@@ -10,5 +10,5 @@ include('dbconnection.php');
       echo '<option value="' . $id . '">' . $nombreMaterial . '</option>';
 
   }
-  echo '<option value="nuevo_material" >Añadir un nuevo material</option>';
+  echo '<option value="nuevo_material" >Comprar un nuevo material</option>';
 ?>

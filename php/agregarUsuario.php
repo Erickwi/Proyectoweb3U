@@ -29,7 +29,7 @@ if(isset($_POST['submit']))
     $Cedula=$_POST['cedula'];
     $UsuarioN=$_POST['user'];
     $Tipoempleado=$_POST['tipo_empleado'];
-    $Clave=$_POST['contraseña'];
+    $Clave=md5($_POST['contraseña']);
    
   // Query for data insertion
      $query=mysqli_query($con, "insert into usuario(nombre,apellido, cedula, usuario, tipo_usuario, contraseña) value('$Nombre','$Apellido', '$Cedula', '$UsuarioN', '$Tipoempleado', '$Clave' )");

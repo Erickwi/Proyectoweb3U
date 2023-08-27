@@ -102,9 +102,10 @@ if ($tipo_usuario === 'administrador') {
               <input
                 class="w3-input"
                 type="number"
+                placeholder="Ej: 23443"
                 name="codigo_orden1"
                 id="codigo_orden1"
-                
+                requiered
               />
              
             </div>
@@ -126,7 +127,7 @@ if ($tipo_usuario === 'administrador') {
             <div class="codigos-orden">
               <label for="codigo_material">Productos</label>
              
-             <select name="productos" id="productos">
+             <select name="productos" id="productos" requiered >
                <option value="">Selecciona el producto</option>
                 <?php  
                 include('dbconnection.php');
@@ -152,8 +153,8 @@ if ($tipo_usuario === 'administrador') {
                 type="number"
                 name="cantidad_producto1"
                 id="cantidad_producto1" 
-                placeholder=""
-                min=1 
+                placeholder=1
+                min=1 step=0.01  required 
               /></div>
             </div>
             <div class="extra-orden margen-extra">              
@@ -162,6 +163,7 @@ if ($tipo_usuario === 'administrador') {
   <button class="w3-btn w3-round-large w3-blue" type="button" id="submitOrdenBtn" name="submitOrdenBtn">Agregar</button>
               
             </div>
+             <br><br>
           </div>
          
 <div id="informacionORDEN"> </div>

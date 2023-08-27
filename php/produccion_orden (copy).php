@@ -133,13 +133,13 @@ if (isset($producto)) {
                     <input class="w3-input" type="text" name="cantidad_orden" id="cantidad_orden" value="<?php echo $row['cantidad_pm']; ?>" readonly  />
                 </div>
                 <div class="costo-material">
-                    <input class="w3-input" type="text" name="costo_orden" id="costo_orden" value="<?php echo $row['costo_pm']; ?>" readonly />
+                    <input class="w3-input" type="text" name="costo_orden" id="costo_orden" value="<?php echo $row['costo_material']; ?>" readonly />
                 </div>
             </div>
          
         
 <?php
-          $total += ($row['cantidad_pm'] * $row['costo_pm']); // Sumamos al total
+          $total += ($row['cantidad_pm'] * $row['costo_material']); // Sumamos al total
         }
       ?>
       <div class="contenido-materiales">

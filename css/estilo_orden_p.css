@@ -49,6 +49,7 @@ h1{
     height: 60px;
     margin: auto;
     display: flex;
+  
 }
 .informacion-orden .codigos-orden{
     width: 60%;
@@ -112,9 +113,10 @@ h1{
     height: 100%;
 }
 .cantidad-material, .costo-material{
-    width: 15%;
+    width: 25%;
     height: 100%;
     margin: auto;
+
 }
 .total-orden-suma{
     width: 35%;
@@ -140,4 +142,9 @@ h1{
 
 .ocultar{
   display:none;
+}
+
+.informacion-orden1{
+  margin-bottom:20PX;
+  background: red;
 }
