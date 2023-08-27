@@ -67,10 +67,10 @@ function setSuccessField(element) {
     element.style.borderColor = 'green';
 }
 
-// Habilitar todos los campos al principio
+// Habilitar todos los campos al principio (Editables)
 enableFields();
 
-// Cambiar color de borde a verde al tener datos válidos
+// Cambiar color de borde a verde al tener datos válidos 
 userInput.addEventListener('input', function() {
     if (userInput.value.trim() !== '') {
         userInput.style.borderColor = 'green';
