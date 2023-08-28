@@ -35,9 +35,10 @@ if (isset($_GET['codigoOrden']) && isset($_GET['idUsuario'])) {
 ";
   $getPro1= mysqli_query($con, $getPro);
 
-
+$total1=0;
 while ($rowP = mysqli_fetch_assoc($getPro1)){
-
+  
+$c_pro=$rowP['cantidad_productos'];
 ?>
     <div class="codigo-fecha">  
     <div class="codigo-producto"> Codigo del producto: <br>  <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $rowP['codigo_productos']; ?>" readonly /> </div>
@@ -55,27 +56,33 @@ while ($rowP = mysqli_fetch_assoc($getPro1)){
   </div>
   <?php
 
-    $getM= "Select codigo_orden,codigo_productos,nombre_productos,codigo_material, nombre_material,cantidad_pm,costo_material  from ordenes_produccion op, productos p,productos_materiales pm, materiales m where pm.materiales_id_materiales=m.id_materiales and op.productos_id_productos=p.id_productos and pm.productos_id_productos=p.id_productos AND codigo_orden='$codigoOrden';
+    $getM= "Select codigo_orden,codigo_productos,nombre_productos,codigo_material, nombre_material,cantidad_pm,costo_material  from ordenes_produccion op, productos p,productos_materiales pm, materiales m where pm.materiales_id_materiales=m.id_materiales and op.productos_id_productos=p.id_productos and pm.productos_id_productos=p.id_productos AND codigo_orden='$codigoOrden' and codigo_productos='{$rowP['codigo_productos']}';
 ";
     $getM1= mysqli_query($con, $getM);
-    $rowM = mysqli_fetch_assoc($getM1);
-  
+  $total=0;
   while ($rowP = mysqli_fetch_assoc($getM1)){
   
   ?>
     <div class="tamaño-nuevo">  
     <div class="informacion-material-codigo "><input type="text"  name="codigo_material" id="codigo_material" value="<?php echo $rowP['codigo_material']; ?>"  /> </div>
     <div class="informacion-material-nombre "><input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $rowP['nombre_material']; ?>"  />  </div>
-    <div class="informacion-material "> <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $rowP['cantidad_pm']; ?>"  />  </div>
+    <div class="informacion-material "> <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $rowP['cantidad_pm']*$c_pro; ?>"  />  </div>
     <div class="informacion-material "><input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $rowP['costo_material']; ?>"  />  </div>
+   
     </div>
     
     <br>
 <?php
+    $total=($rowP['cantidad_pm']*$c_pro)* $rowP['costo_material']+$total;
+    
   }
+   $total1=$total+ $total1;
+  ?>
+<div class="Total-orden">Total <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $total; ?>"  /> </div>
+<?php    
 }
 ?>
-    
+<div class="Total-orden">Total <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $total1; ?>"  /> </div>  
 </div>
   
 </html>

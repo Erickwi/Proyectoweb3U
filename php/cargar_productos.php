@@ -1,5 +1,6 @@
 <?php  
 include('dbconnection.php');
+if (isset($_POST['codigo_buscar'])) {
   $codigo_buscar = $_POST['codigo_buscar'];
   $query = "SELECT * from  productos where codigo_productos='$codigo_buscar';";
   $materiales = mysqli_query($con, $query);
@@ -15,5 +16,5 @@ include('dbconnection.php');
                          
                           echo '</tr>';
       }
-  }
+  }}
 ?>

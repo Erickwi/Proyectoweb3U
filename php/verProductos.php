@@ -152,8 +152,7 @@ $('#buscar_producto_btn').click(function(e) {
   $("#restablecer_pro_btn").removeAttr("disabled");
 });
 </script>
-  
-  <script src="../js/acciones_bodeguero.js"></script>
+
     <script src="../js/sidenav.js"></script>
    
   
