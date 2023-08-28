@@ -26,15 +26,12 @@ if (isset($_GET['codigoOrden']) && isset($_GET['idUsuario'])) {
     <div class="codigo-fecha1"> Empleado encargado: <br>  <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo  $idUsuario; ?>"  /> </div>
     <div class="codigo-fecha1"> Codigo de la Orden <br>  <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $codigoOrden; ?>"  />  </div>
     <div class="codigo-fecha1">Fecha de emision <br>  <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo date('Y-m-d'); ?>"  />  </div>
-   
   </div>
-
     <?php
   include('dbconnection.php');
   $getPro= "Select DISTINCT codigo_productos,nombre_productos, cantidad_productos  from ordenes_produccion op, productos p,productos_materiales pm, materiales m where pm.materiales_id_materiales=m.id_materiales and op.productos_id_productos=p.id_productos and pm.productos_id_productos=p.id_productos and codigo_orden='$codigoOrden';
 ";
   $getPro1= mysqli_query($con, $getPro);
-
 $total1=0;
 while ($rowP = mysqli_fetch_assoc($getPro1)){
   
