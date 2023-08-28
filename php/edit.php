@@ -73,6 +73,13 @@ if(isset($_POST['submit']))
             href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css"
         />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+      .btn-custom-orange {
+    background-color: #ff8c00; /* Color naranja personalizado */
+    border-color: #ff8c00; /* Color del borde */
+    color: white; /* Color del texto */
+}
+    </style>
 </head>
 <body>
 <?php
@@ -117,15 +124,12 @@ while ($row=mysqli_fetch_array($ret)) {
 			  </div>        	
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col"><center>
             <label for="nombre">Nuevo Usuario</label>
             <input type="text" class="form-control" name="usuario" value="<?php  echo $row['usuario'];?>" required="true" maxlength="10">
-        </div>
-        <div class="col">
-          <label for="nombre">Nueva Contraseña</label>
-        	<input type="text" class="form-control" name="contraseña" value="<?php  echo $row['contraseña'];?>" required="true">
-        </div>
-      </div><br>
+</center></div>
+        
+      </div><br><center>
         <div class="form-group">
         <label for="tipo">Seleccione el Nuevo Tipo Usuario:</label>
         <select name="tipo_usuario" id="tipo_usuario" required="true">
@@ -133,12 +137,14 @@ while ($row=mysqli_fetch_array($ret)) {
           <option value="producción" <?php if ($row['tipo_usuario'] == 'producción') echo 'selected'; ?>>Producción</option>
           <option value="bodeguero" <?php if ($row['tipo_usuario'] == 'bodeguero') echo 'selected'; ?>>Bodeguero</option>
         </select>
-        </div>      
+        </div>     
+      </center> 
       <?php 
 }?>
 		<div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block" name="submit">Actualizar</button>
-        </div>
+      <button type="submit" class="btn btn-custom-orange btn-lg btn-block" name="submit">Actualizar</button>
+    </div>
+
 		<div class="form-group">
         <?php
           date_default_timezone_set('America/Guayaquil');
