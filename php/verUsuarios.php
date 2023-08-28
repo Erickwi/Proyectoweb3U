@@ -119,7 +119,7 @@ if (isset($_GET['activar'])) {
                     <form method="GET">
                         <div class="search-bar">
                         <span class="search-text">Usuario a buscar:</span>
-                            <input type="text" name="search_cedula" placeholder="Ingrese cédula del Usuario">
+                            <input type="text" name="search_cedula" placeholder="Ingrese cédula del Usuario"> 
                             <div class="loader">
                                 <i class="fa fa-spinner fa-spin"></i>
                             </div>

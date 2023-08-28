@@ -113,6 +113,13 @@ function redirigirSegunRol($tipo_usuario) {
     <title>Inicio de Sesión</title>
     <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="css/estilo_inicio.css" rel="stylesheet" type="text/css" />
+	 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<!-- SweetAlert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.js"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css"
+        />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
@@ -124,7 +131,7 @@ function redirigirSegunRol($tipo_usuario) {
             </div>
             <div class="Inicio">
                 <div class="Inicio-login">
-                    <form action="index.php" method="post">
+                    <form id="login-form" action="index.php" method="post">
                         <label for="usuario">Usuario</label><br>
                         <input type="text" name="usuario" id="usuario"><br>
                         <label for="contraseña">Contraseña</label><br>
@@ -137,5 +144,26 @@ function redirigirSegunRol($tipo_usuario) {
             </div>
         </div>
     </div>
+	<script>
+$(document).ready(function() {
+    $("#login-form").submit(function(event) {
+        const usuario = $("#usuario").val();
+        const contraseña = $("#contraseña").val();
+
+        if ($.trim(usuario) === "" || $.trim(contraseña) === "") {
+            event.preventDefault(); // Evita que el formulario se envíe
+            mostrarAlerta("Campos en blanco", "Por favor, completa todos los campos.");
+        }
+    });
+
+    function mostrarAlerta(titulo, mensaje) {
+        Swal.fire({
+            icon: "error",
+            title: titulo,
+            text: mensaje
+        });
+    }
+});
+</script>
 </body>
 </html>
