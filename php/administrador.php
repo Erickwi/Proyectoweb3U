@@ -64,7 +64,7 @@ if ($tipo_usuario === 'bodeguero') {
             <div id="agregar"><p><a href="agregarUsuario.php">Agregar Usuario</a></p></div>
             <div id="usuario"><p><a href="verUsuarios.php">Ver usuario</a></p></div>
           <div id="reporte"><p><a href="Inventario.php">Inventario</a></p></div>
-            <div id="actividad_usuario"><p>Ver actividad de<br>usuario</p></div>
+            <div id="actividad_usuario"><p><a href="actividadUsuario.php">Ver actividad de<br>usuario</a></p></div>
         </div>
         <div class="segundo-contenido">
             <div id="editar_orden"><a href="verProductos.php"> <p>Ver Productos</a></a></p></div>
