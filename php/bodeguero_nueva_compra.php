@@ -106,7 +106,7 @@ include('consultasBodeguero/agregarMaterial.php');
                     <option value="kilogramo">Kilogramo</option>
                     <option value="gramo">Gramo</option>
                     <option value="libra">Libra</option>
-                    <option value="cantidad">cantidad</option>
+                    <option value="galones">Galones</option>
                     <option value="litros">Litros</option>
                     <option value="ml">Mililitros</option>
                   </select>

@@ -1,5 +1,6 @@
 <?php
 include('dbconnection.php');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $codigoMaterial = $_POST['codigo_compra'];
   $costoMaterial = $_POST['costo_compra'];
@@ -17,11 +18,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $unidadMedida = $_POST['unidad_medida_compra_opcion'];
   
   // Convierte la cantidad ingresada a gramos si la unidad no es "gramo"
-  if ($unidadMedida != 'gramo') {
+  if (in_array($unidadMedida, ['kilogramo', 'libra'])) {
     if ($unidadMedida == 'kilogramo') {
       $cantidadMaterial *= 1000;  // Convertir kilogramos a gramos
+      $unidadMedida = 'gramo';
     } elseif ($unidadMedida == 'libra') {
       $cantidadMaterial *= 453.592;  // Convertir libras a gramos
+      $unidadMedida = 'gramo';
+    }
+  } elseif (in_array($unidadMedida, ['galones', 'litros', 'ml'])) {
+    if ($unidadMedida == 'galones') {
+      $cantidadMaterial *= 3.78541; // Convertir galones a litros
+      $unidadMedida = 'litros';
+    } elseif ($unidadMedida == 'ml') {
+      $cantidadMaterial /= 1000; // Convertir mililitros a litros
+      $unidadMedida = 'litros';
     }
   }
   
@@ -32,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $nuevoValorCosto = ($costoActual + $costoMaterial)/2;
   
   // Actualiza la base de datos con el nuevo valor
-  $queryUpdate = "UPDATE materiales SET cantidad_material = '$nuevoValor', costo_material = '$nuevoValorCosto' WHERE codigo_material = '$codigoMaterial'";
+  $queryUpdate = "UPDATE materiales SET cantidad_material = '$nuevoValor', costo_material = '$nuevoValorCosto', unidad_medida = '$unidadMedida' WHERE codigo_material = '$codigoMaterial'";
   mysqli_query($con, $queryUpdate);
 
   //INSERTAR EN LA TABLA INVENTARIOS_TOTAL;
@@ -51,6 +62,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Error"; // Responde con un mensaje de error
   }
 }
-
-
 ?>

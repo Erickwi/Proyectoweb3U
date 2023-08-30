@@ -29,6 +29,7 @@ include('consultasBodeguero/agregarMaterial.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacer compras</title>
+
   <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
    <link href="../css/estilo_bodeguero.css" rel="stylesheet" type="text/css" />
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
@@ -108,6 +109,9 @@ include('consultasBodeguero/agregarMaterial.php');
                     <option value="kilogramo">Kilogramo</option>
                     <option value="gramo">Gramo</option>
                     <option value="libra">Libra</option>
+                    <option value="galones">Galones</option>
+                    <option value="litros">Litros</option>
+                    <option value="ml">Mililitros</option>
                   </select>
                 </div>
                 <div class="w3-container w3-quarter">

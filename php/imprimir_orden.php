@@ -79,7 +79,7 @@ $c_pro=$rowP['cantidad_productos'];
 <?php    
 }
 ?>
-<div class="Total-orden">Total <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $total1; ?>"  /> </div>  
+<div class="Total-orden">Total de la orden  <input type="text"  name="codigo_orden" id="codigo_orden" value="<?php echo $total1; ?>"  /> </div>  
 </div>
   
 </html>

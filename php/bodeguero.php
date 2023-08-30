@@ -42,34 +42,41 @@ if ($tipo_usuario === 'administrador') {
             href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css"
         />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link href="../css/sidenav.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="w3-sidebar w3-bar-block" style="width:15%">
-      <h3 class="w3-bar-item">Menu</h3>
-      <a href="bodeguero_compras.php" class="w3-bar-item w3-button">Comprar material de inventario</a>
-      <a href="bodeguero_nueva_compra.php" class="w3-bar-item w3-button">Comprar nuevo material</a>
-      <a href="bodeguero_ver_compras.php" class="w3-bar-item w3-button">Ver materiales</a>
-    </div>
-    <div class="principal" style="margin-left:15%">
-      <div class="encabezado">
-          <div class="logo"><img src="../img/logo_alternativo.png"></div>
-          <div class="informacion">
-              <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
-              <div class="user-logo"><i class="fa-solid fa-user fa-2xl"></i></div>
-              <div class="w3-dropdown-hover cerrarDrop">
-                <button class="w3-button w3-light-gray w3-round-large cerrarDropBtn">Opciones</button>
+    
+    <div class="principal">
+    <div class="encabezado">
+        <div class="logo"><img src="../img/logo_alternativo.png"></div>
+        <div class="informacion">
+            <div class="nombre"><p><?php echo $nombre_usuario?></p></div>
+            <div class="user-logo"><i class="fa-solid fa-user fa-2xl"></i></div>
+            <div class="w3-dropdown-hover cerrarDrop">
+                <button class="w3-button w3-light-gray w3-round-large cerrarDropBtn">Mi cuenta</button>
                 <div class="w3-dropdown-content w3-bar-block w3-border">
                   <a id="cambiar_contraseña_btn" class="w3-bar-item w3-button">Cambiar contraseña</a>
                   <a id="cerrar_sesion_btn" class="w3-bar-item w3-button">Cerrar sesión</a>
                 </div>
-              </div>
-          </div>
-      </div>
-      <div class="bienvenida">
+            </div>
+        </div>
+    </div>
+    <div class="portada-usuarios">
+        <div class="principal">
+      <?php 
+        if($tipo_usuario == "bodeguero"){
+          include ("sidenav_bodeguero_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
+        
+      ?>
+ <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
           <h2>Bienvenid@ de nuevo</h2>
           <h3><?php echo $nombre_usuario?></h3>
-      </div> 
-    </div>
+    </div> 
+    
+      <script src="../js/sidenav.js"></script>
   <script src="../js/cerrarSesion.js"></script>
 </body>
 </html>

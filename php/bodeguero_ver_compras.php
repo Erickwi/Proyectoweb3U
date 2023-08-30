@@ -87,6 +87,7 @@ if ($tipo_usuario === 'administrador') {
                 <th>Fecha y hora</th>
                 <th>Detalle</th>
                 <th>Cantidad</th>
+                <th>Unidad Medida</th>
                 <th>Precio unitario</th>
                 <th>Precio total</th>
               </tr>

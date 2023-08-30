@@ -89,6 +89,7 @@ if ($tipo_usuario === 'bodeguero') {
                 <th>Fecha y hora</th>
                 <th>Detalle</th>
                 <th>Cantidad</th>
+                <th>Unidad medida</th>
                 <th>Precio unitario</th>
                 <th>Precio total</th>
                 <th>Tipo de proceso</th>

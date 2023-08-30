@@ -84,6 +84,7 @@ if ($tipo_usuario === 'bodeguero') {
                 type="text"
                 name="productos"
                 id="productos"
+                onchange = "ingresoProductos()"
               />
       </div>
           <div class="ingreso-codigo-producto">
@@ -229,7 +230,7 @@ $(document).ready(function() {
 <!-- ... (resto del código HTML) ... -->
 
 
-    
+  <script src="../js/validarIn.js"></script>
   <script src="../js/cerrarSesion.js"></script>
   <script src="../js/eliminar_orden_compra.js"></script>
   <script src="../js/sidenav.js"></script>

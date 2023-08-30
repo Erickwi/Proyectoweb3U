@@ -65,10 +65,11 @@ $getMateriales1 = mysqli_query($con, $getMateriales);
       <div class="titulos-contenido">
       <div class="detalle-material">MATERIAL </div>
         <div class="cantidad-material"> CANTIDAD</div>
+         <div class="Unidades"> UNIDADES</div>
       </div>
 <?php
 
-$getMateriales = "select productos_id_productos,nombre_material, cantidad_pm from materiales m, productos p, productos_materiales pm  where m.id_materiales=pm.materiales_id_materiales and p.id_productos=pm.productos_id_productos and pm.productos_id_productos='$id_producto';";
+$getMateriales = "select productos_id_productos,nombre_material, cantidad_pm , unidad_medida from materiales m, productos p, productos_materiales pm  where m.id_materiales=pm.materiales_id_materiales and p.id_productos=pm.productos_id_productos and pm.productos_id_productos='$id_producto';";
 $getMateriales1 = mysqli_query($con, $getMateriales);
 if (mysqli_num_rows($getMateriales1) > 0) {
   while ($row = mysqli_fetch_assoc($getMateriales1)) {
@@ -81,6 +82,9 @@ if (mysqli_num_rows($getMateriales1) > 0) {
       </div>
         <div class="cantidad-material">
           <input class="w3-input" type="text" name="cantidad_orden" id="cantidad_orden" value="<?php echo $row['cantidad_pm']; ?>" readonly  />
+        </div>
+    <div class="Unidades">
+          <input class="w3-input" type="text" name="cantidad_orden" id="cantidad_orden" value="<?php echo $row['unidad_medida']; ?>" readonly  />
         </div>
       </div>
         <?php

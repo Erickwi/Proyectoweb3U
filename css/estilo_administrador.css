@@ -257,4 +257,14 @@ a{
 .bienvenida h2{
    font-size: 50px;
 }
-.portada-usuarios
+.portada-usuarios h2, h3{
+  align:center;
+  margin-top:10%;
+  margin-left:35%;
+  font-size:50px;
+}
+.portada-usuarios  h3{
+  align:center;
+  margin-left:50%;
+  font-size:30px;
+}

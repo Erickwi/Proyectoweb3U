@@ -92,7 +92,30 @@ if ($tipo_usuario === 'bodeguero') {
           <h1 align="center">Ver Productos</h1>
         <form method="post" id="formulario_ver_productos">
             <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar" id="buscar_producto_btn">Buscar</button>
-          <input type="number" id="codigo_buscar_p" name="codigo_buscar_p" placeholder="Ingrese el codigo de la orden" style="width:250px;">
+
+          
+<select name="codigo_buscar_p" id="codigo_buscar_p" requiered style="width:250px; >
+               <option value="">Selecciona el producto</option>
+                <?php  
+                include('dbconnection.php');
+                $getProducto ="select * from productos order by nombre_productos";
+                $getProducto1=mysqli_query($con,$getProducto);
+                while( $row=mysqli_fetch_array($getProducto1)){
+                    $id=$row['id_productos'];
+                    $codigo_productos=$row['codigo_productos'];
+                    $nombre_productos=$row['nombre_productos'];
+                    $activo_producto=$row['activo_producto'];
+                    ?>
+                    <option value="<?php echo $id; ?>"> <?php echo $nombre_productos ?> </option>
+                    <?php
+                }
+                
+                ?>
+        
+            </select>
+
+
+          
           <button class="w3-btn w3-round-large w3-red" name="restablecer" id="restablecer_pro_btn" disabled>Restablecer</button>
         </form><br>
         <div class="w3-responsive">
@@ -134,17 +157,7 @@ if ($tipo_usuario === 'bodeguero') {
 $('#buscar_producto_btn').click(function(e) {
   e.preventDefault();
   var codigoBuscar = $('#codigo_buscar_p').val();
-  // Validar que la entrada sea un número entero
-    if (!/^\d{5}$/.test(codigoBuscar)) {
-      // Mostrar una alerta SweetAlert
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Ingresa un número entero',
-      });
-      $("input[type='text']").val("");
-      return; // Detener el proceso si la entrada es inválida
-    }
+ 
   $.ajax({
     type: 'POST',
     url: '../php/cargar_productos.php',

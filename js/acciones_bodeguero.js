@@ -168,7 +168,7 @@ $('.comprar_nuevo_material_btn').click(async function(e) {
           Swal.fire({
             icon: 'error',
             title: 'Campo incorrecto',
-            text: 'El nombre del material debe contener ya sea letras o numeros y letras'
+            text: 'El nombre del material debe contener ya sea letras o numeros'
           });
           return;
         }

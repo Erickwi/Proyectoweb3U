@@ -9,12 +9,23 @@
   $unidadMedida = $_POST['unidadMedida'];
 
 // Convierte la cantidad ingresada a gramos si la unidad no es "gramo"
-  if ($unidadMedida != 'gramo') {
-      if ($unidadMedida == 'kilogramo') {
-          $cantidadMaterial *= 1000;  // Convertir kilogramos a gramos
-      } elseif ($unidadMedida == 'libra') {
-          $cantidadMaterial *= 453.592;  // Convertir libras a gramos
-      }
+  // Convierte la cantidad ingresada a gramos si la unidad no es "gramo"
+  if (in_array($unidadMedida, ['kilogramo', 'libra'])) {
+    if ($unidadMedida == 'kilogramo') {
+      $cantidadMaterial *= 1000;  // Convertir kilogramos a gramos
+      $unidadMedida = 'gramo';
+    } elseif ($unidadMedida == 'libra') {
+      $cantidadMaterial *= 453.592;  // Convertir libras a gramos
+      $unidadMedida = 'gramo';
+    }
+  } elseif (in_array($unidadMedida, ['galones', 'litros', 'ml'])) {
+    if ($unidadMedida == 'galones') {
+      $cantidadMaterial *= 3.78541; // Convertir galones a litros
+      $unidadMedida = 'litros';
+    } elseif ($unidadMedida == 'ml') {
+      $cantidadMaterial /= 1000; // Convertir mililitros a litros
+      $unidadMedida = 'litros';
+    }
   }
   $TotalMaterial = $_POST['precioTotalCompra'];
 

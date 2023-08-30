@@ -11,6 +11,7 @@ include('dbconnection.php');
           echo '<td>' . $row['fecha_material'] . '</td>';
           echo '<td>' . $row['nombre_material'] . '</td>';
           echo '<td>' . $row['cantidad_material'] . '</td>';
+          echo '<td>' . $row['unidad_medida'] . '</td>';
           echo '<td>' . "$".$row['costo_material'] . '</td>';
           echo '<td>' ."$". number_format($row['precio_total'], 2)  . '</td>';
           echo '</tr>';

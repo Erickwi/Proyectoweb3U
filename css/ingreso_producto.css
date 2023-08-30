@@ -94,7 +94,7 @@ p {
   display:flex;
 }
 .detalle-material{
-  width:70%;
+  width:60%;
   height:100%;
 }
 .cantidad-material{
@@ -102,7 +102,11 @@ p {
   height:100%;
   margin:auto;
 }
-
+.Unidades{
+  width:20%;
+  height:100%;
+  margin:auto;
+}
 .contenido-material-todo{
   width:80%;
   height:30px;
