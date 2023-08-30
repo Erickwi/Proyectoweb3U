@@ -95,9 +95,13 @@ if(isset($_POST['submit']))
 
 </head>
 <body>
-<?php
-    include "sidenav_admin_module.php"
-  ?>
+<?php 
+        if($tipo_usuario == "administrador"){
+          include ("sidenav_admin_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
+    ?>
 
     <div class="principal">
       <main id="main">
@@ -149,6 +153,7 @@ if(isset($_POST['submit']))
                         <option value="producción">Producción</option>
                         <option value="administrador">Administrador</option>
                         <option value="bodeguero">Bodeguero</option>
+                      <option value="superU">Super Usuario</option>
                     </select>
                 </div>
             </div>

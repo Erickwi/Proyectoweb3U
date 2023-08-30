@@ -1,16 +1,15 @@
-<?php
+<?php  
 include('dbconnection.php');
-  $material_buscar = mysqli_real_escape_string($con, $_POST['nombreBuscar']); 
   $query = "SELECT inventarios_total.*, CONCAT(usuario.nombre, ' ', usuario.apellido) AS Usuario
 FROM inventarios_total
-JOIN usuario ON inventarios_total.usuario_id_usuario = usuario.id_usuario
-WHERE inventarios_total.detalle_inventario = '$material_buscar';";
+JOIN usuario ON inventarios_total.usuario_id_usuario = usuario.id_usuario and tipo_proceso = 'PRIMER INGRESO';
+"; 
   $materiales = mysqli_query($con, $query);
   if (mysqli_num_rows($materiales) == 0) {
     echo '<tr><th style="text-align:center; color:red;" colspan="6">No se han encontrado registros.</th></tr>';
   } else {
       while ($row = mysqli_fetch_assoc($materiales)) {
-          echo '<tr>';
+         echo '<tr>';
           echo '<td>' . $row['id_inventario'] . '</td>';
           echo '<td>' . $row['codigo_inventario'] . '</td>';
           echo '<td>' . $row['fecha_inventario'] . '</td>';

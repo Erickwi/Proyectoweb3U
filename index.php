@@ -100,6 +100,8 @@ function redirigirSegunRol($tipo_usuario) {
         header('Location: php/administrador.php');
     } elseif ($tipo_usuario === 'bodeguero') {
         header('Location: php/bodeguero.php');
+    }elseif ($tipo_usuario === 'superU') {
+        header('Location: php/SuperUsuario.php');
     }
 }
 

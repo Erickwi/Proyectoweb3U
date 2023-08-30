@@ -52,8 +52,12 @@ if ($tipo_usuario === 'bodeguero') {
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-<?php
-    include "sidenav_admin_module.php"
+  <?php
+        if($tipo_usuario === "administrador"){
+          include ("sidenav_admin_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
   ?>
 
 <div class="principal">

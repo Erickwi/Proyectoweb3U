@@ -51,7 +51,11 @@ if ($tipo_usuario === 'administrador') {
 <body>
     <div class="principal">
       <?php 
-        include "sidenav_produccion_module.php"
+        if($tipo_usuario === "produccin"){
+          include ("sidenav_produccion_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
       ?>
       <div class="encabezado">
           <div class="logo"><img src="../img/logo_alternativo.png"></div>

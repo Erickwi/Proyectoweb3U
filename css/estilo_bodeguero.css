@@ -11,7 +11,7 @@
   border-radius:30px;
 }
 
-#formulario_compras, #formulario_productos{
+#formulario_compras, #formulario_productos, #formulario_compras_nuevo{
   display:flex;
   flex-direction:column;
   justify-content:center;

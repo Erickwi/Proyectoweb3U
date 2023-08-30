@@ -28,7 +28,7 @@ include('consultasBodeguero/agregarMaterial.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacer compras</title>
+    <title>Comprar nuevo material</title>
   <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
    <link href="../css/estilo_bodeguero.css" rel="stylesheet" type="text/css" />
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
@@ -73,19 +73,17 @@ include('consultasBodeguero/agregarMaterial.php');
       </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido-orden">
-          <form id="formulario_compras" method="post" class="formulario">
-          <h2 class="titulo_compras">Comprar Material</h2>
+          <form id="formulario_compras_nuevo" method="post" class="formulario">
+          <h2 class="titulo_compras">Comprar Nuevo Material</h2>
             <div class="contenedor_orden">
               <div class="w3-row codigo_compras">
                 <div class="w3-container w3-third">
-                  <label for="codigo_compra_opcion">Material</label>
-                  <select class="w3-select" name="material_compra_opcion" id="material_compra_opcion">
-                    <!--LAS OPCIONES SE CARGAN CON EL PHP USANDO AJAX-->
-                  </select>
+                    <label class="nombre_compra" for="nombre_compra">Nombre material</label>
+                    <input class="w3-input nombre_compra" type="text" name="nombre_compra" id="nombre_compra" placeholder="Ingrese el nombre del material">
                 </div>
                 <div class="w3-container w3-third">
                   <label for="codigo_compra">Código del producto</label>
-                  <input class="w3-input" type="text" name="codigo_compra" id="codigo_compra" placeholder="Ej. 12387" readonly>
+                  <input class="w3-input" type="text" name="codigo_compra" id="codigo_compra" placeholder="Ej. 12387">
                 </div>
                 <div class="w3-container w3-third">
                   <label for="fecha_compra">Fecha y hora</label>
@@ -100,23 +98,26 @@ include('consultasBodeguero/agregarMaterial.php');
                 </div>
                 <div class="w3-container w3-quarter">
                   <label for="cantidad_compra">Cantidad</label>
-                  <input class="w3-input cantidad_compra" type="number" name="cantidad_compra" placeholder="0" step=0.01>
+                  <input class="w3-input cantidad_compra" type="number" name="cantidad_compra" placeholder="0" step=0.01 >
                 </div>
                 <div class="w3-container w3-quarter button_container w3-center">
                   <label for="cantidad_compra">Unidad de medida</label>
-                  <select class="w3-select" name="unidad_medida_compra_opcion" id="unidad_medida_compra_opcion">
+                  <select class="w3-select" name="unidad_medida_compra_opcion" id="unidad_medida_compra_opcion" >
                     <option value="kilogramo">Kilogramo</option>
                     <option value="gramo">Gramo</option>
                     <option value="libra">Libra</option>
+                    <option value="cantidad">cantidad</option>
+                    <option value="litros">Litros</option>
+                    <option value="ml">Mililitros</option>
                   </select>
                 </div>
                 <div class="w3-container w3-quarter">
                   <label for="total_compra">Total</label>
-                   <input class="w3-input" type="text" name="total_compra" id="total_compra" readonly placeholder="$0.00">
+                   <input class="w3-input" type="text" name="total_compra" id="total_compra" readonly  placeholder="$0.00">
                 </div>
               </div>
             </div>
-          <input align="center" type="submit" value="Comprar Material" class="w3-btn w3-show guardar_btn" id="guardar_btn">
+            <input align="center" type="submit" value="Comprar nuevo Material" class="w3-btn w3-blue comprar_nuevo_material_btn">
           <form>
         </div>
     </div>

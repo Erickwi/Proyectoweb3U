@@ -44,7 +44,13 @@ if ($tipo_usuario === 'administrador') {
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-    <div class="principal">
+    <div class="w3-sidebar w3-bar-block" style="width:15%">
+      <h3 class="w3-bar-item">Menu</h3>
+      <a href="bodeguero_compras.php" class="w3-bar-item w3-button">Comprar material de inventario</a>
+      <a href="bodeguero_nueva_compra.php" class="w3-bar-item w3-button">Comprar nuevo material</a>
+      <a href="bodeguero_ver_compras.php" class="w3-bar-item w3-button">Ver materiales</a>
+    </div>
+    <div class="principal" style="margin-left:15%">
       <div class="encabezado">
           <div class="logo"><img src="../img/logo_alternativo.png"></div>
           <div class="informacion">
@@ -59,17 +65,10 @@ if ($tipo_usuario === 'administrador') {
               </div>
           </div>
       </div>
-      <div class="portada-usuarios">
-          <img src="../img/portada_administrador1.jpg" alt="">
+      <div class="bienvenida">
+          <h2>Bienvenid@ de nuevo</h2>
+          <h3><?php echo $nombre_usuario?></h3>
       </div> 
-      <div class="contenido">
-          
-          <div class="segundo-contenido contenido-s">
-              <div id="compra_b" class="centrado"> <a href="bodeguero_compras.php">Comprar</a></div>
-              <div id="compra_v" class="centrado"><a href="bodeguero_ver_compras.php">Ver compras</a></div>
-              
-          </div>
-      </div>   
     </div>
   <script src="../js/cerrarSesion.js"></script>
 </body>

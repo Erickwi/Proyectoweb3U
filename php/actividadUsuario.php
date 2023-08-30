@@ -69,7 +69,13 @@ if ($tipo_usuario === 'bodeguero') {
     </script>
 </head>
 <body>
-    <?php include "sidenav_admin_module.php" ?>
+    <?php 
+        if($tipo_usuario === "administrador"){
+          include ("sidenav_admin_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
+    ?>
 
     <div class="principal">
         <main id="main">

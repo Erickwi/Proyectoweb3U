@@ -51,10 +51,6 @@ body {
   transition: border-left 0.2s;
 }
 
-.sidenav_agregar_usuarios_active{
-  background-color: 5px solid #FFAD62!Important;
-}
-
 .sidenav_ver_usuarios, .sidenav_ver_orden{
   border-left: 5px solid #FFE500;
 }
@@ -64,21 +60,13 @@ body {
   transition: border-left 0.2s;
 }
 
-.sidenav_ver_usuarios_active, .sidenav_ver_orden_active{
-  background-color: 5px solid #FFE500!Important;
-}
-
-.sidenav_ver_actividad_usuarios{
+.sidenav_ver_actividad_usuarios,.sidenav_comprar_nuevo_material {
   border-left: 5px solid #ff4d4d;
 }
 
-.sidenav_ver_actividad_usuarios:hover{
+.sidenav_ver_actividad_usuarios:hover,.sidenav_comprar_nuevo_material:hover{
   border-left: 8px solid #ff4d4d;
   transition: border-left 0.2s;
-}
-
-.sidenav_ver_actividad_usuarios_active{
-  background-color: #ff4d4d!important;
 }
 
 .sidenav_ver_reportes{
@@ -95,32 +83,22 @@ body {
   color:white!Important;
 }
 
-.sidenav_editar_compra, .sidenav_order_produccion, .sidenav_compras{
+.sidenav_editar_compra, .sidenav_order_produccion, .sidenav_comprar_material{
   border-left: 5px solid #00C714;
 }
 
-.sidenav_editar_compra:hover, .sidenav_order_produccion:hover, .sidenav_compras:hover{
+.sidenav_editar_compra:hover, .sidenav_order_produccion:hover, .sidenav_comprar_material:hover{
   border-left: 8px solid #00C714;
   transition: border-left 0.2s;
 }
 
-.sidenav_editar_compra_active, .sidenav_order_produccion_active, .sidenav_compras_active{
-  background-color:#00C714!Important;
-  color:white!Important;
-}
-
-.sidenav_editar_orden, .sidenav_ver_compras{
+.sidenav_editar_orden, .sidenav_ver_materiales{
   border-left: 5px solid #61caff;
 }
 
-.sidenav_editar_orden:hover, .sidenav_ver_compras:hover{
+.sidenav_editar_orden:hover, .sidenav_ver_materiales:hover{
   border-left: 8px solid #61caff;
   transition: border-left 0.2s;
-}
-
-.sidenav_editar_orden_active, .sidenav_ver_compras_active{
-  background-color: #61caff!important;
-  color:black!Important;
 }
 
 .sidenav a:first-child:hover {

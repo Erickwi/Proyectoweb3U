@@ -2,7 +2,7 @@
 include('dbconnection.php');
   $query = "SELECT inventarios_total.*, CONCAT(usuario.nombre, ' ', usuario.apellido) AS Usuario
 FROM inventarios_total
-JOIN usuario ON inventarios_total.usuario_id_usuario = usuario.id_usuario;
+JOIN usuario ON inventarios_total.usuario_id_usuario = usuario.id_usuario and tipo_proceso != 'PRIMER INGRESO';
 "; 
   $materiales = mysqli_query($con, $query);
   if (mysqli_num_rows($materiales) == 0) {

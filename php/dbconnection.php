@@ -1,12 +1,12 @@
 <?php
-$serverName = "proyecto-web-3.mysql.database.azure.com";
+$serverName = "proyecto-web-3u.mysql.database.azure.com";
 $database = "inventario";
 $username = "erick_web";
 $password = "proyecto_web_3";
 
 //ZONA HORARIA
 date_default_timezone_set("America/Guayaquil");
-
+global $con;
 // Crear la conexión
 $con = mysqli_init();
 

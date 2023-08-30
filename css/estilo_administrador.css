@@ -230,3 +230,19 @@ a{
   color:black;
 }
 
+.w3-sidebar{
+    background-color: #FFAD62!important;
+    color:white!important;
+}
+
+.bienvenida{
+ 
+    padding-top:100px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+  background-image: url('../img/bienvenido.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}

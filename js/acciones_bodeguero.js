@@ -51,22 +51,20 @@ cargarTodosRegistrosOrden();
 cargarTodosRegistrosProductos();
 $('#buscar_btn').click(function(e) {
   e.preventDefault();
-  var codigoBuscar = $('#codigo_buscar').val();
-  // Validar que la entrada sea un número entero
-    if (!/^\d{5}$/.test(codigoBuscar)) {
-      // Mostrar una alerta SweetAlert
-      Swal.fire({
+  var nombreBuscar = $('#codigo_buscar').val();
+    const regex = /^[A-Za-z0-9\s/]+$/;
+  if (!regex.test(nombreBuscar) || nombreBuscar.length > 45) {
+    Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Ingresa un número entero de 5 dígitos en el campo de código.',
-      });
-      $("input[type='text']").val("");
-      return; // Detener el proceso si la entrada es inválida
-    }
+        title: 'Campo inválido',
+        text: 'Ingresa solo letras y asegúrate de que la longitud no exceda 45 caracteres.'
+    });
+    return;
+  }
   $.ajax({
     type: 'POST',
     url: '../php/consultasBodeguero/buscarCompra.php',
-    data: { codigo_buscar: codigoBuscar },
+    data: { nombreBuscar: nombreBuscar },
     success: function(response) {
       $('#tabla_body').html(response);
     }
@@ -110,6 +108,9 @@ function cargarTodosRegistrosProductos(){
     }
   });
 }
+
+
+
 //FIN SECCION ver compras
 
 //INICIO SECCION HACER COMPRAS
@@ -139,17 +140,37 @@ $(".cantidad_compra, .costo_compra").on("input change", function() {
   
 
 
-$('.producto_btn').click(async function(e) {
+$('.comprar_nuevo_material_btn').click(async function(e) {
     e.preventDefault();
-    var formulario = $(this).closest('#formulario_compras');
+    var formulario = $(this).closest('#formulario_compras_nuevo');
 
     var nombreMaterial = formulario.find("input[name='nombre_compra']").val();
     var codigoCompra = formulario.find("input[name='codigo_compra']").val();
     var unidadMedida = formulario.find("select[name='unidad_medida_compra_opcion']").val();
+    var fechaCompra = formulario.find("input[name='fecha_compra']").attr('placeholder');
+    var [hora,fecha] = fechaCompra.split(' ');
     var costoCompra = formulario.find("input[name='costo_compra']").val().trim();
     var cantidadCompra = formulario.find("input[name='cantidad_compra']").val().trim();
     var totalCompra = formulario.find("input[name='total_compra']").val().trim();
-  
+
+    var datosCompra = {
+      nombreMaterial: nombreMaterial,
+      codigoCompra: codigoCompra,
+      fecha: fecha,
+      hora: hora,
+      costoCompra: costoCompra,
+      cantidadCompra: cantidadCompra,
+      precioTotalCompra: totalCompra
+    };
+    // Validación de nombre de material
+        if (!validarNombreMaterial(nombreMaterial)) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Campo incorrecto',
+            text: 'El nombre del material debe contener ya sea letras o numeros y letras'
+          });
+          return;
+        }
     if (!validarCodigo(codigoCompra)) {
         Swal.fire({
             icon: 'error',
@@ -185,16 +206,6 @@ $('.producto_btn').click(async function(e) {
           icon: 'error',
           title: 'Código existente',
           text: 'El código ya existe, intente con otro'
-        });
-        return;
-      }
-
-      // Validación de nombre de material
-      if (!validarNombreMaterial(nombreMaterial)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Campo incorrecto',
-          text: 'El campo Nombre Material debe tener al menos 10 caracteres y contener solo letras y espacios'
         });
         return;
       }
@@ -238,11 +249,13 @@ $('.producto_btn').click(async function(e) {
                   $('.titulo_compras').text("Compras");
                   $(".nombre_compra").removeClass("w3-show").addClass("w3-hide");
                   $(".guardar_btn").removeClass("w3-hide").addClass("w3-show");
-                  $(".producto_btn").removeClass("w3-show").addClass("w3-hide");
                   //actualizar la lista de materiales en el select
                   actualizarListaMateriales();
                 } else {
-                  console.log("Hubo un error en la inserción.");
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Ocurrió un error al realizar la compra'
+                  });
                 }
                 
               },
@@ -260,9 +273,10 @@ $('.producto_btn').click(async function(e) {
 });
 
 function validarNombreMaterial(nombre) {
-    const regex = /^[A-Za-z\s]+$/;
-    return regex.test(nombre) && nombre.length >= 10;
+    const regex = /^[A-Za-z0-9\s/]+$/;
+    return regex.test(nombre) && nombre.length <= 45 && nombre.length > 1;
 }
+
 
 function validarCodigo(codigo) {
     const regex = /^\d{5}$/;
@@ -322,7 +336,6 @@ $("#formulario_compras").submit(function(e) {
             $('.titulo_compras').text("Compras");
             $(".nombre_compra").removeClass("w3-show").addClass("w3-hide");
             $(".guardar_btn").removeClass("w3-hide").addClass("w3-show");
-            $(".producto_btn").removeClass("w3-show").addClass("w3-hide");
             //actualizar la lista de materiales en el select
             actualizarListaMateriales();
           } else {
@@ -362,27 +375,7 @@ $("#formulario_compras").submit(function(e) {
 
 
 $("#material_compra_opcion").change(function() {
-  var selectedOption = $(this).val();
-  if (selectedOption === "nuevo_material") {
-    document.title= "Añadir material";
-    $(".nombre_compra").removeClass("w3-hide").addClass("w3-show");
-    $('.titulo_compras').text("Comprar nuevo material");
-    $(".guardar_btn").removeClass("w3-show").addClass("w3-hide");
-    $(".producto_btn").removeClass("w3-hide").addClass("w3-show");
-    //resetear los valor de los inputs
-    $(".cantidad_compra, .costo_compra, #total_compra").val("");
-    $("#codigo_compra").prop("readonly", false);
-    $(".disminuir_cantidad, .aumentar_cantidad, .cantidad_compra, .costo_compra, .detalle_compra, #total_compra, #codigo_compra, #guardar_btn, #unidad_medida_compra_opcion").removeAttr("disabled");
-    $("#codigo_compra, .costo_compra").removeAttr("readonly");
-    $("#codigo_compra").val("");
-  } else if(selectedOption !== ""){
-    document.title= "Hacer compras";
-    $('.titulo_compras').text("Comprar material");
-    $(".nombre_compra").removeClass("w3-show").addClass("w3-hide");
-    $(".guardar_btn").removeClass("w3-hide").addClass("w3-show");
-    $(".producto_btn").removeClass("w3-show").addClass("w3-hide");
-    $(".costo_compra").prop("readonly", false);
-    $(".disminuir_cantidad, .aumentar_cantidad, .cantidad_compra, .costo_compra, .detalle_compra, #total_compra, #codigo_compra, .guardar_btn, #unidad_medida_compra_opcion").removeAttr("disabled");
+   var selectedOption = $(this).val();
     $.ajax({
       type: "POST",
       url: "../php/consultasBodeguero/obtenerMaterial.php",
@@ -402,7 +395,6 @@ $("#material_compra_opcion").change(function() {
         }
       }
     });
-  }
 });
 
 //FIN SECCION HACER COMPRAS

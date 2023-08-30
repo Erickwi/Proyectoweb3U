@@ -25,7 +25,7 @@ if ($tipo_usuario === 'administrador') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Compras</title>
+    <title>Ver Materiales</title>
   <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
   <link href="../css/sidenav.css" rel="stylesheet" type="text/css">
@@ -50,8 +50,12 @@ if ($tipo_usuario === 'administrador') {
 </head>
 <body>
     <div class="principal">
-      <?php 
-        include "sidenav_bodeguero_module.php"
+      <?php  
+        if($tipo_usuario === "bodeguero"){
+          include ("sidenav_bodeguero_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
       ?>
       <div class="encabezado">
           <div class="logo"><img src="../img/logo_alternativo.png"></div>
@@ -69,7 +73,7 @@ if ($tipo_usuario === 'administrador') {
       </div>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido">
-          <h1 align="center">Ver compras</h1>
+          <h1 align="center">Ver Materiales</h1>
         <form method="post" id="formulario_ver_compras">
             <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar" id="buscar_btn">Buscar</button>
           <input type="text" id="codigo_buscar" name="codigo_buscar" placeholder="Ingrese el código del producto" style="width:250px;">

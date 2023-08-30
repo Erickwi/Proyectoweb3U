@@ -1,7 +1,7 @@
 <?php
 include('dbconnection.php');
-  $buscarCompra = mysqli_real_escape_string($con, $_POST['codigo_buscar']);
-  $query = "SELECT *, (cantidad_material * costo_material) AS precio_total FROM materiales WHERE codigo_material = '$buscarCompra'";
+  $buscarCompra = mysqli_real_escape_string($con, $_POST['nombreBuscar']);
+  $query = "SELECT *, (cantidad_material * costo_material) AS precio_total FROM materiales WHERE nombre_material = '$buscarCompra'";
   $materiales = mysqli_query($con, $query);
   if (mysqli_num_rows($materiales) == 0) {
     echo '<tr><th style="text-align:center; color:red;" colspan="6">No se han encontrado registros.</th></tr>';

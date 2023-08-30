@@ -5,8 +5,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
 // Define un arreglo de enlaces y sus títulos
 $links = array(
     'bodeguero.php' => 'Inicio',
-    'bodeguero_compras.php' => 'Compras',
-    'bodeguero_ver_compras.php' => 'Ver Compras'
+    'bodeguero_compras.php' => 'Comprar material',
+    'bodeguero_nueva_compra.php' => 'Comprar nuevo material',
+    'bodeguero_ver_compras.php' => 'Ver Materiales'
 );
 
 ?>
@@ -15,8 +16,7 @@ $links = array(
   <?php
   foreach ($links as $link => $title) {
       $class = 'sidenav_' . strtolower(str_replace(' ', '_', $title));
-      $active_class = ($current_page == $link) ? $class . '_active' : '';
-      echo '<a href="' . $link . '" class="' . $class . ' ' . $active_class . '">' . $title . '</a>';
+      echo '<a href="' . $link . '" class="' . $class . '">' . $title . '</a>';
   }
   ?>
 </div>

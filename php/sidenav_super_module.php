@@ -4,9 +4,17 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 // Define un arreglo de enlaces y sus títulos
 $links = array(
-    'produccion.php' => 'Inicio',
+    'SuperUsuario.php' => 'Inicio',
+    'agregarUsuario.php' => 'Agregar usuarios',
+    'verUsuarios.php' => 'Ver usuarios',
+    'actividadUsuario.php' => 'Actividad usuario',
+    'Inventario.php' => 'Inventario',
+    'verProductos.php' => 'Productos',
+    'ingreso_producto.php' => 'Ingreso Productos',
     'produccion_orden.php' => 'Orden de producción',
-    'produccion_ver_ordenes.php' => 'Ver orden'
+    'produccion_ver_ordenes.php' => 'Ver orden',
+    'bodeguero_compras.php' => 'Compras',
+    'bodeguero_ver_compras.php' => 'Ver Compras'
 );
 
 ?>

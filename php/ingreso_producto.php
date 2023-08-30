@@ -49,9 +49,13 @@ if ($tipo_usuario === 'bodeguero') {
 </head>
 <body>
     <div class="principal">
-      <?php 
-         include "sidenav_admin_module.php"
-      ?>
+        <?php
+        if($tipo_usuario === "administrador"){
+          include ("sidenav_admin_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
+  ?>
     <div class="encabezado">
         <div class="logo"><img src="../img/logo_alternativo.png"></div>
         <div class="informacion">

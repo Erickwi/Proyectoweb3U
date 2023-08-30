@@ -50,9 +50,13 @@ if ($tipo_usuario === 'bodeguero') {
 </head>
 <body>
     <div class="principal">
-      <?php 
-        include "sidenav_admin_module.php"
-      ?>
+        <?php
+        if($tipo_usuario === "administrador"){
+          include ("sidenav_admin_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
+  ?>
       <div class="encabezado">
           <div class="logo"><img src="../img/logo_alternativo.png"></div>
           <div class="informacion">
@@ -72,7 +76,8 @@ if ($tipo_usuario === 'bodeguero') {
           <h1 align="center">Ver Inventario</h1>
         <form method="post" id="formulario_ver_inventario">
             <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar" id="buscar_inventario_btn">Buscar</button>
-          <input type="text" id="codigo_buscar_material" name="codigo_buscar_material" placeholder="Ingrese el material a buscar" style="width:250px;">
+          <input type="text" id="nombre_buscar_material" name="nombre_buscar_material" placeholder="Ingrese el material a buscar" style="width:250px;">
+          <button class="w3-btn w3-round-large w3-green" name="primerIngreso" id="primer_ingreso_btn">Ver Inventario Inicial</button>
           <button class="w3-btn w3-round-large w3-red" name="restablecer" id="restablecer_inventario_btn" disabled>Restablecer</button>
         </form><br>
         <div class="w3-responsive">
