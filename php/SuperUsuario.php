@@ -83,7 +83,7 @@ if ($tipo_usuario === 'bodeguero') {
     <div class="bienvenida">
           <h2>Bienvenid@ de nuevo</h2>
           <h3><?php echo $nombre_usuario?></h3>
-      <br>  <br>  <br>  <br>  <br> <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
+     
       </div>
     </div>  
     </div>

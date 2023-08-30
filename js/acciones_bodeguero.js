@@ -151,16 +151,17 @@ $('.comprar_nuevo_material_btn').click(async function(e) {
     var [hora,fecha] = fechaCompra.split(' ');
     var costoCompra = formulario.find("input[name='costo_compra']").val().trim();
     var cantidadCompra = formulario.find("input[name='cantidad_compra']").val().trim();
-    var totalCompra = formulario.find("input[name='total_compra']").val().trim();
+    var precioTotalCompra = formulario.find("input[name='total_compra']").val().trim();
 
     var datosCompra = {
       nombreMaterial: nombreMaterial,
       codigoCompra: codigoCompra,
+      unidadMedida: unidadMedida,
       fecha: fecha,
       hora: hora,
       costoCompra: costoCompra,
       cantidadCompra: cantidadCompra,
-      precioTotalCompra: totalCompra
+      precioTotalCompra: precioTotalCompra
     };
     // Validación de nombre de material
         if (!validarNombreMaterial(nombreMaterial)) {
@@ -217,7 +218,7 @@ $('.comprar_nuevo_material_btn').click(async function(e) {
         <p><strong>Código:</strong> ${codigoCompra}</p>
         <p><strong>Costo:</strong>$ ${costoCompra}</p>
         <p><strong>Cantidad:</strong> ${cantidadCompra} ${unidadMedida}</p>
-        <p><strong>Total:</strong>$ ${totalCompra}</p>
+        <p><strong>Total:</strong>$ ${precioTotalCompra}</p>
       </div>`;
 
       Swal.fire({
@@ -245,10 +246,6 @@ $('.comprar_nuevo_material_btn').click(async function(e) {
                   });
                   $("select[name='material_compra_opcion']").prop('selectedIndex', 0);
                   $("input[type='text']").val("");
-                  document.title= "Compras";
-                  $('.titulo_compras').text("Compras");
-                  $(".nombre_compra").removeClass("w3-show").addClass("w3-hide");
-                  $(".guardar_btn").removeClass("w3-hide").addClass("w3-show");
                   //actualizar la lista de materiales en el select
                   actualizarListaMateriales();
                 } else {

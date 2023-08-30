@@ -26,6 +26,7 @@ if ($tipo_usuario === 'administrador') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produccion</title>
+  <link href="../css/sidenav.css" rel="stylesheet" type="text/css">
   <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -58,17 +59,21 @@ if ($tipo_usuario === 'administrador') {
         </div>
     </div>
     <div class="portada-usuarios">
-        <img src="../img/portada_administrador1.jpg" alt="">
-    </div> 
-    <div class="contenido">
+        <div class="principal">
+      <?php 
+        if($tipo_usuario == "producción"){
+          include ("sidenav_produccion_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
         
-        <div class="segundo-contenido contenido-s">
-            <div id="orden_pro" class="centrado"><a href="produccion_orden.php">Orden produccion</a></div>
-            <div id="orden_v" class="centrado"><a href="produccion_ver_ordenes.php">Ver orden</a></div>
-            
-        </div>
-    </div>   
-    </div>
+      ?>
+ <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+          <h2>Bienvenid@ de nuevo</h2>
+          <h3><?php echo $nombre_usuario?></h3>
+    </div> 
+    
+      <script src="../js/sidenav.js"></script>
   <script src="../js/cerrarSesion.js"></script>
 </body>
 </html>

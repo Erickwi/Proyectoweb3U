@@ -13,7 +13,8 @@ $links = array(
     'ingreso_producto.php' => 'Ingreso Productos',
     'produccion_orden.php' => 'Orden de producción',
     'produccion_ver_ordenes.php' => 'Ver orden',
-    'bodeguero_compras.php' => 'Compras',
+    'bodeguero_compras.php' => 'Comprar Material',
+    'bodeguero_nueva_compra.php' => 'Comprar Nuevo Material',
     'bodeguero_ver_compras.php' => 'Ver Compras'
 );
 
