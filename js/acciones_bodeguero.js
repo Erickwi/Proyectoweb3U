@@ -198,9 +198,19 @@ $('.comprar_nuevo_material_btn').click(async function(e) {
       });
       return;
     }
-
+  
     // Validación de código en la base de datos
     try {
+      //verificar si ya existe el nombre de ese material
+    const responseM = await verificarNombreMaterialEnBaseDeDatos(nombreMaterial);
+      if (responseM === "Existe") {
+        Swal.fire({
+          icon: 'error',
+          title: 'Nombre existente',
+          text: 'El nombre de ese material ya existe, intenta con otro'
+        });
+        return;
+    }
       const response = await verificarCodigoEnBaseDeDatos(codigoCompra);
       if (response === "Existe") {
         Swal.fire({
@@ -278,6 +288,21 @@ function validarNombreMaterial(nombre) {
 function validarCodigo(codigo) {
     const regex = /^\d{5}$/;
     return regex.test(codigo);
+}
+
+async function verificarNombreMaterialEnBaseDeDatos(nombreMaterial){
+  try {
+        const response = await $.ajax({
+            type: "POST",
+            url: "../php/consultasBodeguero/verificarNombre.php",
+            data: { nombreMaterial: nombreMaterial },
+        });
+
+        return response;
+    } catch (error) {
+        console.error("Error en la solicitud AJAX:", error);
+        return "Error";
+    }
 }
 
 async function verificarCodigoEnBaseDeDatos(codigo) {

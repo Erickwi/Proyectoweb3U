@@ -33,47 +33,47 @@ body {
   transition: border-left 0.2s;
 }
 
-.sidenav_inicio{
+.sidenav_inicio, .sidenav_orden_de_producción{
   border-left: 5px solid #0057FF;
 }
 
-.sidenav_inicio:hover{
+.sidenav_inicio:hover, .sidenav_orden_de_producción:hover{
   border-left: 8px solid #0057FF;
   transition: border-left 0.2s;
 }
 
-.sidenav_agregar_usuarios{
+.sidenav_agregar_usuarios, .sidenav_materiales{
   border-left: 5px solid #FFAD62;
 }
 
-.sidenav_agregar_usuarios:hover{
+.sidenav_agregar_usuarios:hover, .sidenav_materiales:hover{
   border-left: 8px solid #FFAD62;
   transition: border-left 0.2s;
 }
 
-.sidenav_ver_usuarios, .sidenav_ver_orden{
+.sidenav_ver_usuarios, .sidenav_ver_orden, .sidenav_ingreso_productos{
   border-left: 5px solid #FFE500;
 }
 
-.sidenav_ver_usuarios:hover, .sidenav_ver_orden:hover{
+.sidenav_ver_usuarios:hover, .sidenav_ver_orden:hover, .sidenav_ingreso_productos:hover{
   border-left: 8px solid #FFE500;
   transition: border-left 0.2s;
 }
 
-.sidenav_ver_actividad_usuarios,.sidenav_comprar_nuevo_material {
+.sidenav_ver_actividad_usuarios,.sidenav_comprar_nuevo_material,.sidenav_inventario {
   border-left: 5px solid #ff4d4d;
 }
 
-.sidenav_ver_actividad_usuarios:hover,.sidenav_comprar_nuevo_material:hover{
+.sidenav_ver_actividad_usuarios:hover,.sidenav_comprar_nuevo_material:hover, .sidenav_inventario:hover{
   border-left: 8px solid #ff4d4d;
   transition: border-left 0.2s;
 }
 
-.sidenav_ver_reportes{
+.sidenav_ver_reportes, .sidenav_productos{
   border-left: 5px solid #007ABF;
 }
 
-.sidenav_ver_reportes:hover{
+.sidenav_ver_reportes:hover, .sidenav_productos:hover{
   border-left: 8px solid #007ABF;
   transition: border-left 0.2s;
 }
@@ -83,11 +83,11 @@ body {
   color:white!Important;
 }
 
-.sidenav_editar_compra, .sidenav_order_produccion, .sidenav_comprar_material{
+.sidenav_editar_compra, .sidenav_order_produccion, .sidenav_comprar_material, .sidenav_actividad_usuario{
   border-left: 5px solid #00C714;
 }
 
-.sidenav_editar_compra:hover, .sidenav_order_produccion:hover, .sidenav_comprar_material:hover{
+.sidenav_editar_compra:hover, .sidenav_order_produccion:hover, .sidenav_comprar_material:hover, .sidenav_actividad_usuario:hover{
   border-left: 8px solid #00C714;
   transition: border-left 0.2s;
 }
