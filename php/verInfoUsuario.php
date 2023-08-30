@@ -114,7 +114,7 @@ if ($tipo_usuario === 'bodeguero') {
                             <th>Usuario</th>
                             <td><?php echo $row['usuario']; ?></td>
                             <th>Contraseña</th>
-                            <td><?php echo $row['contraseña']; ?></td>
+                            <td>Información Cifrada</td>
                         </tr>
                         <tr>
                             <th>Fecha de Creación</th>
