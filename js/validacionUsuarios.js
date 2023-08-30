@@ -35,6 +35,53 @@ cedulaInput.addEventListener('input', function() {
     }
 });
 
+cedulaInput.addEventListener('input', function() {
+    const cedula = cedulaInput.value;
+    if (!/^[0-9]+$/.test(cedula) || cedula.length !== 10) {
+        setErrorField(cedulaInput, 'Ingrese una cédula válida de 10 dígitos');
+        disableFieldsExcept(cedulaInput);
+    } else if (!validarCedulaEcuatoriana(cedula)) {
+        setErrorField(cedulaInput, 'Ingrese una cédula ecuatoriana válida');
+        disableFieldsExcept(cedulaInput);
+    } else {
+        setSuccessField(cedulaInput);
+        enableFields();
+    }
+});
+
+// Función para validar cédulas ecuatorianas
+function validarCedulaEcuatoriana(cedula) {
+    if (cedula.length !== 10) {
+        return false;
+    }
+    
+    const coeficientes = [2, 1, 2, 1, 2, 1, 2, 1, 2];
+    const provincia = parseInt(cedula.substring(0, 2));
+    
+    if (provincia < 1 || provincia > 24) {
+        return false;
+    }
+    
+    let suma = 0;
+    
+    for (let i = 0; i < coeficientes.length; i++) {
+        let producto = parseInt(cedula.charAt(i)) * coeficientes[i];
+        if (producto >= 10) {
+            producto -= 9;
+        }
+        suma += producto;
+    }
+    
+    const digitoVerificadorCalculado = 10 - (suma % 10);
+    const digitoVerificador = parseInt(cedula.charAt(9));
+    
+    if (digitoVerificador === 0) {
+        return digitoVerificadorCalculado === 0;
+    } else {
+        return digitoVerificadorCalculado === digitoVerificador;
+    }
+}
+
 function enableFields() {
     nombreInput.disabled = false;
     apellidoInput.disabled = false;
