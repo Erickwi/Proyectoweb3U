@@ -242,7 +242,8 @@ a{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-  background-image: url('../img/bienvenido.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+    background-image: url('../img/bienvenido.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  size:
 }
