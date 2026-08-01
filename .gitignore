@@ -1,0 +1,16 @@
+# Environment variables (sensitive data)
+.env
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Replit
+.replit
+replit.nix
+.config/
