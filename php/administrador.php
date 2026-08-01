@@ -27,6 +27,7 @@ if ($tipo_usuario === 'bodeguero') {
     <title>Administrador</title>
     <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />
+    <link href="../css/sidenav.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -57,22 +58,21 @@ if ($tipo_usuario === 'bodeguero') {
         </div>
     </div>
     <div class="portada-usuarios">
-        <img src="../img/portada_administrador1.jpg" alt="">
+        <div class="principal">
+      <?php 
+        if($tipo_usuario == "administrador"){
+          include ("sidenav_admin_module.php");
+        }else{
+          include ("sidenav_super_module.php");
+        }
+        
+      ?>
+ <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+          <h2>Bienvenid@ de nuevo</h2>
+          <h3><?php echo $nombre_usuario?></h3>
     </div> 
-    <div class="contenido">
-        <div class="primer-contenido">
-            <div id="agregar"><p><a href="agregarUsuario.php">Agregar Usuario</a></p></div>
-            <div id="usuario"><p><a href="verUsuarios.php">Ver usuario</a></p></div>
-          <div id="reporte"><p><a href="Inventario.php">Inventario</a></p></div>
-            <div id="actividad_usuario"><p><a href="actividadUsuario.php">Ver actividad de<br>usuario</a></p></div>
-        </div>
-        <div class="segundo-contenido">
-            <div id="editar_orden"><a href="verProductos.php"> <p>Ver Productos</a></a></p></div>
-            <div id="editar_compra"><a href="ingreso_producto.php"><p>Ingresar Producto</p></a></div>
-            
-        </div>
-    </div>  
     </div>
+        <script src="../js/sidenav.js"></script>
   <script src="../js/cerrarSesion.js"></script>
 </body>
 </html>

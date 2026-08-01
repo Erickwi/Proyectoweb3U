@@ -47,7 +47,7 @@ if(isset($_POST['submit']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orden de producción</title>
+    <title>Ficha Técnica</title>
     <link rel="icon" href="../img/icon_logo.png" type="image/png" sizes="32x32"/>
    <link href="../css/estilo_orden_p.css" rel="stylesheet" type="text/css" />
     <link href="../css/estilo_administrador.css" rel="stylesheet" type="text/css" />

@@ -144,7 +144,7 @@ if(isset($_POST['submit']))
             <div class="form-row">
                 <div class="half-width">
                     <label for="cedula">Cédula</label>
-                    <input type="text" name="cedula" id="cedula" placeholder="Ingrese la Cédula" maxlength="10" pattern="[0-9]+" title="Solo se permiten números" required>
+                    <input type="text" name="cedula" id="cedula" placeholder="Ingrese la Cédula" maxlength="10" pattern="[0-9]+" title="Solo se permiten números" required onchange="ingresoCedula()">
                     <span id="cedula-error" class="error-msg"></span>
                 </div>
                 <div class="half-width">
@@ -172,6 +172,7 @@ if(isset($_POST['submit']))
             </div>
         </form>
     </div>
+  <script src="../js/cedula.js"></script>
 	<script src="../js/cerrarSesion.js"></script>
     <script src="../js/validacionUsuarios.js"></script>
 

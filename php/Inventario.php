@@ -84,7 +84,7 @@ if ($tipo_usuario === 'bodeguero') {
           <table class="w3-table-all">
             <thead>
               <tr class="w3-light-grey">
-				<th>Id</th>
+				        <th>Id</th>
                 <th>Código</th>
                 <th>Fecha y hora</th>
                 <th>Detalle</th>

@@ -16,6 +16,7 @@ WHERE inventarios_total.detalle_inventario = '$material_buscar';";
           echo '<td>' . $row['fecha_inventario'] . '</td>';
           echo '<td>' . $row['detalle_inventario'] . '</td>';
           echo '<td>' . $row['cantidad_inventario'] . '</td>';
+          echo '<td>' . $row['unidad_medida'] . '</td>';
           echo '<td>' . "$". $row['precio_unitario_inventario'] . '</td>';
           echo '<td>' . "$". number_format($row['precio_total'], 2) . '</td>';
 		  echo '<td>' . $row['tipo_proceso'] . '</td>';

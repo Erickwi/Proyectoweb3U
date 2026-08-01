@@ -73,7 +73,7 @@ if ($tipo_usuario === 'bodeguero') {
        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <div class="contenido-ingreso-productos"> 
       <div class = "ingreso-productos-nuevo">
-        <h1>Ingreso Productos <a href="mostrar_materiales.php"> sss</a></h1>
+        <h1>Ingreso Productos </h1>
          
         <div class="ingreso-nuevo-producto">
         <div class="ingreso-informacion">
@@ -117,7 +117,7 @@ if ($tipo_usuario === 'bodeguero') {
         
             </select> </div>
             <div class="cantidad-materiales"><label for="number">Cantidad:</label><br>
-            <input type="number" name="cantidad" id="cantidad" min=1> </div>
+            <input type="number" name="cantidad" id="cantidad" min=0.1 step=0.01 > </div>
 
           </div>
            <div class="ingreso-codigo-producto ingreso-imagen" >

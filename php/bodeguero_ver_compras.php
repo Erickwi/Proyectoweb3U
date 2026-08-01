@@ -76,7 +76,7 @@ if ($tipo_usuario === 'administrador') {
           <h1 align="center">Ver Materiales</h1>
         <form method="post" id="formulario_ver_compras">
             <button class="w3-btn w3-round-large w3-blue" type="submit" name="buscar" id="buscar_btn">Buscar</button>
-          <input type="text" id="codigo_buscar" name="codigo_buscar" placeholder="Ingrese el código del producto" style="width:250px;">
+          <input type="text" id="codigo_buscar" name="codigo_buscar" placeholder="Ingrese el nombre del material" style="width:250px;">
           <button class="w3-btn w3-round-large w3-red" name="restablecer" id="restablecer_btn" disabled>Restablecer</button>
         </form><br>
         <div class="w3-responsive">

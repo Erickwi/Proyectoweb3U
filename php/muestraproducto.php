@@ -24,7 +24,7 @@ if(isset($_POST['productos'])) {
 
 /////////////////////////777
 
-$getO = "Select productos_id_productos, materiales_id_materiales, cantidad_material,nombre_material, cantidad_pm, costo_material ,cantidad_material, cantidad_material-cantidad_pm as restante_material from productos_materiales pm, materiales m 
+$getO = "Select productos_id_productos, materiales_id_materiales, cantidad_material,nombre_material, cantidad_pm, costo_material ,cantidad_material, (cantidad_material-(cantidad_pm*$cantidad)) as restante_material from productos_materiales pm, materiales m 
 where pm.materiales_id_materiales=m.id_materiales and pm.productos_id_productos='$codigo_buscar'; ";
   
     $getO1 = mysqli_query($con, $getO);

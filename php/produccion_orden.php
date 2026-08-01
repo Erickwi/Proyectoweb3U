@@ -106,12 +106,13 @@ if ($tipo_usuario === 'administrador') {
               />
               <input
                 class="w3-input"
-                type="number"
+                type="text"
 				min=1
                 placeholder="Ej: 23443"
                 name="codigo_orden1"
                 id="codigo_orden1"
                 requiered
+                onchange="ingresoOrden()"
               />
              
             </div>
@@ -190,7 +191,7 @@ if ($tipo_usuario === 'administrador') {
 
 
  
-
+<script src="../js/validarCodigo_orden.js"></script>
 	<script src="../js/validar_ordenes.js"></script>
   <script src="../js/cerrarSesion.js"></script>
   <script src="../js/horaYFecha.js"></script>
